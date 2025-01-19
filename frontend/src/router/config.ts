@@ -39,6 +39,14 @@ const routes = [
     path: "/tramites",
     component: "Resources",
   },
+  {
+    path: "/admin",
+    component: "Login",
+  },
+  {
+    path: "/admin/dashboard",
+    component: "Dashboard",
+  },
 ];
 
 export default routes;

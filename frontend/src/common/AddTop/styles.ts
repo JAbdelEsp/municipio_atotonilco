@@ -85,6 +85,13 @@ export const Section = styled("section")`
     width: 100%;
     height: 100%;
   }
+  .sticky {
+    position: sticky !important;
+    top: 150px !important;
+    h4 {
+      color: var(--main-color-2);
+    }
+  }
   @media screen and (max-width: 991px) {
     .horizontal {
       grid-column-gap: 35px !important;
@@ -105,6 +112,13 @@ export const Section = styled("section")`
   @media screen and (max-width: 479px) {
     .horizontal {
       flex-flow: column;
+    }
+    .sticky {
+      position: relative !important;
+      top: 0 !important;
+      h4 {
+        color: var(--main-color-2);
+      }
     }
   }
 `;
@@ -340,11 +354,6 @@ export const WinlineBlock = styled("div")`
   display: inline-block;
 `;
 export const StickyBar = styled("div")`
-  position: sticky;
-  top: 150px;
-  h4 {
-    color: var(--main-color-2);
-  }
   @media screen and (max-width: 991px) {
     justify-content: center;
     align-items: center;

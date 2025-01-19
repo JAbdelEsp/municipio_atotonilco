@@ -39,6 +39,7 @@ import useFetch from "../../services";
 import { NewsData } from "../types";
 import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
+import Preloader from "../../components/Preloader";
 const AddTop = () => {
   const startRef = useRef();
   useEffect(() => {
@@ -51,10 +52,19 @@ const AddTop = () => {
   const url = "https://k753lncj-9000.usw3.devtunnels.ms/news/records";
   const { data, status, error } = useFetch<NewsData>(url);
   const [isShow, setIsShow] = useState(false);
-  const [next, setNext] = useState(2);
+  const [next, setNext] = useState(4);
   const [prev, setPrev] = useState(0);
   const [disabledNext, setDisabledNext] = useState(false);
   const [disabledPrev, setDisabledPrev] = useState(true);
+  useEffect(() => {
+    const len = Array.isArray(data) && data.length;
+    if (next === len) {
+      setDisabledNext(true);
+    }
+    if (next < len) {
+      setDisabledNext(false);
+    }
+  }, [next]);
   const _handleClick = (item: any) => {
     const len = Array.isArray(data) && data.length;
     const element = document.getElementById("start");
@@ -64,9 +74,19 @@ const AddTop = () => {
         behavior: "smooth",
       });
     }
-    if (prev == 2) {
+    if (prev == 4) {
       setDisabledPrev(true);
       setDisabledNext(false);
+    }
+    if (prev < len) {
+      setDisabledNext(false);
+    }
+    if (next == len) {
+      setDisabledNext(true);
+    }
+    if (next > 8 && next == len - 4) {
+      setDisabledPrev(true);
+      setDisabledNext(true);
     }
     switch (item) {
       case "next":
@@ -74,18 +94,28 @@ const AddTop = () => {
         if (typeof len === "number" && len - 1 === next) {
           setDisabledNext(true);
         }
-        setPrev(prev + 2);
-        setNext(next + 2);
+        setPrev(prev + 4);
+        setNext(next + 4);
         break;
       case "prev":
-        setPrev(prev - 2);
-        setNext(next - 2);
+        setPrev(prev - 4);
+        setNext(next - 4);
         break;
     }
   };
-  return (
-    <Section className="add-top">
-      <Modal show={isShow} set={setIsShow} />
+  let content;
+  if (status === "loading") {
+    content = <Preloader />;
+  }
+  if (error) {
+    content = (
+      <>
+        <h1>Something went wrong!</h1>
+      </>
+    );
+  }
+  if (status === "fetched" && data) {
+    content = (
       <Container>
         <div>
           <WNode>
@@ -95,8 +125,8 @@ const AddTop = () => {
                   <div className="w-dyn-list" id="start">
                     <HorizontalGrid>
                       {Array.isArray(data) &&
-                        data.slice(prev, next).map((item: any) => (
-                          <ListItem>
+                        data.slice(prev, next).map((item: any, key: number) => (
+                          <ListItem key={key}>
                             <BlogMainWrapper className="horizontal">
                               <ImageClip>
                                 <ImageWrap className="">
@@ -106,7 +136,9 @@ const AddTop = () => {
                                     location={item.path}
                                     cls="paralax-image"
                                   />
-                                  <CategoryAbsolute>Noticias</CategoryAbsolute>
+                                  <CategoryAbsolute>
+                                    {item.neighborhood}
+                                  </CategoryAbsolute>
                                   <ButtonIconMain
                                     onClick={() =>
                                       goTo("/vermas?noticia=" + item.id_news)
@@ -206,7 +238,7 @@ const AddTop = () => {
                   </div>
                 </div>
               </WNode>
-              <WNode>
+              <WNode className="sticky">
                 <StickyBar>
                   <StickyContent className="._80">
                     <BannerSideBar>
@@ -253,6 +285,13 @@ const AddTop = () => {
           </WNode>
         </div>
       </Container>
+    );
+  }
+
+  return (
+    <Section className="add-top">
+      <Modal show={isShow} set={setIsShow} />
+      {content}
     </Section>
   );
 };

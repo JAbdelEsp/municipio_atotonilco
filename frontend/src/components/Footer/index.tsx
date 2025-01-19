@@ -26,11 +26,10 @@ const FooterComponent = () => {
             <BannerGrid>
               <BlogMainWrapper>
                 <ImageWrap>
-                  <Image
-                    src="473594057_1030751205749473_2101976893090831221_n.jpg"
+                  <img
+                    src="public/images/banner/473594057_1030751205749473_2101976893090831221_n.jpg"
                     alt=""
-                    cls="paralax-image"
-                    location="banner"
+                    className="paralax-image"
                   />
                   <ButtonIconMain>
                     <ButtonIconSvg />
@@ -45,7 +44,10 @@ const FooterComponent = () => {
       <div>
         <FooterGridSecond>
           <Margin30>
-            <Image src="logo.svg" alt="" location="brand" cls="" />
+            <img
+              src="public/images/brand/logo.svg"
+              alt="Municipio de Atotonilco el Grande"
+            />
           </Margin30>
           <p>&copy; 2025 Municipio de Atotonilco el Grande </p>
         </FooterGridSecond>

@@ -59,7 +59,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
               <TopTitle className="no-grid">
                 <WNode>
                   <ThirdTitle>
-                    Ultimas
+                    Últimas
                     <LightText> Noticias</LightText>
                   </ThirdTitle>
                 </WNode>
@@ -110,7 +110,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
               <div className="margin_25">
                 <ColListWrapper2>
                   <ColList3>
-                    {data.data.slice(0, 1).map((item: any, key: number) => {
+                    {data.data.map((item: any, key: number) => {
                       if (item.featured == true) {
                         return (
                           <ColItem101 key={key}>
@@ -189,7 +189,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                   <TopTitle className="no-grid">
                     <WNode>
                       <ThirdTitle>
-                        Lo Mas
+                        Lo Más
                         <LightText> Popular</LightText>
                       </ThirdTitle>
                     </WNode>
@@ -200,56 +200,52 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                         <ColItem102>
                           {/* limit 3 */}
                           {data.data
-                            .slice(0, 4)
+                            .filter((item, idx) => item.views > 23)
                             .map((item: any, key: number) => {
-                              if (item.views > 20) {
-                                return (
-                                  <BlogMainSmall
-                                    className="vertical down"
-                                    key={key}
-                                  >
-                                    <ImageClip>
-                                      <ImageWrap className="category-ratio">
-                                        <Image
-                                          src={item.image}
-                                          alt={item.image}
-                                          cls="paralax-image"
-                                          location={item.path}
-                                        />
-                                        <ButtonIconMain
-                                          className="right"
-                                          onClick={() =>
-                                            goTo(
-                                              "/vermas?noticia=" + item.id_news
-                                            )
-                                          }
-                                        >
-                                          <ButtonIconSvg />
-                                        </ButtonIconMain>
-                                      </ImageWrap>
-                                    </ImageClip>
-                                    <SmallBlock className="change-radius">
-                                      <DataFlex>
-                                        <DataInsidde>
-                                          <DataImage>
-                                            <SvgIcon
-                                              src="eaf_time-light.svg"
-                                              width="15px"
-                                              height=""
-                                            />
-                                          </DataImage>
-                                          <DataText>
-                                            {item.time} Lectura
-                                          </DataText>
-                                        </DataInsidde>
-                                      </DataFlex>
-                                      <BlogTitleSmall>
-                                        {item.title}
-                                      </BlogTitleSmall>
-                                    </SmallBlock>
-                                  </BlogMainSmall>
-                                );
-                              }
+                              return (
+                                <BlogMainSmall
+                                  className="vertical down"
+                                  key={key}
+                                >
+                                  <ImageClip>
+                                    <ImageWrap className="category-ratio">
+                                      <Image
+                                        src={item.image}
+                                        alt={item.image}
+                                        cls="paralax-image"
+                                        location={item.path}
+                                      />
+                                      <ButtonIconMain
+                                        className="right"
+                                        onClick={() =>
+                                          goTo(
+                                            "/vermas?noticia=" + item.id_news
+                                          )
+                                        }
+                                      >
+                                        <ButtonIconSvg />
+                                      </ButtonIconMain>
+                                    </ImageWrap>
+                                  </ImageClip>
+                                  <SmallBlock className="change-radius">
+                                    <DataFlex>
+                                      <DataInsidde>
+                                        <DataImage>
+                                          <SvgIcon
+                                            src="eaf_time-light.svg"
+                                            width="15px"
+                                            height=""
+                                          />
+                                        </DataImage>
+                                        <DataText>{item.time} Lectura</DataText>
+                                      </DataInsidde>
+                                    </DataFlex>
+                                    <BlogTitleSmall>
+                                      {item.title}
+                                    </BlogTitleSmall>
+                                  </SmallBlock>
+                                </BlogMainSmall>
+                              );
                             })}
                         </ColItem102>
                       </LatestGrid>

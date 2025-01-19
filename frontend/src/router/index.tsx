@@ -9,7 +9,7 @@ const Router = () => {
   return (
     <Suspense fallback={null}>
       <Styles />
-      <Header />
+
       <Routes>
         {routes.map((routeItem) => {
           return (
@@ -18,16 +18,21 @@ const Router = () => {
               path={routeItem.path}
               element={
                 <Suspense fallback={null}>
+                  {routeItem.path !== "/admin" &&
+                    routeItem.path !== "/admin/dashboard" && <Header />}
                   {React.createElement(
                     lazy(() => import(`../pages/${routeItem.component}`))
                   )}
+                  {routeItem.path !== "/admin" &&
+                    routeItem.path !== "/admin/dashboard" && (
+                      <FooterComponent />
+                    )}
                 </Suspense>
               }
             />
           );
         })}
       </Routes>
-      <FooterComponent />
     </Suspense>
   );
 };

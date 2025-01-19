@@ -29,20 +29,19 @@ const Discover = ({ id }: { id: string }) => {
               <ServiceNumberText>01.</ServiceNumberText>
               <WNode className="service-image">
                 <RevealImageTrigger>
-                  <Image
-                    src="462620438_939996391507390_3919165551938091982_n.jpg"
-                    alt=""
-                    cls="cover-image fit-top paralax-image"
-                    location="services"
+                  <img
+                    src="public/images/services/462620438_939996391507390_3919165551938091982_n.jpg"
+                    alt="Obras Publicas Atotonilco"
+                    className="cover-image fit-top paralax-image"
                   />
                   <BgForAnimation />
                 </RevealImageTrigger>
               </WNode>
               <ServiceSmallTitleBlock>
-                <ServiceSmallTitle>Paragraph</ServiceSmallTitle>
+                <ServiceSmallTitle>Nuestras Áreas</ServiceSmallTitle>
               </ServiceSmallTitleBlock>
               <WNode className="service-content">
-                <Heading className="is-services-title">Obras Publicas</Heading>
+                <Heading className="is-services-title">Obras Públicas</Heading>
                 <RichText>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Reiciendis nobis maiores repellat tenetur id iste doloremque
@@ -54,7 +53,6 @@ const Discover = ({ id }: { id: string }) => {
                   <OrnamentVerticalDot />
                   <OrnamentVerticalLine />
                 </OrnamentVertical>
-                <TextLink text="Ver Mas" />
               </WNode>
             </ContainerGrid>
           </ServiceItem>

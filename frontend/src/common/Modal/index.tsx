@@ -22,11 +22,10 @@ const Modal = ({ show, set }: any) => {
             <SvgIcon src="close-svgrepo-com.svg" width="20px" height="" />
           </ButtonIconSvg>
         </ButtonIconMain>
-        <Image
-          src={"PHOTO-2024-11-16-13-29-34.jpg"}
-          alt={""}
-          cls={"subrcribe-image"}
-          location={"main"}
+        <img
+          className="subrcribe-image"
+          src="public/images/main/PHOTO-2024-11-16-13-29-34.jpg"
+          alt="Lic. Leticia Chapa Guerrero"
         />
         <ModalContent>
           <div>

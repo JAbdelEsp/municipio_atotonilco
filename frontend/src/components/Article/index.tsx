@@ -51,8 +51,8 @@ const Article = ({ id, values }: { id: string; values: any }) => {
   return (
     <Section>
       {values &&
-        values.map((item: any) => (
-          <Container>
+        values.map((item: any, key: number) => (
+          <Container key={key}>
             <BlogSingleWrap>
               <SectionTitleBox>
                 <InnerTitle>{item.title}</InnerTitle>

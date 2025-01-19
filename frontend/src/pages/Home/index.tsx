@@ -24,7 +24,6 @@ const Home = () => {
     content = <Preloader />;
   }
   if (error) {
-    console.log("error: ", error);
     content = (
       <>
         <h1>Something went wrong!</h1>
@@ -38,7 +37,7 @@ const Home = () => {
         <HomeHeroVideo />
         <Discover id="areas" />
         <BlogHero
-          content="Noticias: Entérate de lo ultimo acontecido en tu Municipio"
+          content="Noticias: Entérate de lo último acontecido en tu Municipio"
           title={"Las Noticias"}
           subtitle={"Más Recientes"}
           iconSrc={""}

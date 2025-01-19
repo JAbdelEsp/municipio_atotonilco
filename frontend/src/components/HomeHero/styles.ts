@@ -8,6 +8,8 @@ export const HomeHeroW = styled("div")`
   display: flex;
   position: relative;
   overflow: hidden;
+  background-image: url("./public/images/services/462620438_939996391507390_3919165551938091982_n.jpg");
+  background-size: cover;
 `;
 export const HomeHeroContent = styled("div")`
   z-index: 10;
