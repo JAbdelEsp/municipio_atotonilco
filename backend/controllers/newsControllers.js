@@ -7,18 +7,37 @@ const {
   insertRecord,
 } = require("../utils/sqlFunctions");
 const newsSchema = require("../schemas/newsSchema");
+const picturesSchema = require("../schemas/picturesSchema");
 const cloudinary = require("../utils/cloudinary");
 
 const RegisterNews = async (req, res) => {
   const { id_news, title, author, content, date, id_area } = req.body;
-  if (!id_news || !title || !author || !content || !date || !id_area) {
+  if (!id_news || !title || !author || !content || !date) {
     res.status(400).json({ error: "All fields are required" });
     return;
   }
   try {
     await createTable(newsSchema);
-    insertRecord("news", req.body);
+    await insertRecord("news", req.body);
     res.status(201).json({ message: "News created successfully!" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const Register = async (req, res) => {
+  const { id_news } = req.body;
+  if (!id_news) {
+    res.status(400).json({ error: "Es necesario el id" });
+    return;
+  }
+  try {
+    // await createTable(picturesSchema);
+    for (let i = 0; i < req.files.length; i++) {
+      req.body.pic = req.files[i].originalname;
+      await insertRecord("pictures", req.body);
+    }
+    res.status(201).json({ message: "Imágenes agregas con éxito!" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -72,6 +91,7 @@ const updateNews = async (req, res) => {
 
 module.exports = {
   RegisterNews,
+  Register,
   Records,
   getRecordsBy,
   updateNews,

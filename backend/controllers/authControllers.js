@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 const jwt = require("jsonwebtoken");
 const userSchema = require("../schemas/userSchema");
+const clearToken = require("../utils/auth");
 const bcrypt = require("bcryptjs");
 const {
   createTable,
@@ -14,7 +15,7 @@ const generateAccessToken = (userId) => {
 };
 
 const register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body.data;
   if (!email || !password) {
     res
       .status(400)
@@ -50,7 +51,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body.data;
   if (!email || !password) {
     res
       .status(400)
@@ -75,7 +76,8 @@ const login = async (req, res) => {
         res.status(200).json({
           userId: existingUser.userId,
           email: existingUser.email,
-          access_token: generateAccessToken(existingUser.userId),
+          name: existingUser.name,
+          token: generateAccessToken(existingUser.userId),
           success: true,
         });
       } else {
@@ -89,7 +91,13 @@ const login = async (req, res) => {
   }
 };
 
+const logoutUser = async (req, res) => {
+  clearToken(res);
+  res.status(200).json({ message: "User logged out" });
+};
+
 module.exports = {
+  logoutUser,
   register,
   login,
 };

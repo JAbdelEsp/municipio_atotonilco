@@ -48,6 +48,20 @@ const getRecords = (tableName) => {
   });
 };
 
+const getRecordsNoOrder = (tableName) => {
+  return new Promise((resolve, reject) => {
+    const query = `Select * from ${tableName}`;
+    pool.query(query, (err, results) => {
+      console.log("error: ", err);
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results.length ? results : null);
+      }
+    });
+  });
+};
+
 const paramRecords = (tableName, id, limit) => {
   return new Promise((resolve, reject) => {
     const query = `Select * from ${tableName} WHERE id_news = ? order by date ASC`;
@@ -74,15 +88,10 @@ const insertRecord = (tableName, record) => {
   });
 };
 
-const updateRecord = (tableName, updates, column, value) => {
-  console.log(tableName, updates, column, value);
+const updateRecord = (tableName, updateCol, updates, column, value) => {
   return new Promise((resolve, reject) => {
-    const columnValues = Object.keys(updates)
-      .map((column) => `${column} = ?`)
-      .join(", ");
-    const query = `UPDATE ${tableName} SET ${columnValues} WHERE ${column} = ?`;
-    console.log(query);
-    pool.query(query, Object.values(updates).concat(value), (err, results) => {
+    const query = `UPDATE ${tableName} SET ${updateCol} = '${updates}' WHERE ${column} = ?`;
+    pool.query(query, value, (err, results) => {
       if (err) {
         reject(err);
       } else {
@@ -96,6 +105,7 @@ module.exports = {
   createTable,
   checkRecordExists,
   getRecords,
+  getRecordsNoOrder,
   paramRecords,
   insertRecord,
   updateRecord,

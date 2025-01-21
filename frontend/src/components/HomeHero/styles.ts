@@ -182,7 +182,7 @@ export const BgLinesGradient = styled("div")`
   z-index: 5;
   background-image: linear-gradient(
     180deg,
-    #f2f2f6 20%,
+    #ccc 20%,
     rgba(255, 255 255, 0) 100%
   );
   position: absolute;
@@ -193,7 +193,7 @@ export const BgLinesGradient = styled("div")`
 `;
 export const BgLine = styled("div")`
   z-index: 1;
-  background-color: #dfddec;
+  background-color: #ccc;
   flex: none;
   justify-content: center;
   align-items: center;
