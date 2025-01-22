@@ -29,7 +29,7 @@ const FooterComponent = () => {
                   <img
                     src="public/images/banner/473594057_1030751205749473_2101976893090831221_n.jpg"
                     alt=""
-                    className="paralax-image"
+                    className="paralax-image2"
                   />
                   <ButtonIconMain>
                     <ButtonIconSvg />

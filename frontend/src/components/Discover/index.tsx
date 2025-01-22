@@ -38,7 +38,7 @@ const Discover = ({ id }: { id: string }) => {
                 </RevealImageTrigger>
               </WNode>
               <ServiceSmallTitleBlock>
-                <ServiceSmallTitle>Nuestras Áreas</ServiceSmallTitle>
+                <ServiceSmallTitle>Conoce Nuestras Áreas</ServiceSmallTitle>
               </ServiceSmallTitleBlock>
               <WNode className="service-content">
                 <Heading className="is-services-title">Obras Públicas</Heading>
@@ -53,6 +53,7 @@ const Discover = ({ id }: { id: string }) => {
                   <OrnamentVerticalDot />
                   <OrnamentVerticalLine />
                 </OrnamentVertical>
+                <TextLink text="Visitar Área" />
               </WNode>
             </ContainerGrid>
           </ServiceItem>

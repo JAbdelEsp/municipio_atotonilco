@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getTasks } from "../../slices/taskSlice";
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useNavigate } from "react-router-dom";
@@ -41,11 +42,12 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
     { field: "date", headerName: "Fecha de Publicación", width: 150 },
     { field: "views", headerName: "No de Vistas", width: 200 },
     { field: "time", headerName: "Tiempo de Lectura", width: 200 },
-    { field: "image", headerName: "Imagen Principal", width: 200 },
+    { field: "image", headerName: "Imagen Principal", width: 300 },
     {
       field: "actions",
       headerName: "Acciones",
       sortable: false,
+      width: 150,
       renderCell: (params) => {
         return (
           <>
@@ -65,6 +67,13 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
             >
               <EditIcon />
             </IconButton>
+            <IconButton
+              color="error"
+              aria-label="edit-task"
+              onClick={() => onClickDelete(params.row.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
           </>
         );
       },
@@ -75,6 +84,11 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
     dispatch(
       openModal({ modalName: "addTaskPics", modalProps: { taskId: id } })
     );
+  };
+
+  const onClickDelete = (id: number) => {
+    console.log(id);
+    dispatch(openModal({ modalName: "Delete", modalProps: { id: id } }));
   };
 
   useEffect(() => {

@@ -3,8 +3,8 @@ import DropDown from "../DropDown";
 import { DataTableWrapper } from "./styles";
 import { DataType } from "../types";
 import useFetch from "../../services";
-import { useEffect, useState } from "react";
-import Preloader from "../../components/Preloader";
+import { useState } from "react";
+import { SvgIcon } from "../SvgIcon";
 
 const DataTableTransparency = () => {
   const [article70, setArticle70] = useState<DataType[]>();
@@ -24,7 +24,7 @@ const DataTableTransparency = () => {
   const url = "https://k753lncj-9000.usw3.devtunnels.ms/transparency/records";
   const { data, error, status } = useFetch<DataType[]>(url);
   // "https://k753lncj-9000.usw3.devtunnels.ms/transparency/records"
-
+  let urlLoc = "https://k753lncj-9000.usw3.devtunnels.ms/public/files/";
   const columns: TableColumnsType<DataType> = [
     {
       title: "Fraccion",
@@ -33,18 +33,54 @@ const DataTableTransparency = () => {
     {
       title: "Primer Trimestre",
       dataIndex: "firstTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
     {
       title: "Segundo Trimestre",
       dataIndex: "secondTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
     {
       title: "Tercer Trimestre",
       dataIndex: "thirdTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
     {
       title: "Cuarto Trimestre",
       dataIndex: "fourthTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
   ];
   const columnsTwo = [

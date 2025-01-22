@@ -23,6 +23,13 @@ export const Styles = createGlobalStyle`
         position: absolute;
         bottom: 0;
     }
+    .paralax-image2 {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+    }
     .paralax-image-contain {
         object-fit: contain;
         width: 100%;
@@ -64,11 +71,11 @@ export const Styles = createGlobalStyle`
         padding-left: 5px;
         padding-right: 15px;
     }
-         .horizontal {
-    grid-column-gap: 45px;
-    grid-row-gap: 45px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    display: flex;
-  }
+    .horizontal {
+        grid-column-gap: 45px;
+        grid-row-gap: 45px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: flex;
+    }
 `;

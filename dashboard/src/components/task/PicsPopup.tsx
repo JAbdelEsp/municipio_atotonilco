@@ -100,11 +100,13 @@ const PicsPopup = ({
                 onChange={(e: any) => setFile(e.target.files)}
               />
             </Grid>
-            <Grid item xs={5} style={{ marginTop: "2em" }}>
-              <SubmitButton type="submit" text="Guardar" />
-            </Grid>
-            <Grid item xs={5}>
-              <CancelButton onClick={handleClose} />
+            <Grid container justifyContent="space-between" mt={2}>
+              <Grid item xs={5}>
+                <SubmitButton type="submit" text="Guardar" />
+              </Grid>
+              <Grid item xs={5}>
+                <CancelButton onClick={handleClose} />
+              </Grid>
             </Grid>
           </Grid>
         </form>

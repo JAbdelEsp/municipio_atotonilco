@@ -61,7 +61,6 @@ const Records = async (req, res) => {
 };
 
 const Delete = async (req, res) => {
-  console.log(req.query.id);
   try {
     const deleteRec = await deleteRecord("transparency", "id", req.query.id);
     if (deleteRec) {

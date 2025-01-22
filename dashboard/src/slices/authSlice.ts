@@ -58,16 +58,14 @@ export const login = createAsyncThunk(
         }
       );
       const resData = response.data;
-
       localStorage.setItem("userInfo", JSON.stringify(resData));
       localStorage.setItem("token", resData.token);
       localStorage.setItem("user", resData.name);
-
+      localStorage.setItem("area", resData.area);
       return resData;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         const errorResponse = error.response.data;
-
         return rejectWithValue(errorResponse);
       }
 

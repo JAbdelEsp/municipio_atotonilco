@@ -23,7 +23,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   const basicUserInfo = useAppSelector((state) => state.auth.basicUserInfo);
-
+  console.log(basicUserInfo);
   useEffect(() => {
     if (basicUserInfo) {
       // dispatch(getUsers());
@@ -41,19 +41,12 @@ function App() {
         </Route>
         <Route
           element={
-            <ProtectedLayout
-              allowedRoles={[
-                Roles.User,
-                Roles.ProjectManager,
-                Roles.Lead,
-                Roles.Admin,
-              ]}
-            />
+            <ProtectedLayout allowedRoles={[Roles.Editor, Roles.Admin]} />
           }
         >
           <Route path="/" element={<Home />} />
         </Route>
-        <Route element={<ProtectedLayout allowedRoles={[Roles.User]} />}>
+        <Route element={<ProtectedLayout allowedRoles={[Roles.Admin]} />}>
           <Route path="/user-settings" element={<UserSettings />} />
           <Route path="/noticias" element={<News />} />
           <Route path="/transparencia" element={<Transparency />} />

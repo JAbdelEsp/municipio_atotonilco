@@ -5,10 +5,8 @@ export type ErrorResponse = {
 };
 
 export enum Roles {
+  Editor = "Editor",
   Admin = "ADMIN",
-  Lead = "LEAD",
-  ProjectManager = "PROJECT_MANAGER",
-  User = "USER",
 }
 
 // export enum MessageType {

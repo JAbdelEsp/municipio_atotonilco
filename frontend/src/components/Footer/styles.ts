@@ -90,7 +90,7 @@ export const ImageWrap = styled("div")`
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
   }
-  &:hover .paralax-image {
+  &:hover .paralax-image2 {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }

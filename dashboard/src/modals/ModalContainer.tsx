@@ -8,6 +8,8 @@ import AddTransFilesPopup from "../components/Transparency/AddTransFilesPopup";
 import AddTransPopup from "../components/Transparency/AddTransPopup";
 import DeleteTransPopup from "../components/Transparency/DeleteTransPopup";
 import EditTransPopup from "../components/Transparency/EditTransPopup";
+import DeletePopup from "../components/task/DeletePopup";
+import DeleteContainer from "../components/task/DeleteContainer";
 // Import other modal components
 
 const ModalContainer = () => {
@@ -28,6 +30,8 @@ const ModalContainer = () => {
             article={modalProps?.article}
           />
         );
+      case "Delete":
+        return <DeleteContainer id={modalProps?.id} />;
       case "addTrans":
         return <AddTransPopup />;
       case "deleteTrans":

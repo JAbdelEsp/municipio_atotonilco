@@ -7,6 +7,7 @@ const {
   RegisterNews,
   getRecordsBy,
   updateNews,
+  Delete,
 } = require("../controllers/newsControllers");
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -23,5 +24,6 @@ router.post("/news/pictures", upload.array("pic", 20), Register);
 router.get("/news/recordsBy", getRecordsBy);
 router.post("/news/register", upload.single("image"), RegisterNews);
 router.put("/news/update", updateNews);
+router.delete("/news/delete", Delete);
 
 module.exports = router;

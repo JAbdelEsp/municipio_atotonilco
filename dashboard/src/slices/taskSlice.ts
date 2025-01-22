@@ -190,9 +190,11 @@ export const updateTask = createAsyncThunk(
 
 export const deleteTask = createAsyncThunk(
   "tasks/deleteOne",
-  async (taskId: number, { rejectWithValue }) => {
+  async (id: number, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.delete(`/tasks/${taskId}`);
+      const response = await axiosInstance.delete(
+        `https://k753lncj-9000.usw3.devtunnels.ms/news/delete/?id=${id}`
+      );
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {

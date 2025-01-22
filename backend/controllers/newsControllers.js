@@ -2,6 +2,7 @@ const {
   createTable,
   checkRecordExists,
   updateRecord,
+  deleteRecord,
   getRecords,
   paramRecords,
   insertRecord,
@@ -89,10 +90,23 @@ const updateNews = async (req, res) => {
   }
 };
 
+const Delete = async (req, res) => {
+  try {
+    const deleteRec = await deleteRecord("news", "id", req.query.id);
+    if (deleteRec) {
+      res.status(200).json(deleteRec);
+    } else {
+      res.status(200).json({ error: "No records found", records: [] });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 module.exports = {
   RegisterNews,
   Register,
   Records,
+  Delete,
   getRecordsBy,
   updateNews,
 };

@@ -20,10 +20,8 @@ import {
 
 const Login = () => {
   const dispatch = useAppDispatch();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const handleLogin = async () => {
     // This is only a basic validation of inputs. Improve this as needed.
     if (email && password) {

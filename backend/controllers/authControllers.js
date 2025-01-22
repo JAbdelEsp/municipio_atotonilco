@@ -77,6 +77,8 @@ const login = async (req, res) => {
           userId: existingUser.userId,
           email: existingUser.email,
           name: existingUser.name,
+          area: existingUser.area,
+          roles: existingUser.roles,
           token: generateAccessToken(existingUser.userId),
           success: true,
         });

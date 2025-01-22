@@ -12,17 +12,13 @@ type ProtectedLayoutType = {
 
 const ProtectedLayout = ({ allowedRoles }: ProtectedLayoutType) => {
   const basicUserInfo = useAppSelector((state) => state.auth.basicUserInfo);
-
   if (!basicUserInfo) {
     return <Navigate replace to={"/login"} />;
   }
-
-  // if (
-  //   !basicUserInfo.roles ||
-  //   !basicUserInfo.roles.some((role: string) => allowedRoles.includes(role))
-  // ) {
-  //   return <AccessDenied />;
-  // }
+  const rol = basicUserInfo.roles;
+  if (!basicUserInfo.roles || !allowedRoles.includes(rol.toString())) {
+    return <AccessDenied />;
+  }
 
   return (
     <>
