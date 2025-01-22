@@ -21,7 +21,6 @@ const createTable = (schema) => {
 };
 
 const checkRecordExists = (tableName, column, value) => {
-  console.log(tableName, value, column);
   return new Promise((resolve, reject) => {
     const query = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
     pool.query(query, [value], (err, results) => {
@@ -101,6 +100,22 @@ const updateRecord = (tableName, updateCol, updates, column, value) => {
   });
 };
 
+const deleteRecord = (tableName, column, value) => {
+  console.log(tableName);
+  console.log(column);
+  console.log(value);
+  return new Promise((resolve, reject) => {
+    const query = `DELETE FROM ${tableName} WHERE ${column} = ?`;
+    pool.query(query, value, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
 module.exports = {
   createTable,
   checkRecordExists,
@@ -109,4 +124,5 @@ module.exports = {
   paramRecords,
   insertRecord,
   updateRecord,
+  deleteRecord,
 };

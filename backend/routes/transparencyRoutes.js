@@ -5,6 +5,7 @@ const {
   Register,
   Records,
   updateTransparency,
+  Delete,
 } = require("../controllers/transparencyControllers");
 const { requiresAuth } = require("../middlewares/authMiddleware");
 const router = express.Router();
@@ -46,4 +47,5 @@ router.put(
   uploadFile.single("file"),
   updateTransparency
 );
+router.delete("/transparency/delete", Delete);
 module.exports = router;

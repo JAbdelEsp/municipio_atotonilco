@@ -6,6 +6,7 @@ const {
   insertRecord,
   getRecordsByYear,
   getRecordsNoOrder,
+  deleteRecord,
 } = require("../utils/sqlFunctions");
 const newsSchema = require("../schemas/transparencySchema");
 const cloudinary = require("../utils/cloudinary");
@@ -17,25 +18,7 @@ const updateTransparency = async (req, res) => {
       "id",
       req.body.id
     );
-    console.log("file: ", req.file);
     const name = req.file.originalname;
-    // if (req.file) {
-    //   if (!profile.image) {
-    //     const image = await cloudinary.uploader.upload(req.file.path, {
-    //       folder: "profilePro",
-    //     });
-    //     updates.image = image.secure_url;
-    //   } else {
-    //     const image_url = profile.image.split("/");
-    //     const publicId = image_url[image_url.length - 1].split(".")[0];
-    //     await cloudinary.uploader.destroy(`profilePro/${publicId}`);
-
-    //     const image = await cloudinary.uploader.upload(req.file.path, {
-    //       folder: "profilePro",
-    //     });
-    //     updates.image = image.secure_url;
-    //   }
-    // }
     await updateRecord(
       "transparency",
       "firstTrimester",
@@ -50,15 +33,15 @@ const updateTransparency = async (req, res) => {
 };
 
 const Register = async (req, res) => {
-  const { id_news, title, author, content, date, id_area } = req.body;
-  if (!id_news || !title || !author || !content || !date || !id_area) {
-    res.status(400).json({ error: "All fields are required" });
+  const { article, year, fraction } = req.body;
+  if (!article || !year || !fraction) {
+    res.status(400).json({ error: "Falta uno o más campos requeridos!" });
     return;
   }
   try {
-    await createTable(newsSchema);
-    insertRecord("news", req.body);
-    res.status(201).json({ message: "News created successfully!" });
+    // await createTable(newsSchema);
+    insertRecord("transparency", req.body);
+    res.status(201).json({ message: "Registro satisfactorio!" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -77,8 +60,23 @@ const Records = async (req, res) => {
   }
 };
 
+const Delete = async (req, res) => {
+  console.log(req.query.id);
+  try {
+    const deleteRec = await deleteRecord("transparency", "id", req.query.id);
+    if (deleteRec) {
+      res.status(200).json(deleteRec);
+    } else {
+      res.status(200).json({ error: "No records found", records: [] });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   Register,
   Records,
   updateTransparency,
+  Delete,
 };

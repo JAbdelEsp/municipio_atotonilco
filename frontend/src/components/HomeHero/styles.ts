@@ -8,7 +8,7 @@ export const HomeHeroW = styled("div")`
   display: flex;
   position: relative;
   overflow: hidden;
-  background-image: url("./public/images/services/462620438_939996391507390_3919165551938091982_n.jpg");
+  background-image: url("./public/images/main/IMG_0912.jpg");
   background-size: cover;
 `;
 export const HomeHeroContent = styled("div")`
@@ -58,9 +58,11 @@ export const Heading = styled("h1")`
   margin-top: 0;
   margin-bottom: 0;
   font-size: 9em;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1em;
   position: relative;
+  color: var(--white);
+  text-shadow: 2px 5px 6px #000000;
   @media screen and (max-width: 991px) {
     font-size: min(4em, 10vw);
   }

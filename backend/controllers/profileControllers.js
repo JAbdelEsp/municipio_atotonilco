@@ -12,25 +12,6 @@ const updateProfile = async (req, res) => {
     const updates = {
       ...req.body,
     };
-
-    // if (req.file) {
-    //   if (!profile.image) {
-    //     const image = await cloudinary.uploader.upload(req.file.path, {
-    //       folder: "profilePro",
-    //     });
-    //     updates.image = image.secure_url;
-    //   } else {
-    //     const image_url = profile.image.split("/");
-    //     const publicId = image_url[image_url.length - 1].split(".")[0];
-    //     await cloudinary.uploader.destroy(`profilePro/${publicId}`);
-
-    //     const image = await cloudinary.uploader.upload(req.file.path, {
-    //       folder: "profilePro",
-    //     });
-    //     updates.image = image.secure_url;
-    //   }
-    // }
-
     await updateRecord(
       "transparency",
       updates,
