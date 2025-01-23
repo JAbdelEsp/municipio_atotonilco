@@ -76,11 +76,11 @@ const PicsPopup = ({
   const handleChange = (html: any) => {
     setText(html);
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    formData.append("id_news", "N-" + taskId);
-    dispatch(uploadPics(formData));
+    formData.append("id_news", taskId);
+    await dispatch(uploadPics(formData));
     dispatch(closeModal());
   };
   const tasks = useAppSelector((state) => state.tasks.tasks);

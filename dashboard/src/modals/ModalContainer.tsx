@@ -25,6 +25,7 @@ const ModalContainer = () => {
       case "addFiles":
         return (
           <AddTransFilesPopup
+            column={modalProps?.trimester}
             transId={modalProps?.transId}
             year={modalProps?.year}
             article={modalProps?.article}

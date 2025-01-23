@@ -8,7 +8,8 @@ import {
 } from "../../slices/taskSlice";
 import { useEffect, useState } from "react";
 import TransInfoPopup from "./TransInfoPopup";
-import { createTrans, NewTrans } from "../../slices/transSlice";
+import { createTrans, getTrans, NewTrans } from "../../slices/transSlice";
+import { closeModal } from "../../slices/modalSlice";
 interface AddTransPopupProps {
   // taskId: string;
 }
@@ -24,6 +25,8 @@ const AddTransPopup = ({}: AddTransPopupProps) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     await dispatch(createTrans(formData));
+    await dispatch(getTrans());
+    dispatch(closeModal());
   };
 
   return (

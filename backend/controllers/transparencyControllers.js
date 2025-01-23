@@ -7,6 +7,7 @@ const {
   getRecordsByYear,
   getRecordsNoOrder,
   deleteRecord,
+  updateRecordInfo,
 } = require("../utils/sqlFunctions");
 const newsSchema = require("../schemas/transparencySchema");
 const cloudinary = require("../utils/cloudinary");
@@ -18,15 +19,19 @@ const updateTransparency = async (req, res) => {
       "id",
       req.body.id
     );
-    const name = req.file.originalname;
-    await updateRecord(
-      "transparency",
-      "firstTrimester",
-      name,
-      "id",
-      transparency.id
-    );
-    res.json({ message: "Profile Updated Successfully" });
+    if (!req.file) {
+      await updateRecordInfo("transparency", req.body, "id", transparency.id);
+    } else {
+      const name = req.file.originalname;
+      await updateRecord(
+        "transparency",
+        req.body.column,
+        name,
+        "id",
+        transparency.id
+      );
+    }
+    res.json({ message: "Cambios realizados con éxito." });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

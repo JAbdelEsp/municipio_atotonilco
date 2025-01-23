@@ -6,6 +6,7 @@ import {
   createTask,
   getTasks,
   deleteTask,
+  deletePictures,
 } from "../../slices/taskSlice";
 import { closeModal } from "../../slices/modalSlice";
 import DeletePopup from "./DeletePopup";
@@ -14,7 +15,6 @@ interface DeletePopupProps {
 }
 
 const DeleteContainer = ({ id }: DeletePopupProps) => {
-  console.log(id);
   const dispatch = useAppDispatch();
   const deleteOnSubmit = async () => {
     await dispatch(deleteTask(id));

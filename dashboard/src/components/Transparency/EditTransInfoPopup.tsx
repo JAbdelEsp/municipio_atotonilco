@@ -37,7 +37,6 @@ type TasksTableInfo = {
 };
 
 const EditTransInfoPopup = ({ title, params, onSubmit }: TaskPopupProps) => {
-  console.log(params);
   const date = new Date();
   const [file, setFile] = useState<any>(null);
   const [article, setArticle] = useState("");
@@ -57,7 +56,6 @@ const EditTransInfoPopup = ({ title, params, onSubmit }: TaskPopupProps) => {
     const { name, value } = e.target;
     switch (name) {
       case "article":
-        console.log(article);
         setArticle(value);
         break;
       case "year":

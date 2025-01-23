@@ -100,10 +100,20 @@ const updateRecord = (tableName, updateCol, updates, column, value) => {
   });
 };
 
+const updateRecordInfo = (tableName, updates, column, value) => {
+  return new Promise((resolve, reject) => {
+    const query = `UPDATE ${tableName} SET ? WHERE ${column} = ?`;
+    pool.query(query, [updates, value], (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
 const deleteRecord = (tableName, column, value) => {
-  console.log(tableName);
-  console.log(column);
-  console.log(value);
   return new Promise((resolve, reject) => {
     const query = `DELETE FROM ${tableName} WHERE ${column} = ?`;
     pool.query(query, value, (err, results) => {
@@ -124,5 +134,6 @@ module.exports = {
   paramRecords,
   insertRecord,
   updateRecord,
+  updateRecordInfo,
   deleteRecord,
 };

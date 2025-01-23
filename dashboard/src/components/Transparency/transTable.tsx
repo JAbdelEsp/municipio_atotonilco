@@ -12,7 +12,12 @@ import { openModal } from "../../slices/modalSlice";
 import { getTrans } from "../../slices/transSlice";
 
 interface TransTableProps {
-  onClickUpload: (id: string, year: string, article: string) => void;
+  onClickUpload: (
+    trimester: string,
+    id: string,
+    year: string,
+    article: string
+  ) => void;
 }
 
 type TransTableInfo = {
@@ -32,10 +37,8 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [transTableInfo, setTransTableInfo] = useState<TransTableInfo[]>([]);
-
   const trans = useAppSelector((state) => state.trans.trans);
   const transStatus = useAppSelector((state) => state.trans.status);
-
   const onClickDelete = (id: number) => {
     dispatch(
       openModal({ modalName: "deleteTrans", modalProps: { transId: id } })
@@ -61,7 +64,12 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
             color="warning"
             aria-label="edit-task"
             onClick={() =>
-              onClickUpload(params.row.id, params.row.year, params.row.article)
+              onClickUpload(
+                "firstTrimester",
+                params.row.id,
+                params.row.year,
+                params.row.article
+              )
             }
           >
             <CloudUploadIcon />
@@ -83,7 +91,12 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
             color="warning"
             aria-label="edit-task"
             onClick={() =>
-              onClickUpload(params.row.id, params.row.year, params.row.article)
+              onClickUpload(
+                "secondTrimester",
+                params.row.id,
+                params.row.year,
+                params.row.article
+              )
             }
           >
             <CloudUploadIcon />
@@ -105,7 +118,12 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
             color="warning"
             aria-label="edit-task"
             onClick={() =>
-              onClickUpload(params.row.id, params.row.year, params.row.article)
+              onClickUpload(
+                "thirdTrimester",
+                params.row.id,
+                params.row.year,
+                params.row.article
+              )
             }
           >
             <CloudUploadIcon />
@@ -127,7 +145,12 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
             color="warning"
             aria-label="edit-task"
             onClick={() =>
-              onClickUpload(params.row.id, params.row.year, params.row.article)
+              onClickUpload(
+                "fourthTrimester",
+                params.row.id,
+                params.row.year,
+                params.row.article
+              )
             }
           >
             <CloudUploadIcon />
@@ -176,24 +199,27 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
       dispatch(getTrans());
     }
   }, [dispatch]);
-
   useEffect(() => {
-    setTransTableInfo(
-      trans.map((trans) => {
-        return {
-          id: trans.id,
-          article: trans.article,
-          year: trans.year,
-          fraction: trans.fraction,
-          firstTrimester: trans.firstTrimester,
-          secondTrimester: trans.secondTrimester,
-          thirdTrimester: trans.thirdTrimester,
-          fourthTrimester: trans.fourthTrimester,
-          user: trans.user,
-          date: trans.date,
-        };
-      })
-    );
+    if (trans.length !== undefined) {
+      setTransTableInfo(
+        trans.map((trans) => {
+          return {
+            id: trans.id,
+            article: trans.article,
+            year: trans.year,
+            fraction: trans.fraction,
+            firstTrimester: trans.firstTrimester,
+            secondTrimester: trans.secondTrimester,
+            thirdTrimester: trans.thirdTrimester,
+            fourthTrimester: trans.fourthTrimester,
+            user: trans.user,
+            date: trans.date,
+          };
+        })
+      );
+    } else {
+      setTransTableInfo([]);
+    }
   }, [trans]);
 
   return (

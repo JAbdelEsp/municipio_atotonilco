@@ -17,6 +17,7 @@ interface TasksTableProps {
 
 type TasksTableInfo = {
   id: string;
+  id_news: string;
   title: string;
   author: string;
   content: string;
@@ -30,7 +31,6 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [tasksTableInfo, setTasksTableInfo] = useState<TasksTableInfo[]>([]);
-
   const tasks = useAppSelector((state) => state.tasks.tasks);
   const tasksStatus = useAppSelector((state) => state.tasks.status);
 
@@ -55,7 +55,7 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
               color="info"
               aria-label="view-task"
               onClick={() => {
-                onClickView(params.row.id);
+                onClickView(params.row.id_news);
               }}
             >
               <AddPhotoAlternateIcon />
@@ -70,7 +70,7 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
             <IconButton
               color="error"
               aria-label="edit-task"
-              onClick={() => onClickDelete(params.row.id)}
+              onClick={() => onClickDelete(params.row.id_news)}
             >
               <DeleteIcon />
             </IconButton>
@@ -87,7 +87,6 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
   };
 
   const onClickDelete = (id: number) => {
-    console.log(id);
     dispatch(openModal({ modalName: "Delete", modalProps: { id: id } }));
   };
 
@@ -98,20 +97,25 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
   }, [dispatch]);
 
   useEffect(() => {
-    setTasksTableInfo(
-      tasks.map((task) => {
-        return {
-          id: task.id,
-          title: task.title,
-          author: task.author,
-          content: task.content,
-          date: task.date,
-          views: task.views,
-          time: task.time,
-          image: task.image,
-        };
-      })
-    );
+    if (tasks.length > 0) {
+      setTasksTableInfo(
+        tasks.map((task) => {
+          return {
+            id: task.id,
+            id_news: task.id_news,
+            title: task.title,
+            author: task.author,
+            content: task.content,
+            date: task.date,
+            views: task.views,
+            time: task.time,
+            image: task.image,
+          };
+        })
+      );
+    } else {
+      setTasksTableInfo([]);
+    }
   }, [tasks]);
 
   return (

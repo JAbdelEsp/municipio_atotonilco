@@ -8,19 +8,22 @@ import {
 } from "../../slices/taskSlice";
 import { useEffect, useState } from "react";
 import TransPopup from "./TransPopup";
-import { NewTransFinal, updateTrans } from "../../slices/transSlice";
+import { getTrans, NewTransFinal, updateTrans } from "../../slices/transSlice";
 import EditTransInfoPopup from "./EditTransInfoPopup";
+import { closeModal } from "../../slices/modalSlice";
 interface AddTransPopupProps {
   params: any;
 }
 const EditTransPopup = ({ params }: AddTransPopupProps) => {
   const dispatch = useAppDispatch();
-  const submitNewTask = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const submitNewTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submiting task");
     const formData = new FormData(e.currentTarget);
     formData.append("id", params.id);
-    dispatch(updateTrans(formData as unknown as NewTransFinal));
+    await dispatch(updateTrans(formData as unknown as NewTransFinal));
+    await dispatch(getTrans());
+    dispatch(closeModal());
   };
 
   return (

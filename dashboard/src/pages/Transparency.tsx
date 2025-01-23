@@ -14,6 +14,7 @@ export default function Transparency() {
     dispatch(openModal({ modalName: "addTrans", modalProps: {} }));
   };
   const handleOpenUpdateTransPopup = (
+    trimester: string,
     id: string,
     year: string,
     article: string
@@ -21,7 +22,7 @@ export default function Transparency() {
     dispatch(
       openModal({
         modalName: "addFiles",
-        modalProps: { transId: id, year: year, article: article },
+        modalProps: { trimester, transId: id, year: year, article: article },
       })
     );
   };

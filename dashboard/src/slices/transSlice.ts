@@ -164,14 +164,6 @@ export const updateTrans = createAsyncThunk(
   "trans/updateOne",
   async (trans: Trans, { rejectWithValue }) => {
     try {
-      // const updatetransPayload: UpdateTransPayload = {
-      //   name: trans.name,
-      //   description: trans.description,
-      //   priority: trans.priority,
-      //   status: trans.status,
-      //   assigneeId: trans.assignee.id,
-      // };
-      console.log(trans);
       const options = {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),

@@ -1,5 +1,5 @@
 import { Grid, SelectChangeEvent } from "@mui/material";
-import { createTask, Task } from "../../slices/taskSlice";
+import { createTask, getTasks, Task } from "../../slices/taskSlice";
 import { SyntheticEvent, useEffect, useState } from "react";
 import FormTextField from "../form/FormTextField";
 import FormModal from "../modal/FormModal";
@@ -79,15 +79,17 @@ const TaskPopup = ({ title, task, setTask, onSubmit }: TaskPopupProps) => {
   const handleChange = (html: any) => {
     setText(html);
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     formData.append("path", "news");
     formData.append("views", "0");
     formData.append("date", date.toLocaleString("en-US"));
-    formData.append("id_news", "N-" + (tasks.length - 1));
+    formData.append("id_news", "N" + (tasks.length - 1));
     formData.append("content", text);
-    dispatch(createTask(formData));
+    formData.append("image", file.name);
+    await dispatch(createTask(formData));
+    await dispatch(getTasks());
     dispatch(closeModal());
   };
   const tasks = useAppSelector((state) => state.tasks.tasks);

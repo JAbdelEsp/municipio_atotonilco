@@ -208,6 +208,26 @@ export const deleteTask = createAsyncThunk(
   }
 );
 
+export const deletePictures = createAsyncThunk(
+  "tasks/deleteOne",
+  async (id_news: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.delete(
+        `https://k753lncj-9000.usw3.devtunnels.ms/news/delete/?id_news=${id_news}`
+      );
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
+
+        return rejectWithValue(errorResponse);
+      }
+
+      throw error;
+    }
+  }
+);
+
 // export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
 //   const response = await axios.get(`${backendBaseUrl}/tasks`);
 //   return response.data;

@@ -92,7 +92,8 @@ const updateNews = async (req, res) => {
 
 const Delete = async (req, res) => {
   try {
-    const deleteRec = await deleteRecord("news", "id", req.query.id);
+    const deleteRec = await deleteRecord("news", "id_news", req.query.id);
+    await deleteRecord("pictures", "id_news", `${req.query.id}`);
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {
