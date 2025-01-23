@@ -6,6 +6,7 @@ const {
   getRecords,
   paramRecords,
   insertRecord,
+  getPictures,
 } = require("../utils/sqlFunctions");
 const newsSchema = require("../schemas/newsSchema");
 const picturesSchema = require("../schemas/picturesSchema");
@@ -80,12 +81,36 @@ const updateNews = async (req, res) => {
       "id_news",
       req.query.id_news
     );
+    const updates = {
+      ...req.query,
+    };
+    await updateRecord("news", updates, "id_news", Record.id_news);
+    res.json({ message: "News Updated Successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const updateViews = async (req, res) => {
+  try {
+    const Record = await checkRecordExists(
+      "news",
+      "id_news",
+      req.query.id_news
+    );
+
+    console.log(req.query.views);
 
     const updates = {
       ...req.query,
     };
-
-    await updateRecord("news", updates, "id_news", Record.id_news);
+    await updateRecord(
+      "news",
+      "views",
+      updates.views,
+      "id_news",
+      Record.id_news
+    );
     res.json({ message: "News Updated Successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -109,6 +134,17 @@ const Delete = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+const PicturesBy = async (req, res) => {
+  try {
+    const records = await getPictures("pictures", req.query.id_news);
+    if (records) {
+      res.status(200).json(records);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 module.exports = {
   RegisterNews,
   Register,
@@ -116,4 +152,6 @@ module.exports = {
   Delete,
   getRecordsBy,
   updateNews,
+  PicturesBy,
+  updateViews,
 };

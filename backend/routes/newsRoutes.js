@@ -9,6 +9,8 @@ const {
   getRecordsBy,
   updateNews,
   Delete,
+  PicturesBy,
+  updateViews,
 } = require("../controllers/newsControllers");
 const router = express.Router();
 
@@ -33,5 +35,7 @@ router.get("/news/recordsBy", getRecordsBy);
 router.post("/news/register", upload.single("image"), RegisterNews);
 router.put("/news/update", updateNews);
 router.delete("/news/delete", Delete);
+router.get("/news/pictures", PicturesBy);
+router.put("/news/views", updateViews);
 
 module.exports = router;

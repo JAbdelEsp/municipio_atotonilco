@@ -23,7 +23,6 @@ const DataTableTransparency = () => {
   };
   const url = "https://k753lncj-9000.usw3.devtunnels.ms/transparency/records";
   const { data, error, status } = useFetch<DataType[]>(url);
-  // "https://k753lncj-9000.usw3.devtunnels.ms/transparency/records"
   let urlLoc = "https://k753lncj-9000.usw3.devtunnels.ms/public/files/";
   const columns: TableColumnsType<DataType> = [
     {

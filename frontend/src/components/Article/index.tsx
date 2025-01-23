@@ -1,6 +1,8 @@
 import Image from "../../common/Image";
 import { SvgIcon } from "../../common/SvgIcon";
 import parse from "html-react-parser";
+import { Gallery, Item } from "react-photoswipe-gallery";
+import "photoswipe/dist/photoswipe.css";
 import {
   BlogRichDetails,
   BlogSingleContentWrap,
@@ -42,7 +44,7 @@ const Article = ({ id, values }: { id: string; values: any }) => {
     method: "PUT",
   };
   useFetch(
-    `https://k753lncj-9000.usw3.devtunnels.ms/news/update?id_news=${
+    `https://k753lncj-9000.usw3.devtunnels.ms/news/views?id_news=${
       values[0].id_news
     }&views=${values[0].views + 1}`,
     options
@@ -73,25 +75,24 @@ const Article = ({ id, values }: { id: string; values: any }) => {
               </DateBoxWrap>
               <BlogSingleDivider />
               <Image
-                src={item.image}
+                src={item.title + "/" + item.image}
                 location={item.path}
                 cls="blog-single-image"
-                alt={item.image}
+                alt={item.title}
               />
             </BlogSingleWrap>
             <BlogSingleContentWrap>
               <SingleLeftBox>
                 <BlogSingleSocialBox>
-                  <StayConnected>Mantente conectado</StayConnected>
+                  <StayConnected>
+                    ¡Síguenos en Nuestras Redes Sociales!
+                  </StayConnected>
                   <SocialIconBoxWrap>
                     <SingleSocialIcon
                       href="https://web.facebook.com/AyuntamientoAtotonilcoElGrande"
                       target="_blank"
                     >
-                      <SvgIcon src="facebook.svg" width="20px" height="" />
-                    </SingleSocialIcon>
-                    <SingleSocialIcon href="#" target="_blank">
-                      <SvgIcon src="instagram.svg" width="20px" height="" />
+                      <SvgIcon src="facebook.svg" width="40px" height="" />
                     </SingleSocialIcon>
                   </SocialIconBoxWrap>
                 </BlogSingleSocialBox>
@@ -122,6 +123,36 @@ const Article = ({ id, values }: { id: string; values: any }) => {
               </SingleLeftBox>
               <SingleRightBox>
                 <BlogRichDetails>{parse(item.content)}</BlogRichDetails>
+                <Gallery>
+                  <Item
+                    original="https://placekitten.com/1024/768?image=1"
+                    thumbnail="https://placekitten.com/80/60?image=1"
+                    width="1024"
+                    height="768"
+                  >
+                    {({ ref, open }) => (
+                      <img
+                        ref={ref}
+                        onClick={open}
+                        src="https://placekitten.com/80/60?image=1"
+                      />
+                    )}
+                  </Item>
+                  <Item
+                    original="https://placekitten.com/1024/768?image=2"
+                    thumbnail="https://placekitten.com/80/60?image=2"
+                    width="1024"
+                    height="768"
+                  >
+                    {({ ref, open }) => (
+                      <img
+                        ref={ref}
+                        onClick={open}
+                        src="https://placekitten.com/80/60?image=2"
+                      />
+                    )}
+                  </Item>
+                </Gallery>
               </SingleRightBox>
               <HeroDivider />
             </BlogSingleContentWrap>

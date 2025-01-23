@@ -74,6 +74,19 @@ const paramRecords = (tableName, id, limit) => {
   });
 };
 
+const getPictures = (tableName, id, limit) => {
+  return new Promise((resolve, reject) => {
+    const query = `Select * from ${tableName} WHERE id_news = ? `;
+    pool.query(query, id, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results.length ? results : null);
+      }
+    });
+  });
+};
+
 const insertRecord = (tableName, record) => {
   return new Promise((resolve, reject) => {
     const query = `INSERT INTO ${tableName} SET ?`;
@@ -136,4 +149,5 @@ module.exports = {
   updateRecord,
   updateRecordInfo,
   deleteRecord,
+  getPictures,
 };
