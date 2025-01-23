@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const {
   Records,
   Register,
@@ -10,9 +11,16 @@ const {
   Delete,
 } = require("../controllers/newsControllers");
 const router = express.Router();
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/uploads");
+    const route = "./public/uploads/" + req.body.title;
+    if (fs.existsSync(route) == true) {
+      cb(null, route);
+    } else {
+      fs.mkdirSync(route);
+      cb(null, route);
+    }
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);

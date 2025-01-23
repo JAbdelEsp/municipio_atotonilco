@@ -27,7 +27,7 @@ export type NewTask = {
 
 export type Task = NewTask & {
   id: string;
-  project: Project;
+  title: Project;
   assignee: Assignee;
 };
 
@@ -52,6 +52,7 @@ export type UpdateTaskPayload = Omit<
 
 export type TaskBasicInfo = NewTaskPayload & {
   id: string;
+  title?: string;
 };
 
 export type NewTaskFinal = NewTask & {
@@ -112,7 +113,6 @@ export const getTask = createAsyncThunk(
 
         return rejectWithValue(errorResponse);
       }
-
       throw error;
     }
   }
@@ -130,10 +130,8 @@ export const createTask = createAsyncThunk(
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         const errorResponse = error.response.data;
-
         return rejectWithValue(errorResponse);
       }
-
       throw error;
     }
   }
@@ -151,10 +149,8 @@ export const uploadPics = createAsyncThunk(
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         const errorResponse = error.response.data;
-
         return rejectWithValue(errorResponse);
       }
-
       throw error;
     }
   }
@@ -190,10 +186,10 @@ export const updateTask = createAsyncThunk(
 
 export const deleteTask = createAsyncThunk(
   "tasks/deleteOne",
-  async (id: number, { rejectWithValue }) => {
+  async (id: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `https://k753lncj-9000.usw3.devtunnels.ms/news/delete/?id=${id}`
+        `https://k753lncj-9000.usw3.devtunnels.ms/news/delete/?id=${id.id}&title=${id.title}`
       );
       return response.data;
     } catch (error) {

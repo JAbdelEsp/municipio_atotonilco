@@ -10,9 +10,10 @@ import { useEffect, useState } from "react";
 import PicsPopup from "./PicsPopup";
 interface AddTaskPicsPopupProps {
   taskId: string;
+  title: string;
 }
 
-const AddTaskPicsPopup = ({ taskId }: AddTaskPicsPopupProps) => {
+const AddTaskPicsPopup = ({ taskId, title }: AddTaskPicsPopupProps) => {
   const dispatch = useAppDispatch();
   const [task, setTask] = useState<NewTask>({
     id_news: "",
@@ -32,6 +33,7 @@ const AddTaskPicsPopup = ({ taskId }: AddTaskPicsPopupProps) => {
       <PicsPopup
         title="Agregar Imagenes"
         taskId={taskId}
+        titleNew={title}
         setTask={setTask}
         onSubmit={submitNewTask}
       />

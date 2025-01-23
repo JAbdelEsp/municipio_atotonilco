@@ -11,15 +11,20 @@ import {
 import { closeModal } from "../../slices/modalSlice";
 import DeletePopup from "./DeletePopup";
 interface DeletePopupProps {
-  id: number;
+  id: string;
+  title: string;
 }
 
-const DeleteContainer = ({ id }: DeletePopupProps) => {
+const DeleteContainer = ({ id, title }: DeletePopupProps) => {
   const dispatch = useAppDispatch();
   const deleteOnSubmit = async () => {
-    await dispatch(deleteTask(id));
+    const data = {
+      id: id,
+      title: title,
+    };
+    await dispatch(deleteTask({ id: id, title: title }));
+    await dispatch(getTasks());
     dispatch(closeModal());
-    dispatch(getTasks());
   };
 
   return (

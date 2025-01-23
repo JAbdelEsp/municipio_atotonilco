@@ -15,13 +15,17 @@ import DeleteContainer from "../components/task/DeleteContainer";
 const ModalContainer = () => {
   const openModal = useAppSelector((state) => state.modal.openModal);
   const modalProps = useAppSelector((state) => state.modal.modalProps);
-
   const renderModal = () => {
     switch (openModal) {
       case "addTask":
         return <AddTaskPopup />;
       case "addTaskPics":
-        return <AddTaskPicsPopup taskId={modalProps?.taskId} />;
+        return (
+          <AddTaskPicsPopup
+            taskId={modalProps?.taskId}
+            title={modalProps?.title}
+          />
+        );
       case "addFiles":
         return (
           <AddTransFilesPopup
@@ -32,7 +36,9 @@ const ModalContainer = () => {
           />
         );
       case "Delete":
-        return <DeleteContainer id={modalProps?.id} />;
+        return (
+          <DeleteContainer id={modalProps?.id} title={modalProps?.title} />
+        );
       case "addTrans":
         return <AddTransPopup />;
       case "deleteTrans":

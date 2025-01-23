@@ -73,7 +73,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                           <BlogMainWrapper className="video-center">
                             <ImageWrap className="video-ratio">
                               <Image
-                                src={item.image}
+                                src={item.title + "/" + item.image}
                                 alt={item.title}
                                 cls="paralax-image"
                                 location={item.path}

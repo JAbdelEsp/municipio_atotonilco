@@ -19,6 +19,7 @@ import SubmitButton from "../form/SubmitButton";
 import CancelButton from "../form/CancelButton";
 interface TaskPicsPopupProps {
   title: string;
+  titleNew: string;
   taskId: string;
   setTask: React.Dispatch<React.SetStateAction<any>>;
   onSubmit: () => void;
@@ -38,6 +39,7 @@ type TasksTableInfo = {
 
 const PicsPopup = ({
   title,
+  titleNew,
   taskId,
   setTask,
   onSubmit,
@@ -80,6 +82,7 @@ const PicsPopup = ({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     formData.append("id_news", taskId);
+    formData.append("title", titleNew);
     await dispatch(uploadPics(formData));
     dispatch(closeModal());
   };
@@ -93,6 +96,7 @@ const PicsPopup = ({
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <Grid container>
             <Grid item xs={12} mt={2}>
+              <input type="text" name="title" value={titleNew} hidden />
               <input
                 type="file"
                 name="pic"

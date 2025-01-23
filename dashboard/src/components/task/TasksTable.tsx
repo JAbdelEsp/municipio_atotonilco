@@ -55,7 +55,7 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
               color="info"
               aria-label="view-task"
               onClick={() => {
-                onClickView(params.row.id_news);
+                onClickView(params.row.id_news, params.row.title);
               }}
             >
               <AddPhotoAlternateIcon />
@@ -70,7 +70,9 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
             <IconButton
               color="error"
               aria-label="edit-task"
-              onClick={() => onClickDelete(params.row.id_news)}
+              onClick={() =>
+                onClickDelete(params.row.id_news, params.row.title)
+              }
             >
               <DeleteIcon />
             </IconButton>
@@ -80,14 +82,19 @@ export default function TasksTable({ onClickEdit }: TasksTableProps) {
     },
   ];
 
-  const onClickView = (id: number) => {
+  const onClickView = (id: number, title: string) => {
     dispatch(
-      openModal({ modalName: "addTaskPics", modalProps: { taskId: id } })
+      openModal({
+        modalName: "addTaskPics",
+        modalProps: { taskId: id, title: title },
+      })
     );
   };
 
-  const onClickDelete = (id: number) => {
-    dispatch(openModal({ modalName: "Delete", modalProps: { id: id } }));
+  const onClickDelete = (id: number, title: string) => {
+    dispatch(
+      openModal({ modalName: "Delete", modalProps: { id: id, title: title } })
+    );
   };
 
   useEffect(() => {

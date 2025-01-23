@@ -10,6 +10,7 @@ const {
 const newsSchema = require("../schemas/newsSchema");
 const picturesSchema = require("../schemas/picturesSchema");
 const cloudinary = require("../utils/cloudinary");
+const fs = require("fs").promises;
 
 const RegisterNews = async (req, res) => {
   const { id_news, title, author, content, date, id_area } = req.body;
@@ -36,6 +37,7 @@ const Register = async (req, res) => {
     // await createTable(picturesSchema);
     for (let i = 0; i < req.files.length; i++) {
       req.body.pic = req.files[i].originalname;
+      req.body.title = req.body.title[0];
       await insertRecord("pictures", req.body);
     }
     res.status(201).json({ message: "Imágenes agregas con éxito!" });
@@ -94,6 +96,10 @@ const Delete = async (req, res) => {
   try {
     const deleteRec = await deleteRecord("news", "id_news", req.query.id);
     await deleteRecord("pictures", "id_news", `${req.query.id}`);
+    const route = "./public/uploads/" + req.query.title;
+    await fs.rmdir(route, { recursive: true }).then(() => {
+      console.log("folder removed");
+    });
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {
