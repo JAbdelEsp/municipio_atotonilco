@@ -118,7 +118,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                               <ImageClip>
                                 <ImageWrap className="landscape">
                                   <Image
-                                    src={item.image}
+                                    src={item.title + "/" + item.image}
                                     alt={item.image}
                                     cls="paralax-image"
                                     location={item.path}
@@ -210,7 +210,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                                   <ImageClip>
                                     <ImageWrap className="category-ratio">
                                       <Image
-                                        src={item.image}
+                                        src={item.title + "/" + item.image}
                                         alt={item.image}
                                         cls="paralax-image"
                                         location={item.path}

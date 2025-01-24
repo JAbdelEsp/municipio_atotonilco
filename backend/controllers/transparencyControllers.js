@@ -11,6 +11,7 @@ const {
 } = require("../utils/sqlFunctions");
 const newsSchema = require("../schemas/transparencySchema");
 const cloudinary = require("../utils/cloudinary");
+const fs = require("fs").promises;
 
 const updateTransparency = async (req, res) => {
   try {
@@ -25,7 +26,7 @@ const updateTransparency = async (req, res) => {
       const name = req.file.originalname;
       await updateRecord(
         "transparency",
-        req.body.column,
+        req.body.column[0],
         name,
         "id",
         transparency.id
@@ -66,8 +67,14 @@ const Records = async (req, res) => {
 };
 
 const Delete = async (req, res) => {
+  console.log(req.query);
   try {
     const deleteRec = await deleteRecord("transparency", "id", req.query.id);
+    const route =
+      "./public/files/" + req.query.article + "/" + req.query.year + "/";
+    await fs.rm(route, { recursive: true }).then(() => {
+      console.log("folder removed");
+    });
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {

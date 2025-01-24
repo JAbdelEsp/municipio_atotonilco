@@ -42,7 +42,7 @@ const ModalContainer = () => {
       case "addTrans":
         return <AddTransPopup />;
       case "deleteTrans":
-        return <DeleteTransPopup transId={modalProps?.transId} />;
+        return <DeleteTransPopup params={modalProps?.params} />;
       case "addTrans":
         return <AddTransPopup />;
       case "editTrans":

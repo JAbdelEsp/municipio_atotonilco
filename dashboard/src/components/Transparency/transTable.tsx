@@ -39,9 +39,9 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
   const [transTableInfo, setTransTableInfo] = useState<TransTableInfo[]>([]);
   const trans = useAppSelector((state) => state.trans.trans);
   const transStatus = useAppSelector((state) => state.trans.status);
-  const onClickDelete = (id: number) => {
+  const onClickDelete = (params: any) => {
     dispatch(
-      openModal({ modalName: "deleteTrans", modalProps: { transId: id } })
+      openModal({ modalName: "deleteTrans", modalProps: { params: params } })
     );
   };
 
@@ -177,7 +177,7 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
             <IconButton
               color="error"
               aria-label="edit-task"
-              onClick={() => onClickDelete(params.row.id)}
+              onClick={() => onClickDelete(params.row)}
             >
               <DeleteIcon />
             </IconButton>
@@ -188,7 +188,6 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
   ];
 
   const onClickEdit = (params: any) => {
-    console.log(params);
     dispatch(
       openModal({ modalName: "editTrans", modalProps: { params: params } })
     );

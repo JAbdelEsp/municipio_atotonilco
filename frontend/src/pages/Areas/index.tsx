@@ -16,8 +16,8 @@ const Areas = () => {
     <main>
       <HeroCms scrollDown={ScrollDown} />
       <DiscoverArea />
-      <Quote />
-      <Blog id="noticias" />
+      {/* <Quote /> */}
+      {/* <Blog id="noticias" /> */}
     </main>
   );
 };

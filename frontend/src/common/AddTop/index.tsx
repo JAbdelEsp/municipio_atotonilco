@@ -131,7 +131,7 @@ const AddTop = () => {
                               <ImageClip>
                                 <ImageWrap className="">
                                   <Image
-                                    src={item.image}
+                                    src={item.title + "/" + item.image}
                                     alt={item.image}
                                     location={item.path}
                                     cls="paralax-image"

@@ -13,6 +13,9 @@ export const Styles = createGlobalStyle`
         --radius: 0px;
         --radius-large: 50em;
     }
+    ::-webkit-scrollbar {
+        display: none;
+    }
     .with-gradient-bg {
         background-image: linear-gradient(180deg, #1a1829, #fff0);
     }

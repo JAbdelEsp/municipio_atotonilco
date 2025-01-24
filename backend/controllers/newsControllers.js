@@ -98,9 +98,6 @@ const updateViews = async (req, res) => {
       "id_news",
       req.query.id_news
     );
-
-    console.log(req.query.views);
-
     const updates = {
       ...req.query,
     };

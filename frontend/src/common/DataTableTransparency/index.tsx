@@ -9,7 +9,9 @@ import { SvgIcon } from "../SvgIcon";
 const DataTableTransparency = () => {
   const [article70, setArticle70] = useState<DataType[]>();
   const [article69, setArticle69] = useState<DataType[]>();
+  const [selectedYear, setSelectedYear] = useState("");
   const _handleChange = (value: string) => {
+    setSelectedYear(value);
     if (data) {
       const art69 = data.filter(
         (item: any) => item.article === "69" && item.year === value
@@ -35,7 +37,7 @@ const DataTableTransparency = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a href={urlLoc + dataIndex} download>
+            <a href={urlLoc + "69/" + selectedYear + "/" + dataIndex} download>
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
           )
@@ -48,7 +50,7 @@ const DataTableTransparency = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a href={urlLoc + dataIndex} download>
+            <a href={urlLoc + "69/" + selectedYear + "/" + dataIndex} download>
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
           )
@@ -61,7 +63,7 @@ const DataTableTransparency = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a href={urlLoc + dataIndex} download>
+            <a href={urlLoc + "69/" + selectedYear + "/" + dataIndex} download>
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
           )
@@ -74,7 +76,7 @@ const DataTableTransparency = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a href={urlLoc + dataIndex} download>
+            <a href={urlLoc + "69/" + selectedYear + "/" + dataIndex} download>
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
           )
@@ -89,19 +91,55 @@ const DataTableTransparency = () => {
     },
     {
       title: "Primer Trimestre",
-      dataIndex: "firtsTrimester",
+      dataIndex: "firstTrimester",
+      render: (dataIndex: any) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + "70/" + selectedYear + "/" + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
     {
       title: "Segundo Trimestre",
       dataIndex: "secondTrimester",
+      render: (dataIndex: any) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + "70/" + selectedYear + "/" + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
     {
       title: "Tercer Trimestre",
       dataIndex: "thirdTrimester",
+      render: (dataIndex: any) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + "70/" + selectedYear + "/" + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
     {
       title: "Cuarto Trimestre",
       dataIndex: "fourthTrimester",
+      render: (dataIndex: any) => {
+        return (
+          dataIndex && (
+            <a href={urlLoc + "70/" + selectedYear + "/" + dataIndex} download>
+              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
+            </a>
+          )
+        );
+      },
     },
   ];
   return (

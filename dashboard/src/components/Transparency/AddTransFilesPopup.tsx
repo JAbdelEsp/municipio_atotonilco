@@ -38,6 +38,8 @@ const AddTransFilesPopup = ({
     <>
       <TransPopup
         title="Agregar Archivo"
+        column={column}
+        article={article}
         transId={transId}
         year={year}
         onSubmit={submitNewTask}

@@ -47,6 +47,16 @@ export const Section = styled("section")`
     object-fit: cover;
     border-radius: 12px;
   }
+
+  .photoswip {
+    display: grid;
+    grid-template-columns: 340px 340px;
+    grid-template-rows: minmax(50px, 220px);
+    gap: 10px;
+    > img {
+      border-radius: 10px;
+    }
+  }
   @media screen and (max-width: 991px) {
     padding-top: 100px;
   }
@@ -64,6 +74,9 @@ export const Section = styled("section")`
       height: 18em;
       object-fit: cover;
       border-radius: 12px;
+    }
+    .photoswip {
+      grid-template-columns: 2fr;
     }
     h2 {
       font-size: min(30px, 3em);

@@ -31,9 +31,9 @@ const FooterComponent = () => {
                     alt=""
                     className="paralax-image2"
                   />
-                  <ButtonIconMain>
+                  {/* <ButtonIconMain>
                     <ButtonIconSvg />
-                  </ButtonIconMain>
+                  </ButtonIconMain> */}
                 </ImageWrap>
               </BlogMainWrapper>
             </BannerGrid>

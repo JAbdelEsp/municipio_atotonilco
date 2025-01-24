@@ -189,10 +189,10 @@ export const updateTrans = createAsyncThunk(
 
 export const deleteTrans = createAsyncThunk(
   "trans/deleteOne",
-  async (transId: number, { rejectWithValue }) => {
+  async (params: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `https://k753lncj-9000.usw3.devtunnels.ms/transparency/delete/?id=${transId}`
+        `https://k753lncj-9000.usw3.devtunnels.ms/transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
       );
       return response.data;
     } catch (error) {

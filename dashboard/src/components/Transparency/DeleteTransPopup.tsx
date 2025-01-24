@@ -17,13 +17,14 @@ import {
 import DeleteWarnPopup from "./DeleteWarnPopup";
 import { closeModal } from "../../slices/modalSlice";
 interface DeleteTransPopupProps {
-  transId: number;
+  params: any;
 }
 
-const DeleteTransPopup = ({ transId }: DeleteTransPopupProps) => {
+const DeleteTransPopup = ({ params }: DeleteTransPopupProps) => {
+  console.log(params);
   const dispatch = useAppDispatch();
   const deleteTransOnSubmit = async () => {
-    await dispatch(deleteTrans(transId));
+    await dispatch(deleteTrans(params));
     dispatch(closeModal());
     dispatch(getTrans());
   };

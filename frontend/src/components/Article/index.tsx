@@ -38,8 +38,12 @@ import {
   WriterTitleBoxWrap,
 } from "./styles";
 import useFetch from "../../services";
+import Preloader from "../Preloader";
+import { useState } from "react";
 
 const Article = ({ id, values }: { id: string; values: any }) => {
+  let content: any;
+  const [pictures, setPictures] = useState<any>();
   const options = {
     method: "PUT",
   };
@@ -50,6 +54,49 @@ const Article = ({ id, values }: { id: string; values: any }) => {
     options
   );
 
+  const optionsSlide = {
+    arrowPrev: false,
+    arrowNext: false,
+    zoom: false,
+    close: false,
+    counter: false,
+    bgOpacity: 0.2,
+    padding: { top: 20, bottom: 40, left: 100, right: 100 },
+  };
+
+  const { data, status, error } = useFetch<any>(
+    `https://k753lncj-9000.usw3.devtunnels.ms/news/pictures?id_news=${values[0].id_news}`
+  );
+  if (status === "loading") {
+    content = <Preloader />;
+  }
+  if (error) {
+  }
+  if (status === "fetched" && data) {
+    content = (
+      <Gallery options={optionsSlide}>
+        <div className="photoswip">
+          {data.map((item: any, key: number) => (
+            <Item
+              original={`https://k753lncj-9000.usw3.devtunnels.ms/public/uploads/${values[0].title}/${item.pic}`}
+              thumbnail={`https://k753lncj-9000.usw3.devtunnels.ms/public/uploads/${values[0].title}/${item.pic}`}
+              width="1340"
+              height="768"
+            >
+              {({ ref, open }) => (
+                <img
+                  style={{ width: "100%", height: "220px", objectFit: "cover" }}
+                  ref={ref}
+                  onClick={open}
+                  src={`https://k753lncj-9000.usw3.devtunnels.ms/public/uploads/${values[0].title}/${item.pic}`}
+                />
+              )}
+            </Item>
+          ))}
+        </div>
+      </Gallery>
+    );
+  }
   return (
     <Section>
       {values &&
@@ -123,36 +170,7 @@ const Article = ({ id, values }: { id: string; values: any }) => {
               </SingleLeftBox>
               <SingleRightBox>
                 <BlogRichDetails>{parse(item.content)}</BlogRichDetails>
-                <Gallery>
-                  <Item
-                    original="https://placekitten.com/1024/768?image=1"
-                    thumbnail="https://placekitten.com/80/60?image=1"
-                    width="1024"
-                    height="768"
-                  >
-                    {({ ref, open }) => (
-                      <img
-                        ref={ref}
-                        onClick={open}
-                        src="https://placekitten.com/80/60?image=1"
-                      />
-                    )}
-                  </Item>
-                  <Item
-                    original="https://placekitten.com/1024/768?image=2"
-                    thumbnail="https://placekitten.com/80/60?image=2"
-                    width="1024"
-                    height="768"
-                  >
-                    {({ ref, open }) => (
-                      <img
-                        ref={ref}
-                        onClick={open}
-                        src="https://placekitten.com/80/60?image=2"
-                      />
-                    )}
-                  </Item>
-                </Gallery>
+                {content}
               </SingleRightBox>
               <HeroDivider />
             </BlogSingleContentWrap>

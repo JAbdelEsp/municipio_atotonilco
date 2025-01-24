@@ -22,6 +22,8 @@ interface TaskPopupProps {
   title: string;
   transId: string;
   year: string;
+  article: string;
+  column: string;
   onSubmit: any;
 }
 
@@ -37,7 +39,14 @@ type TasksTableInfo = {
   neighborhood: string;
 };
 
-const TransPopup = ({ title, transId, year, onSubmit }: TaskPopupProps) => {
+const TransPopup = ({
+  title,
+  transId,
+  year,
+  article,
+  column,
+  onSubmit,
+}: TaskPopupProps) => {
   const date = new Date();
   const [file, setFile] = useState<any>(null);
   const dispatch = useAppDispatch();
@@ -51,6 +60,9 @@ const TransPopup = ({ title, transId, year, onSubmit }: TaskPopupProps) => {
         <form onSubmit={onSubmit} encType="multipart/form-data">
           <Grid container>
             <Grid item xs={12} mt={2}>
+              <input type="text" value={year} hidden name="year" />
+              <input type="text" value={article} hidden name="article" />
+              <input type="text" value={column} hidden name="column" />
               <input
                 type="file"
                 name="file"

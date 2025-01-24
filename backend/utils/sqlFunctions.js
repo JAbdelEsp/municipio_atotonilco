@@ -23,7 +23,7 @@ const createTable = (schema) => {
 const checkRecordExists = (tableName, column, value) => {
   return new Promise((resolve, reject) => {
     const query = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
-    pool.query(query, [value], (err, results) => {
+    pool.query(query, value, (err, results) => {
       if (err) {
         reject(err);
       } else {
@@ -37,7 +37,6 @@ const getRecords = (tableName) => {
   return new Promise((resolve, reject) => {
     const query = `Select * from ${tableName} ORDER BY date DESC`;
     pool.query(query, (err, results) => {
-      console.log("error: ", err);
       if (err) {
         reject(err);
       } else {
@@ -51,7 +50,6 @@ const getRecordsNoOrder = (tableName) => {
   return new Promise((resolve, reject) => {
     const query = `Select * from ${tableName}`;
     pool.query(query, (err, results) => {
-      console.log("error: ", err);
       if (err) {
         reject(err);
       } else {

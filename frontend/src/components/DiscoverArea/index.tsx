@@ -28,7 +28,7 @@ import {
 
 const DiscoverArea = () => {
   return (
-    <Section className="with-gradient-bg">
+    <Section className="with-gradient-bg" id="noticias">
       <WLayout className="form-grid">
         <FormBlock>
           <FormLayout>
@@ -79,10 +79,6 @@ const DiscoverArea = () => {
         <FormBlock className="is-2nd">
           <CustomList>
             <CustomListItem>
-              <CustomListIconBlock>
-                <CustomListIconBg />
-                <SvgIcon src="" width="" height="" />
-              </CustomListIconBlock>
               <CustomListContent>
                 <ListTitle>Title</ListTitle>
                 <ListParagraph>
@@ -95,10 +91,6 @@ const DiscoverArea = () => {
               <ListLine />
             </CustomListItem>
             <CustomListItem>
-              <CustomListIconBlock>
-                <CustomListIconBg />
-                <SvgIcon src="" width="" height="" />
-              </CustomListIconBlock>
               <CustomListContent>
                 <ListTitle>Title</ListTitle>
                 <ListParagraph>
@@ -111,10 +103,6 @@ const DiscoverArea = () => {
               <ListLine />
             </CustomListItem>
             <CustomListItem>
-              <CustomListIconBlock>
-                <CustomListIconBg />
-                <SvgIcon src="" width="" height="" />
-              </CustomListIconBlock>
               <CustomListContent>
                 <ListTitle>Title</ListTitle>
                 <ListParagraph>
