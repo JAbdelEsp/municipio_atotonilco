@@ -16,6 +16,10 @@ const routes = [
     component: "Articles",
   },
   {
+    path: "/sevac",
+    component: "Sevac",
+  },
+  {
     path: "/transparencia",
     component: "Transparency",
   },
@@ -38,14 +42,6 @@ const routes = [
   {
     path: "/tramites",
     component: "Resources",
-  },
-  {
-    path: "/admin",
-    component: "Login",
-  },
-  {
-    path: "/admin/dashboard",
-    component: "Dashboard",
   },
 ];
 
