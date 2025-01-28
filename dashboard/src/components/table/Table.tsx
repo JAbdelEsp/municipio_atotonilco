@@ -16,7 +16,7 @@ type RowProps = {
 
 export default function Table({ columns, rows, onClickRow }: TableProps) {
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div style={{ height: 600, width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -25,6 +25,7 @@ export default function Table({ columns, rows, onClickRow }: TableProps) {
             paginationModel: { page: 0, pageSize: 5 },
           },
         }}
+        getRowHeight={() => "auto"}
         pageSizeOptions={[5, 10]}
         onRowClick={(row) => {
           onClickRow?.(row.id);

@@ -10,6 +10,8 @@ import DeleteTransPopup from "../components/Transparency/DeleteTransPopup";
 import EditTransPopup from "../components/Transparency/EditTransPopup";
 import DeletePopup from "../components/task/DeletePopup";
 import DeleteContainer from "../components/task/DeleteContainer";
+import AddSevacPopup from "../components/Sevac/AddSevacPopup";
+import AddSevacFilesPopup from "../components/Sevac/AddSevacFilesPopup";
 // Import other modal components
 
 const ModalContainer = () => {
@@ -47,6 +49,17 @@ const ModalContainer = () => {
         return <AddTransPopup />;
       case "editTrans":
         return <EditTransPopup params={modalProps?.params} />;
+      case "addSevac":
+        return <AddSevacPopup />;
+      case "addMultipleFiles":
+        return (
+          <AddSevacFilesPopup
+            file_name={modalProps?.file_name}
+            column={modalProps?.trimester}
+            sevacId={modalProps?.transId}
+            year={modalProps?.year}
+          />
+        );
       default:
         return null;
     }

@@ -22,7 +22,7 @@ import { logout } from "../../slices/authSlice";
 const pages = [
   { name: "Noticias", link: "/noticias" },
   { name: "Transparencia", link: "/transparencia" },
-  // { name: "Dashboards", link: "/dashboards" },
+  { name: "Sevac", link: "/sevac" },
 ];
 
 // const settings = ['Profile', 'Settings', 'Logout']

@@ -1,6 +1,5 @@
 .modal {
   // max-height: 75%;
-
 }
 .modal-paper {
   position: absolute;
@@ -18,4 +17,9 @@
   background-color: lightblue;
   // vertical-align:middle;
   // border-radius: 45;
+}
+
+.ant-table-tbody > tr > td {
+  height: 5em;
+  padding: 4px;
 }

@@ -97,6 +97,18 @@ export interface DataType {
   date: string;
 }
 
+export interface DataTypeSevac {
+  key: number;
+  year: string;
+  file_name: string;
+  firstTrimester: [];
+  secondTrimester: string;
+  thirdTrimester: string;
+  fourthTrimester: string;
+  user: string;
+  date: string;
+}
+
 export interface NewsData {
   author: string;
   content: string;

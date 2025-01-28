@@ -10,6 +10,7 @@ const profileRoutes = require("./routes/profileRoutes");
 const newsRoutes = require("./routes/newsRoutes");
 const transparencyRoutes = require("./routes/transparencyRoutes");
 const tourismRoutes = require("./routes/tourismRoutes");
+const sevacRoutes = require("./routes/sevacRoutes");
 const app = express();
 // función middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
@@ -24,7 +25,8 @@ app.use(
   profileRoutes,
   newsRoutes,
   transparencyRoutes,
-  tourismRoutes
+  tourismRoutes,
+  sevacRoutes
 );
 
 connectDB();

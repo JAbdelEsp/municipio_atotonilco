@@ -46,6 +46,19 @@ const getRecords = (tableName) => {
   });
 };
 
+const getRecordsBy = (tableName, param, value) => {
+  return new Promise((resolve, reject) => {
+    const query = `Select * from ${tableName} WHERE ${param} = ?`;
+    pool.query(query, value, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results.length ? results : null);
+      }
+    });
+  });
+};
+
 const getRecordsNoOrder = (tableName) => {
   return new Promise((resolve, reject) => {
     const query = `Select * from ${tableName}`;
@@ -99,6 +112,7 @@ const insertRecord = (tableName, record) => {
 };
 
 const updateRecord = (tableName, updateCol, updates, column, value) => {
+  console.log("column", column);
   return new Promise((resolve, reject) => {
     const query = `UPDATE ${tableName} SET ${updateCol} = '${updates}' WHERE ${column} = ?`;
     pool.query(query, value, (err, results) => {
@@ -142,6 +156,7 @@ module.exports = {
   checkRecordExists,
   getRecords,
   getRecordsNoOrder,
+  getRecordsBy,
   paramRecords,
   insertRecord,
   updateRecord,

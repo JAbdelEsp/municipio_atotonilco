@@ -7,6 +7,7 @@ import transReducer from "./slices/transSlice";
 import dashboardReducer from "./slices/dashboardSlice";
 import projectSlice from "./slices/projectSlice";
 import modalReducer from "./slices/modalSlice";
+import sevacReducer from "./slices/sevacSlice";
 import { axiosMiddleware } from "./api/middleware";
 
 const store = configureStore({
@@ -16,6 +17,7 @@ const store = configureStore({
     notification: notificationReducer,
     tasks: tasksReducer,
     trans: transReducer,
+    sevac: sevacReducer,
     dashboards: dashboardReducer,
     projects: projectSlice,
     modal: modalReducer,

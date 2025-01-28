@@ -14,7 +14,6 @@ const connectDB = async () => {
       console.log("Error connecting to MySQL: ", err);
     }
     console.log("Connected to MySQL as ID: ", pool.threadId);
-    // connection.release();
   });
 };
 
