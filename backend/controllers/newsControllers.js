@@ -20,7 +20,7 @@ const RegisterNews = async (req, res) => {
     return;
   }
   try {
-    await createTable(newsSchema);
+    // await createTable(newsSchema);
     await insertRecord("news", req.body);
     res.status(201).json({ message: "News created successfully!" });
   } catch (error) {
