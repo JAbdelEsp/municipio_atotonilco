@@ -51,7 +51,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body.data;
   if (!email || !password) {
     res
       .status(400)
