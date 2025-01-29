@@ -10,11 +10,12 @@ const {
 } = require("../controllers/transparencyControllers");
 const { requiresAuth } = require("../middlewares/authMiddleware");
 const router = express.Router();
-
+const route = "./public/files/";
 const uploadFile = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      const route = "./public/files/" + req.body.article + "/" + req.body.year;
+      const routeComplete = path.join(route, req.body.article, req.body.year);
+      fs.mkdirSync(routeComplete, { recursive: true });
       if (fs.existsSync(route) == true) {
         cb(null, route);
       } else {

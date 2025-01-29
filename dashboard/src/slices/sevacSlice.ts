@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../api/axiosInstance";
 import { AxiosError } from "axios";
+import { BACKEND_BASE_URL } from "../constants";
 
 const date = new Date();
 
@@ -79,7 +80,7 @@ export const getSevac = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get(
-        "https://k753lncj-9000.usw3.devtunnels.ms/sevac/records"
+        BACKEND_BASE_URL + "sevac/records"
       );
       return response.data;
     } catch (error) {
@@ -124,7 +125,7 @@ export const createSevac = createAsyncThunk(
     };
     try {
       const response = await axiosInstance.post(
-        "https://k753lncj-9000.usw3.devtunnels.ms/sevac/register",
+        BACKEND_BASE_URL + "sevac/register",
         data
       );
       return response.data;
@@ -148,7 +149,7 @@ export const updateSevac = createAsyncThunk(
         },
       };
       const response = await axiosInstance.put(
-        `https://k753lncj-9000.usw3.devtunnels.ms/sevac/update`,
+        BACKEND_BASE_URL + `sevac/update`,
         sevac,
         options
       );
@@ -170,7 +171,8 @@ export const deleteSevac = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `https://k753lncj-9000.usw3.devtunnels.ms/transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
+        BACKEND_BASE_URL +
+          `transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
       );
       return response.data;
     } catch (error) {

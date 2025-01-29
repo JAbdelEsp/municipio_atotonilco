@@ -22,9 +22,7 @@ import Sevac from "./pages/Sevac";
 
 function App() {
   const dispatch = useAppDispatch();
-
   const basicUserInfo = useAppSelector((state) => state.auth.basicUserInfo);
-  console.log(basicUserInfo);
   useEffect(() => {
     if (basicUserInfo) {
       // dispatch(getUsers());

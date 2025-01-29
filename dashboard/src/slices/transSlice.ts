@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../api/axiosInstance";
 import { AxiosError } from "axios";
+import { BACKEND_BASE_URL } from "../constants";
 
 const date = new Date();
 
@@ -80,7 +81,7 @@ export const getTrans = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get(
-        "https://k753lncj-9000.usw3.devtunnels.ms/transparency/records"
+        BACKEND_BASE_URL + "transparency/records"
       );
       return response.data;
     } catch (error) {
@@ -125,7 +126,7 @@ export const createTrans = createAsyncThunk(
     };
     try {
       const response = await axiosInstance.post(
-        "https://k753lncj-9000.usw3.devtunnels.ms/transparency/register",
+        BACKEND_BASE_URL + "transparency/register",
         data
       );
       return response.data;
@@ -144,7 +145,7 @@ export const uploadPics = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(
-        "https://k753lncj-9000.usw3.devtunnels.ms/news/pictures",
+        BACKEND_BASE_URL + "news/pictures",
         payload
       );
       return response.data;
@@ -170,7 +171,7 @@ export const updateTrans = createAsyncThunk(
         },
       };
       const response = await axiosInstance.put(
-        `https://k753lncj-9000.usw3.devtunnels.ms/transparency/update`,
+        BACKEND_BASE_URL + `transparency/update`,
         trans,
         options
       );
@@ -192,7 +193,8 @@ export const deleteTrans = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `https://k753lncj-9000.usw3.devtunnels.ms/transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
+        BACKEND_BASE_URL +
+          `transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
       );
       return response.data;
     } catch (error) {

@@ -45,16 +45,6 @@ const uploadFile = multer({
   },
 });
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "./public/files");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.originalname);
-//   },
-// });
-// uploadFile = multer({ storage });
-
 router.get("/sevac/records", RecordsOrderBy);
 router.get("/sevac/files", FilesOrderBy);
 router.post("/sevac/register", Register);

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../api/axiosInstance";
 import { AxiosError } from "axios";
-import { ErrorResponse } from "../constants";
+import { BACKEND_BASE_URL, ErrorResponse } from "../constants";
 
 type User = {
   email: string;
@@ -50,7 +50,7 @@ export const login = createAsyncThunk(
         "Access-Control-Allow-Origin": "*",
       };
       const response = await axiosInstance.post(
-        "https://k753lncj-9000.usw3.devtunnels.ms/auth/signin",
+        BACKEND_BASE_URL + "/auth/signin",
         {
           method: "POST",
           headers,
@@ -102,7 +102,6 @@ export const logout = createAsyncThunk(
     try {
       // const response = await axiosInstance.post("/auth/logout", {});
       // const resData = response.data;
-
       localStorage.removeItem("userInfo");
 
       return;

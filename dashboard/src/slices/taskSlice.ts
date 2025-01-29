@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../api/axiosInstance";
 import { AxiosError } from "axios";
+import { BACKEND_BASE_URL } from "../constants";
 
 export type Project = {
   id: string;
@@ -86,7 +87,7 @@ export const getTasks = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get(
-        "https://k753lncj-9000.usw3.devtunnels.ms/news/records"
+        BACKEND_BASE_URL + "/news/records"
       );
       return response.data;
     } catch (error) {
@@ -123,7 +124,7 @@ export const createTask = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(
-        "https://k753lncj-9000.usw3.devtunnels.ms/news/register",
+        BACKEND_BASE_URL + "/news/register",
         payload
       );
       return response.data;
@@ -142,7 +143,7 @@ export const uploadPics = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(
-        "https://k753lncj-9000.usw3.devtunnels.ms/news/pictures",
+        BACKEND_BASE_URL + "/news/pictures",
         payload
       );
       return response.data;
@@ -189,7 +190,7 @@ export const deleteTask = createAsyncThunk(
   async (id: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `https://k753lncj-9000.usw3.devtunnels.ms/news/delete/?id=${id.id}&title=${id.title}`
+        BACKEND_BASE_URL + `/news/delete/?id=${id.id}&title=${id.title}`
       );
       return response.data;
     } catch (error) {
@@ -209,7 +210,7 @@ export const deletePictures = createAsyncThunk(
   async (id_news: string, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `https://k753lncj-9000.usw3.devtunnels.ms/news/delete/?id_news=${id_news}`
+        BACKEND_BASE_URL + `/news/delete/?id_news=${id_news}`
       );
       return response.data;
     } catch (error) {

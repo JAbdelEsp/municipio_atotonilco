@@ -13,12 +13,12 @@ const {
   updateViews,
 } = require("../controllers/newsControllers");
 const router = express.Router();
-
+const route = "./public/uploads/";
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const route = "./public/uploads/" + req.body.title;
+    const routeComplete = path.join(route, req.body.title);
+    fs.mkdirSync(routeComplete, { recursive: true });
     if (fs.existsSync(route) == true) {
-      cb(null, route);
     } else {
       fs.mkdirSync(route);
       cb(null, route);
