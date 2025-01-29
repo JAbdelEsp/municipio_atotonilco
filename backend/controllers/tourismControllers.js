@@ -16,7 +16,7 @@ const Register = async (req, res) => {
     return;
   }
   try {
-    await createTable(newsSchema);
+    // await createTable(newsSchema);
     insertRecord("tourism", req.body);
     res.status(201).json({ message: "Note created successfully!" });
   } catch (error) {

@@ -35,8 +35,8 @@ const register = async (req, res) => {
     email: user.email,
   };
   try {
-    await createTable(userSchema);
-    await createTable(profileSchema);
+    // await createTable(userSchema);
+    // await createTable(profileSchema);
     const userAlreadyExists = await checkRecordExists("users", "email", email);
     if (userAlreadyExists) {
       res.status(409).json({ error: "Email already exists" });
