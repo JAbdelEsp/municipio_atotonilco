@@ -1,5 +1,6 @@
 import BlogHero from "../../components/BlogHero";
 import NavBarC from "../../components/NavBar";
+import OrganizationChart from "../../components/OrganizationChart";
 
 const Planning = () => {
   return (
@@ -13,6 +14,7 @@ const Planning = () => {
         srcImgLoc="page"
       />
       <NavBarC />
+      <OrganizationChart data={[]} />
     </>
   );
 };
