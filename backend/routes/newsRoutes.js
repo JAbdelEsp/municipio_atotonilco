@@ -19,11 +19,11 @@ const storage = multer.diskStorage({
     const routeComplete = path.join(route, req.body.title);
     console.log(routeComplete);
     fs.mkdirSync(routeComplete, { recursive: true });
-    if (fs.existsSync(route) == true) {
-      cb(null, route);
+    if (fs.existsSync(routeComplete) == true) {
+      cb(null, routeComplete);
     } else {
-      fs.mkdirSync(route);
-      cb(null, route);
+      fs.mkdirSync(routeComplete);
+      cb(null, routeComplete);
     }
   },
   filename: (req, file, cb) => {
