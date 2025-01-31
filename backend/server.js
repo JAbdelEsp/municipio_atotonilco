@@ -4,13 +4,14 @@ const path = require("path");
 dotenv.config();
 const cors = require("cors");
 const connectDB = require("./db/db");
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 6000;
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const newsRoutes = require("./routes/newsRoutes");
 const transparencyRoutes = require("./routes/transparencyRoutes");
 const tourismRoutes = require("./routes/tourismRoutes");
 const sevacRoutes = require("./routes/sevacRoutes");
+const planningRoutes = require("./routes/planningRoutes");
 const app = express();
 // función middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
@@ -26,7 +27,8 @@ app.use(
   newsRoutes,
   transparencyRoutes,
   tourismRoutes,
-  sevacRoutes
+  sevacRoutes,
+  planningRoutes
 );
 
 connectDB();

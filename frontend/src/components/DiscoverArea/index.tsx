@@ -1,9 +1,6 @@
-import ButtonComponent from "../../common/Button";
-import FormField from "../../common/FormField";
 import Image from "../../common/Image";
 import OrnamentVertical from "../../common/OrnamentVertical";
 import { SvgIcon } from "../../common/SvgIcon";
-import TextArea from "../../common/TextArea";
 import {
   BgForAnimation,
   ContactFormParagraph,
@@ -34,83 +31,54 @@ const DiscoverArea = () => {
           <FormLayout>
             <FormImage>
               <RevealImageTrigger>
-                <Image src="" alt="" location="" cls="cover-image fit-top" />
+                <img
+                  src="/images/planeacion/ORGANIGRAMA_PLANEACIÓN.jpg"
+                  alt=""
+                  className="cover-image fit-top cover"
+                />
                 <BgForAnimation />
               </RevealImageTrigger>
             </FormImage>
-            <Form>
-              <FormInner>
-                <Heading className="is-contact-form-title">GET A </Heading>
-                <ContactFormParagraph>Paragraph</ContactFormParagraph>
-                <FormField
-                  name="Name"
-                  placeholder="Nombre"
-                  type="text"
-                  value=""
-                  onChange={() => {}}
-                />
-                <FormField
-                  name="email"
-                  placeholder="Correo Electronico"
-                  type="email"
-                  value=""
-                  onChange={() => {}}
-                />
-                <FormField
-                  name="phone"
-                  placeholder="Telefono"
-                  type="phone"
-                  value=""
-                  onChange={() => {}}
-                />
-                <TextArea
-                  name="message"
-                  value=""
-                  onChange={() => {}}
-                  placeholder="Mensaje"
-                />
-                <ButtonComponent type="submit" onClick={() => {}}>
-                  Enviar
-                </ButtonComponent>
-              </FormInner>
-            </Form>
           </FormLayout>
         </FormBlock>
         <FormBlock className="is-2nd">
           <CustomList>
             <CustomListItem>
               <CustomListContent>
-                <ListTitle>Title</ListTitle>
-                <ListParagraph>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit
-                  enim reiciendis accusantium eos, et nesciunt quasi dolorem
-                  mollitia quidem consequatur fugit voluptas eligendi officia
-                  obcaecati sint inventore quos perspiciatis veniam.
-                </ListParagraph>
+                <ListTitle>
+                  Términos de Referencia para Evaluación a Programas
+                  <SvgIcon
+                    src="download-square-svgrepo-com.svg"
+                    width="40px"
+                    height=""
+                  />
+                </ListTitle>
               </CustomListContent>
               <ListLine />
             </CustomListItem>
             <CustomListItem>
               <CustomListContent>
-                <ListTitle>Title</ListTitle>
-                <ListParagraph>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit
-                  enim reiciendis accusantium eos, et nesciunt quasi dolorem
-                  mollitia quidem consequatur fugit voluptas eligendi officia
-                  obcaecati sint inventore quos perspiciatis veniam.
-                </ListParagraph>
+                <ListTitle>
+                  Programa Anual de Evaluación Ejercicio 2024
+                </ListTitle>
+                <SvgIcon
+                  src="download-square-svgrepo-com.svg"
+                  width="40px"
+                  height=""
+                />
               </CustomListContent>
               <ListLine />
             </CustomListItem>
             <CustomListItem>
               <CustomListContent>
-                <ListTitle>Title</ListTitle>
-                <ListParagraph>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit
-                  enim reiciendis accusantium eos, et nesciunt quasi dolorem
-                  mollitia quidem consequatur fugit voluptas eligendi officia
-                  obcaecati sint inventore quos perspiciatis veniam.
-                </ListParagraph>
+                <ListTitle>
+                  Programa de Evaluación Actualizado
+                  <SvgIcon
+                    src="download-square-svgrepo-com.svg"
+                    width="40px"
+                    height=""
+                  />
+                </ListTitle>
               </CustomListContent>
               <ListLine />
             </CustomListItem>

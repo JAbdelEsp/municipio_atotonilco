@@ -23,10 +23,6 @@ const Router = () => {
                   {React.createElement(
                     lazy(() => import(`../pages/${routeItem.component}`))
                   )}
-                  {routeItem.path !== "/admin" &&
-                    routeItem.path !== "/admin/dashboard" && (
-                      <FooterComponent />
-                    )}
                 </Suspense>
               }
             />

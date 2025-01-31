@@ -175,7 +175,7 @@ const DataTableTransparency = () => {
     },
   ];
   return (
-    <DataTableWrapper>
+    <DataTableWrapper id="data">
       <DropDown
         options={[
           { value: "2018", label: "2018" },

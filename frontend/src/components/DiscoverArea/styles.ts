@@ -35,6 +35,16 @@ export const Section = styled("section")`
   .is-align-left {
     inset: 0% auto 0% 0%;
   }
+  img {
+    display: block;
+    margin: 1em auto;
+    cursor: pointer;
+  }
+  .cover {
+    object-fit: cover;
+    cursor: inherit;
+    width: 100%;
+  }
 `;
 export const WLayout = styled("div")`
   grid-row-gap: 16px;
@@ -63,21 +73,19 @@ export const FormBlock = styled("div")`
   position: relative;
 `;
 export const FormLayout = styled("div")`
-  grid-column-gap: 4em;
-  grid-row-gap: 4em;
+  grid-column-gap: 0em;
+  grid-row-gap: 0em;
   flex-flow: column;
   justify-content: flex-start;
   align-items: stretch;
   width: 100%;
-  max-width: 30em;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
 `;
 export const FormImage = styled("div")`
   z-index: 10;
-  border: 1px solid #4c4766;
-  border-radius: 3px;
   width: 100%;
   height: 30em;
   position: relative;

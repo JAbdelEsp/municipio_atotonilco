@@ -1,17 +1,24 @@
 import DataTable from "../../common/DataTableTransparency";
 import BlogHero from "../../components/BlogHero";
+import HeroCms from "../../components/HeroCms";
 
 const Resources = () => {
+  const ScrollDown = () => {
+    const element = document.getElementById("data") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
   return (
     <>
-      <BlogHero
-        content="Tramites y Servicios"
-        title="Portal de Tramites y Servicios"
-        subtitle=""
-        iconSrc=""
-        src="IMG_0316.jpg"
-        srcImgLoc="page"
+      <HeroCms
+        scrollDown={ScrollDown}
+        title="Tramites y Servicios"
+        description=""
       />
+
       <DataTable />
     </>
   );

@@ -1,20 +1,25 @@
-import BlogHero from "../../components/BlogHero";
-import NavBarC from "../../components/NavBar";
-import OrganizationChart from "../../components/OrganizationChart";
+import DataTablePlanning from "../../components/DataTablePlanning";
+import DiscoverArea from "../../components/DiscoverArea";
+import HeroCms from "../../components/HeroCms";
 
 const Planning = () => {
+  const ScrollDown = () => {
+    const element = document.getElementById("noticias") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
   return (
     <>
-      <BlogHero
-        content="Ley de Transparencia y Acceso a la Información."
+      <HeroCms
+        scrollDown={ScrollDown}
         title="Dirección de Planeación"
-        subtitle=""
-        iconSrc={""}
-        src="IMG_0316.jpg"
-        srcImgLoc="page"
+        description=""
       />
-      <NavBarC />
-      <OrganizationChart data={[]} />
+      <DiscoverArea />
+      <DataTablePlanning />
     </>
   );
 };

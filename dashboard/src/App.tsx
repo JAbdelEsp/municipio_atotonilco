@@ -19,6 +19,7 @@ import { getProjects } from "./slices/projectSlice";
 import News from "./pages/News";
 import Transparency from "./pages/Transparency";
 import Sevac from "./pages/Sevac";
+import Planning from "./pages/Planning";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -50,6 +51,7 @@ function App() {
           <Route path="/noticias" element={<News />} />
           <Route path="/transparencia" element={<Transparency />} />
           <Route path="/sevac" element={<Sevac />} />
+          <Route path="/planeacion" element={<Planning />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

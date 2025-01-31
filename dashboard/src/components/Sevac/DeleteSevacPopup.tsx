@@ -8,35 +8,29 @@ import {
 } from "../../slices/taskSlice";
 import { useEffect, useState } from "react";
 import TransInfoPopup from "./SevacInfoPopup";
-import {
-  createTrans,
-  deleteTrans,
-  getTrans,
-  NewTrans,
-} from "../../slices/transSlice";
 import DeleteWarnPopup from "./DeleteWarnPopup";
 import { closeModal } from "../../slices/modalSlice";
-interface DeleteTransPopupProps {
+import { deleteSevac, getSevac } from "../../slices/sevacSlice";
+interface DeleteSevacPopupProps {
   params: any;
 }
 
-const DeleteTransPopup = ({ params }: DeleteTransPopupProps) => {
-  console.log(params);
+const DeleteSevacPopup = ({ params }: DeleteSevacPopupProps) => {
   const dispatch = useAppDispatch();
-  const deleteTransOnSubmit = async () => {
-    await dispatch(deleteTrans(params));
+  const deleteSevacOnSubmit = async () => {
+    await dispatch(deleteSevac(params));
     dispatch(closeModal());
-    dispatch(getTrans());
+    dispatch(getSevac());
   };
 
   return (
     <>
       <DeleteWarnPopup
         title="Eliminar Registro"
-        onSubmit={deleteTransOnSubmit}
+        onSubmit={deleteSevacOnSubmit}
       />
     </>
   );
 };
 
-export default DeleteTransPopup;
+export default DeleteSevacPopup;

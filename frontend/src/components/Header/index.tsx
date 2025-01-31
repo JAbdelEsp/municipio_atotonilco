@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SvgIcon } from "../../common/SvgIcon";
 import { useNavigate } from "react-router-dom";
 import FullScreenMenu from "../FullScreenMenu";
+import { HashLink } from "react-router-hash-link";
 import {
   NavBar,
   NavBarInner,
@@ -34,6 +35,11 @@ const Header = () => {
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/sevac")}>
                 <Span>SEVAC</Span>
+              </CustomNavLink>
+              <CustomNavLink>
+                <HashLink to={"/direcciones/#PlaneacionInfoPub"}>
+                  <Span>Planeación</Span>
+                </HashLink>
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/transparencia")}>
                 <Span>Transparencia</Span>

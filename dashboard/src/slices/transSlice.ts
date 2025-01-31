@@ -81,7 +81,7 @@ export const getTrans = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get(
-        BACKEND_BASE_URL + "transparency/records"
+        BACKEND_BASE_URL + "/transparency/records"
       );
       return response.data;
     } catch (error) {
@@ -126,7 +126,7 @@ export const createTrans = createAsyncThunk(
     };
     try {
       const response = await axiosInstance.post(
-        BACKEND_BASE_URL + "transparency/register",
+        BACKEND_BASE_URL + "/transparency/register",
         data
       );
       return response.data;
@@ -145,7 +145,7 @@ export const uploadPics = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(
-        BACKEND_BASE_URL + "news/pictures",
+        BACKEND_BASE_URL + "/news/pictures",
         payload
       );
       return response.data;
@@ -171,7 +171,7 @@ export const updateTrans = createAsyncThunk(
         },
       };
       const response = await axiosInstance.put(
-        BACKEND_BASE_URL + `transparency/update`,
+        BACKEND_BASE_URL + `/transparency/update`,
         trans,
         options
       );
@@ -194,7 +194,7 @@ export const deleteTrans = createAsyncThunk(
     try {
       const response = await axiosInstance.delete(
         BACKEND_BASE_URL +
-          `transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
+          `/transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
       );
       return response.data;
     } catch (error) {

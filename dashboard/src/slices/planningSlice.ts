@@ -16,19 +16,19 @@ export type Assignee = {
   name: string;
 };
 
-export type NewSevac = {
+export type NewPlanning = {
   id: string;
   file: string;
 };
 
-export type Sevac = NewSevac & {
+export type Planning = NewPlanning & {
   id: string;
   file: string;
 };
 
 // export type Newtrans = Omit<trans, "id">;
 
-export type NewSevacPayload = {
+export type NewPlanningPayload = {
   id: string;
   year: string;
   file_name: string;
@@ -40,16 +40,16 @@ export type NewSevacPayload = {
   date: string; // TODO: Temp
 };
 
-export type UpdateSevacPayload = Omit<
-  NewSevacPayload,
+export type UpdatePlanningPayload = Omit<
+  NewPlanningPayload,
   "projectId" | "dashboardId"
 >;
 
-export type SevacBasicInfo = NewSevacPayload & {
+export type PlanningBasicInfo = NewPlanningPayload & {
   id: string;
 };
 
-export type NewSevacFinal = NewSevac & {
+export type NewPlanningFinal = NewPlanning & {
   id: string;
   file: any;
 };
@@ -61,25 +61,25 @@ export type NewSevacFinal = NewSevac & {
 //     userId: number
 // }
 
-type SevacState = {
-  sevac: SevacBasicInfo[];
-  selectedSevac: SevacBasicInfo | undefined;
+type PlanningState = {
+  planning: PlanningBasicInfo[];
+  selectedPlanning: PlanningBasicInfo | undefined;
   status: "idle" | "loading" | "failed";
   error: string | null;
 };
 
-export const initialState: SevacState = {
-  sevac: [],
-  selectedSevac: undefined,
+export const initialState: PlanningState = {
+  planning: [],
+  selectedPlanning: undefined,
   status: "idle",
   error: null,
 };
 
-export const getSevac = createAsyncThunk(
-  "sevac/getAll",
+export const getPlanning = createAsyncThunk(
+  "planning/getAll",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get("/sevac/records");
+      const response = await axiosInstance.get("/planning/records");
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -93,11 +93,11 @@ export const getSevac = createAsyncThunk(
   }
 );
 
-export const getTransOne = createAsyncThunk(
+export const getPlaaningOne = createAsyncThunk(
   "trans/getOne",
-  async (transId: number, { rejectWithValue }) => {
+  async (planningId: number, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get(`/trans/${transId}`);
+      const response = await axiosInstance.get(`/trans/${planningId}`);
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -111,18 +111,19 @@ export const getTransOne = createAsyncThunk(
   }
 );
 
-export const createSevac = createAsyncThunk(
-  "trans/createOne",
+export const createPlanning = createAsyncThunk(
+  "planning/createOne",
   async (payload: any, { rejectWithValue }) => {
     const data = {
       year: payload.get("year"),
+      table: payload.get("table"),
       file_name: payload.get("file_name"),
       user: localStorage.getItem("user"),
       date: date.toLocaleString("en-US"),
-      id_sevac: payload.get("id_sevac"),
+      id_planning: payload.get("id_planning"),
     };
     try {
-      const response = await axiosInstance.post("/sevac/register", data);
+      const response = await axiosInstance.post("/planning/register", data);
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -134,16 +135,20 @@ export const createSevac = createAsyncThunk(
   }
 );
 
-export const updateSevac = createAsyncThunk(
+export const updatePlanning = createAsyncThunk(
   "sevac/updateOne",
-  async (sevac: Sevac, { rejectWithValue }) => {
+  async (planning: Planning, { rejectWithValue }) => {
     try {
       const options = {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       };
-      const response = await axiosInstance.put(`/sevac/update`, sevac, options);
+      const response = await axiosInstance.put(
+        `/planning/update`,
+        planning,
+        options
+      );
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -157,12 +162,12 @@ export const updateSevac = createAsyncThunk(
   }
 );
 
-export const deleteSevac = createAsyncThunk(
-  "trans/deleteOne",
+export const deletePlanning = createAsyncThunk(
+  "planning/deleteOne",
   async (params: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `/sevac/delete/?id=${params.id}&file_name=${params.file_name}&year=${params.year}`
+        `/planning/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
       );
       return response.data;
     } catch (error) {
@@ -233,8 +238,8 @@ export const deleteSevac = createAsyncThunk(
 //   }
 // );
 
-export const sevacSlice = createSlice({
-  name: "sevac",
+export const planningSlice = createSlice({
+  name: "planning",
   initialState,
   reducers: {
     // reducer
@@ -242,15 +247,15 @@ export const sevacSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getSevac.pending, (state) => {
+      .addCase(getPlanning.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
       .addCase(
-        getSevac.fulfilled,
-        (state, action: PayloadAction<SevacBasicInfo[]>) => {
+        getPlanning.fulfilled,
+        (state, action: PayloadAction<PlanningBasicInfo[]>) => {
           state.status = "idle";
-          state.sevac = action.payload;
+          state.planning = action.payload;
         }
       );
     //   .addCase(getTrans.rejected, (state, action) => {
@@ -324,4 +329,4 @@ export const sevacSlice = createSlice({
   },
 });
 
-export default sevacSlice.reducer;
+export default planningSlice.reducer;

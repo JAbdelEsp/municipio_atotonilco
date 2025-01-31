@@ -1,16 +1,17 @@
-import BlogHero from "../../components/BlogHero";
 import DataTableSevac from "../../components/DataTableSevac";
+import HeroCms from "../../components/HeroCms";
 const Sevac = () => {
+  const ScrollDown = () => {
+    const element = document.getElementById("data") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
   return (
     <>
-      <BlogHero
-        content=""
-        title="SEVAC"
-        subtitle=""
-        iconSrc={""}
-        src="IMG_0316.jpg"
-        srcImgLoc="page"
-      />
+      <HeroCms scrollDown={ScrollDown} title="Sevac" description="" />
       <DataTableSevac />
     </>
   );

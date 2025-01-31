@@ -1,18 +1,19 @@
-import BlogHero from "../../components/BlogHero";
 import DataTableTransparency from "../../common/DataTableTransparency";
 import NavBarC from "../../components/NavBar";
+import HeroCms from "../../components/HeroCms";
 
 const Transparency = () => {
+  const ScrollDown = () => {
+    const element = document.getElementById("data") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
   return (
     <>
-      <BlogHero
-        content="Ley de Transparencia y Acceso a la Información."
-        title="Unidad de Transparencia Municipal"
-        subtitle=""
-        iconSrc={""}
-        src="IMG_0316.jpg"
-        srcImgLoc="page"
-      />
+      <HeroCms scrollDown={ScrollDown} title="Transparencia" description="" />
       <NavBarC />
       <DataTableTransparency />
     </>

@@ -76,7 +76,7 @@ const DataTableSevac = () => {
   };
 
   return (
-    <DataTableWrapper>
+    <DataTableWrapper id="data">
       <DropDown
         onChange={_handleChange}
         options={[

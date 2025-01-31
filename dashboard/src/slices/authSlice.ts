@@ -15,9 +15,11 @@ type NewUser = User & {
 
 type UserBasicInfo = {
   id: string;
-  name: string;
   email: string;
+  name: string;
+  area: string;
   roles: string[];
+  token: string;
 };
 
 type UserProfileData = {
@@ -49,14 +51,11 @@ export const login = createAsyncThunk(
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       };
-      const response = await axiosInstance.post(
-        BACKEND_BASE_URL + "/auth/signin",
-        {
-          method: "POST",
-          headers,
-          data,
-        }
-      );
+      const response = await axiosInstance.post("/auth/signin", {
+        method: "POST",
+        headers,
+        data,
+      });
       const resData = response.data;
       localStorage.setItem("userInfo", JSON.stringify(resData));
       localStorage.setItem("token", resData.token);

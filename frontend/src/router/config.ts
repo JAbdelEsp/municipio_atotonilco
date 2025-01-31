@@ -36,7 +36,7 @@ const routes = [
     component: "Theasure",
   },
   {
-    path: "/transparencia/planeacion",
+    path: "/direcciones",
     component: "Planning",
   },
   {

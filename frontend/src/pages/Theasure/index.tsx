@@ -1,18 +1,18 @@
-import BlogHero from "../../components/BlogHero";
-import DataTableObras from "../../components/DataTableObras";
+import HeroCms from "../../components/HeroCms";
 import NavBarC from "../../components/NavBar";
 
 const Theasure = () => {
+  const ScrollDown = () => {
+    const element = document.getElementById("data") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
   return (
     <>
-      <BlogHero
-        content="Ley de Transparencia y Acceso a la Información."
-        title="Tesorería"
-        subtitle=""
-        iconSrc={""}
-        src="IMG_0316.jpg"
-        srcImgLoc="page"
-      />
+      <HeroCms scrollDown={ScrollDown} title="Tesorería" description="" />
       <NavBarC />
     </>
   );

@@ -15,24 +15,19 @@ import {
   RevealImageTrigger,
 } from "./styles";
 
-const HeroCms = ({ scrollDown }: any) => {
+const HeroCms = ({ scrollDown, title, description }: any) => {
   return (
     <CmsHero>
       <Container>
         <CmsHeroLayout>
-          <Heading className="is-cms-hero-title">Obras Publicas</Heading>
+          <Heading className="is-cms-hero-title">{title}</Heading>
           <OrnamentHorizontal>
             <OrnamentLine />
             <OrnamentLineDot />
             <OrnamentLine />
           </OrnamentHorizontal>
           <CmsHeroContent>
-            <Paragraph className="is-large">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              vel rem porro sapiente fuga accusamus ea, consequatur recusandae
-              iure nihil, dolor id voluptate quis a cum dolores officia ab
-              aperiam!
-            </Paragraph>
+            <Paragraph className="is-large">{description}</Paragraph>
             <ButtonComponent onClick={scrollDown} type={"button"}>
               Explorar
             </ButtonComponent>
@@ -42,12 +37,11 @@ const HeroCms = ({ scrollDown }: any) => {
       <CmsHeroBg>
         <CmsHeroOverlay />
         <RevealImageTrigger>
-          <Image
-            src="462620438_939996391507390_3919165551938091982_n.jpg"
+          <img
+            src="/images/main/IMG_0372.jpg"
             alt=""
-            location="services"
-            cls="cover-image fit-top"
-          />
+            className="cover-image fit-top"
+          />{" "}
         </RevealImageTrigger>
       </CmsHeroBg>
     </CmsHero>

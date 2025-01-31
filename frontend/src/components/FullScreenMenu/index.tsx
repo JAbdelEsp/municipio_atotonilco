@@ -131,6 +131,28 @@ const FullScreenMenu = ({
                 />
               </a>
               <a
+                data-w-id="9119eb55-b515-23ab-3ca6-d7a893b67ca0"
+                href="/direcciones/#PlaneacionInfoPub"
+                className="menu-link w-inline-block"
+              >
+                <div
+                  className="menu-link-text"
+                  style={{
+                    transform:
+                      "translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  Planeación
+                </div>
+                <img
+                  src="https://cdn.prod.website-files.com/668bd563537f10fdc41abec9/668bd563537f10fdc41ac01e_arrow_forward_24dp_FILL0_wght600_GRAD0_opsz24.svg"
+                  loading="lazy"
+                  alt=""
+                  className="icon is-menu-link-icon"
+                />
+              </a>
+              <a
                 data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
                 href="/tramites"
                 className="menu-link w-inline-block"

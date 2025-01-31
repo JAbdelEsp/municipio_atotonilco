@@ -10,8 +10,9 @@ import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import { useNavigate } from "react-router-dom";
 import { openModal } from "../../slices/modalSlice";
 import { getSevac } from "../../slices/sevacSlice";
+import { getPlanning } from "../../slices/planningSlice";
 
-interface SevacTableProps {
+interface PlanningTableProps {
   onClickUpload: (
     trimester: string,
     id: string,
@@ -20,10 +21,11 @@ interface SevacTableProps {
   ) => void;
 }
 
-type SevacTableInfo = {
+type PlanningTableInfo = {
   id: string;
   year: string;
   file_name: string;
+  table: string;
   firstTrimester: string;
   secondTrimester: string;
   thirdTrimester: string;
@@ -32,15 +34,17 @@ type SevacTableInfo = {
   date: string;
 };
 
-export default function SevacTable({ onClickUpload }: SevacTableProps) {
+export default function PlanningTable({ onClickUpload }: PlanningTableProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [sevacTableInfo, setSevacTableInfo] = useState<SevacTableInfo[]>([]);
-  const sevac = useAppSelector((state) => state.sevac.sevac);
-  const sevacStatus = useAppSelector((state) => state.sevac.status);
+  const [planningTableInfo, setPlanningTableInfo] = useState<
+    PlanningTableInfo[]
+  >([]);
+  const planning = useAppSelector((state) => state.planning.planning);
+  const planningStatus = useAppSelector((state) => state.planning.status);
   const onClickDelete = (params: any) => {
     dispatch(
-      openModal({ modalName: "deleteSevac", modalProps: { params: params } })
+      openModal({ modalName: "deletePlanning", modalProps: { params: params } })
     );
   };
 
@@ -48,6 +52,7 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
     { field: "id", headerName: "ID", width: 150 },
     { field: "year", headerName: "Año", width: 150 },
     { field: "file_name", headerName: "Nombre del Archivo", width: 400 },
+    { field: "table", headerName: "Tabla", width: 400 },
     {
       field: "firstTrimester",
       headerName: "Primer Trimestre",
@@ -203,38 +208,42 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
 
   const onClickEdit = (params: any) => {
     dispatch(
-      openModal({ modalName: "editTrans", modalProps: { params: params } })
+      openModal({ modalName: "editPlanning", modalProps: { params: params } })
     );
   };
 
   useEffect(() => {
-    if (sevacStatus === "idle") {
-      dispatch(getSevac());
+    if (planningStatus === "idle") {
+      dispatch(getPlanning());
     }
   }, [dispatch]);
   useEffect(() => {
-    if (sevac.length !== undefined) {
-      setSevacTableInfo(
-        sevac.map((sevac) => {
+    if (planning.length !== undefined) {
+      setPlanningTableInfo(
+        planning.map((planning: any) => {
           return {
-            id: sevac.id,
-            year: sevac.year,
-            file_name: sevac.file_name,
-            firstTrimester: sevac.firstTrimester,
-            secondTrimester: sevac.secondTrimester,
-            thirdTrimester: sevac.thirdTrimester,
-            fourthTrimester: sevac.fourthTrimester,
-            user: sevac.user,
-            date: sevac.date,
+            id: planning.id,
+            year: planning.year,
+            file_name: planning.file_name,
+            table: planning.table,
+            firstTrimester: planning.firstTrimester,
+            secondTrimester: planning.secondTrimester,
+            thirdTrimester: planning.thirdTrimester,
+            fourthTrimester: planning.fourthTrimester,
+            user: planning.user,
+            date: planning.date,
           };
         })
       );
     } else {
-      setSevacTableInfo([]);
+      setPlanningTableInfo([]);
     }
-  }, [sevac]);
+  }, [planning]);
 
   return (
-    <Table columns={columns} rows={sevacTableInfo ? sevacTableInfo : []} />
+    <Table
+      columns={columns}
+      rows={planningTableInfo ? planningTableInfo : []}
+    />
   );
 }

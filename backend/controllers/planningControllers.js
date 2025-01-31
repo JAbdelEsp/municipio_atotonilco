@@ -15,16 +15,16 @@ const fs = require("fs").promises;
 
 const Update = async (req, res) => {
   try {
-    const sevac = await checkRecordExists("sevac", "id", req.body.id);
+    const sevac = await checkRecordExists("planning", "id", req.body.id);
     let files = [];
     if (!req.files) {
-      await updateRecordInfo("sevac", req.body, "id", sevac.id);
+      await updateRecordInfo("planning", req.body, "id", sevac.id);
     } else {
       for (let i = 0; i < req.files.length; i++) {
         files.push(req.files[i].path);
       }
       await updateRecord(
-        "sevac",
+        "planning",
         req.body.column[0],
         [JSON.stringify(files)],
         "id",
@@ -38,14 +38,14 @@ const Update = async (req, res) => {
 };
 
 const Register = async (req, res) => {
-  const { year, file_name, id_sevac } = req.body;
-  if (!year || !file_name || !id_sevac) {
+  const { year, file_name, id_planning } = req.body;
+  if (!year || !file_name || !id_planning) {
     res.status(400).json({ error: "Falta uno o más campos requeridos!" });
     return;
   }
   try {
     // await createTable(newsSchema);
-    insertRecord("sevac", req.body);
+    insertRecord("planning", req.body);
     res.status(201).json({ message: "Registro satisfactorio!" });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -62,8 +62,8 @@ const RegisterFiles = async (req, res) => {
     // await createTable(newsSchema);
     for (let i = 0; i < req.files.length; i++) {
       req.body.file = req.files[i].originalname;
-      req.body.id_sevac = req.body.id;
-      await insertRecord("sevac", req.body);
+      req.body.id_planning = req.body.id;
+      await insertRecord("planning", req.body);
     }
     res.status(201).json({ message: "Registro satisfactorio!" });
   } catch (error) {
@@ -73,7 +73,7 @@ const RegisterFiles = async (req, res) => {
 
 const Records = async (req, res) => {
   try {
-    const records = await getRecordsNoOrder("sevac");
+    const records = await getRecordsNoOrder("planning");
     if (records) {
       res.status(200).json(records);
     } else {
@@ -88,10 +88,10 @@ const RecordsOrderBy = async (req, res) => {
   try {
     let records = null;
     if (req.query.year !== undefined) {
-      records = await getRecordsBy("sevac", "year", req.query.year);
+      records = await getRecordsBy("planning", "year", req.query.year);
     } else {
       console.log("enter here");
-      records = await getRecordsNoOrder("sevac");
+      records = await getRecordsNoOrder("planning");
     }
     if (records) {
       res.status(200).json(records);
@@ -105,7 +105,11 @@ const RecordsOrderBy = async (req, res) => {
 
 const FilesOrderBy = async (req, res) => {
   try {
-    const records = await getRecordsBy("files_sevac", "year", req.query.year);
+    const records = await getRecordsBy(
+      "files_planning",
+      "year",
+      req.query.year
+    );
     if (records) {
       res.status(200).json(records);
     } else {
@@ -117,10 +121,10 @@ const FilesOrderBy = async (req, res) => {
 };
 
 const Delete = async (req, res) => {
+  console.log(req.query);
   try {
-    const deleteRec = await deleteRecord("sevac", "id", req.query.id);
-    const route =
-      "./public/files/sevac/" + req.query.year + "/" + req.query.file_name;
+    const deleteRec = await deleteRecord("planning", "id", req.query.id);
+    const route = "./public/files/planning" + "/" + req.query.year + "/";
     await fs.rm(route, { recursive: true }).then(() => {
       console.log("folder removed");
     });

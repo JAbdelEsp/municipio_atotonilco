@@ -23,6 +23,7 @@ const pages = [
   { name: "Noticias", link: "/noticias" },
   { name: "Transparencia", link: "/transparencia" },
   { name: "Sevac", link: "/sevac" },
+  { name: "Planeación", link: "/planeacion" },
 ];
 
 // const settings = ['Profile', 'Settings', 'Logout']

@@ -12,6 +12,10 @@ import DeletePopup from "../components/task/DeletePopup";
 import DeleteContainer from "../components/task/DeleteContainer";
 import AddSevacPopup from "../components/Sevac/AddSevacPopup";
 import AddSevacFilesPopup from "../components/Sevac/AddSevacFilesPopup";
+import AddPlanningFilesPopup from "../components/Planning/AddPlanningFilesPopup";
+import AddPlanningPopup from "../components/Planning/AddPlanningPopup";
+import DeletePlanningPopup from "../components/Planning/DeletePlanningPopup";
+import DeleteSevacPopup from "../components/Sevac/DeleteSevacPopup";
 // Import other modal components
 
 const ModalContainer = () => {
@@ -45,8 +49,6 @@ const ModalContainer = () => {
         return <AddTransPopup />;
       case "deleteTrans":
         return <DeleteTransPopup params={modalProps?.params} />;
-      case "addTrans":
-        return <AddTransPopup />;
       case "editTrans":
         return <EditTransPopup params={modalProps?.params} />;
       case "addSevac":
@@ -60,6 +62,21 @@ const ModalContainer = () => {
             year={modalProps?.year}
           />
         );
+      case "deleteSevac":
+        return <DeleteSevacPopup params={modalProps?.params} />;
+      case "addPlanning":
+        return <AddPlanningPopup />;
+      case "addPlanningMultipleFiles":
+        return (
+          <AddPlanningFilesPopup
+            file_name={modalProps?.file_name}
+            column={modalProps?.trimester}
+            planningId={modalProps?.planningId}
+            year={modalProps?.year}
+          />
+        );
+      case "deletePlanning":
+        return <DeletePlanningPopup params={modalProps?.params} />;
       default:
         return null;
     }
