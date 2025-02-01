@@ -41,16 +41,35 @@ function App() {
         </Route>
         <Route
           element={
-            <ProtectedLayout allowedRoles={[Roles.Editor, Roles.Admin]} />
+            <ProtectedLayout
+              allowedRoles={[
+                Roles.Editor,
+                Roles.Admin,
+                Roles.Planning,
+                Roles.Sevac,
+                Roles.Transparency,
+              ]}
+            />
           }
         >
           <Route path="/" element={<Home />} />
         </Route>
         <Route element={<ProtectedLayout allowedRoles={[Roles.Admin]} />}>
           <Route path="/user-settings" element={<UserSettings />} />
-          <Route path="/noticias" element={<News />} />
+        </Route>
+        <Route
+          element={<ProtectedLayout allowedRoles={[Roles.Transparency]} />}
+        >
           <Route path="/transparencia" element={<Transparency />} />
+        </Route>
+
+        <Route element={<ProtectedLayout allowedRoles={[Roles.Sevac]} />}>
           <Route path="/sevac" element={<Sevac />} />
+        </Route>
+        <Route element={<ProtectedLayout allowedRoles={[Roles.Editor]} />}>
+          <Route path="/noticias" element={<News />} />
+        </Route>
+        <Route element={<ProtectedLayout allowedRoles={[Roles.Planning]} />}>
           <Route path="/planeacion" element={<Planning />} />
         </Route>
         <Route path="*" element={<NotFound />} />

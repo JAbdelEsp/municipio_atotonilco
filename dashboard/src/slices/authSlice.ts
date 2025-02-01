@@ -79,9 +79,7 @@ export const register = createAsyncThunk(
     try {
       const response = await axiosInstance.post("/register", data);
       const resData = response.data;
-
-      localStorage.setItem("userInfo", JSON.stringify(resData));
-
+      //localStorage.setItem("userInfo", JSON.stringify(resData));
       return resData;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {

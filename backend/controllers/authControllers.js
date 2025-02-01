@@ -15,8 +15,8 @@ const generateAccessToken = (userId) => {
 };
 
 const register = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { email, password, name } = req.body;
+  if (!email || !password || !name) {
     res
       .status(400)
       .json({ error: "Email or Password fields cannot be empty!" });
@@ -26,6 +26,7 @@ const register = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
   const user = {
     userId: uuidv4(),
+    name,
     email,
     password: hashedPassword,
   };
@@ -39,11 +40,13 @@ const register = async (req, res) => {
     // await createTable(profileSchema);
     const userAlreadyExists = await checkRecordExists("users", "email", email);
     if (userAlreadyExists) {
-      res.status(409).json({ error: "Email already exists" });
+      res
+        .status(409)
+        .json({ error: "El correo electrónico ya existe en la base de datos" });
     } else {
       await insertRecord("users", user);
-      await insertRecord("profiles", profile);
-      res.status(201).json({ message: "user created successfully!" });
+      // await insertRecord("profiles", profile);
+      res.status(201).json({ message: "Usuario creado exitosamente!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -53,9 +56,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body.data;
   if (!email || !password) {
-    res
-      .status(400)
-      .json({ error: "Email or Password fields cannot be empty!" });
+    res.status(400).json({ error: "Email o Password no pueden estar vacios!" });
     return;
   }
 
@@ -63,7 +64,7 @@ const login = async (req, res) => {
     const existingUser = await checkRecordExists("users", "email", email);
     if (existingUser) {
       if (!existingUser.password) {
-        res.status(401).json({ error: "Invalid credentials" });
+        res.status(401).json({ error: "Invalid credentials!" });
         return;
       }
 

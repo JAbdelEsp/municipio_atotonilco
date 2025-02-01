@@ -7,6 +7,9 @@ export type ErrorResponse = {
 export enum Roles {
   Editor = "Editor",
   Admin = "ADMIN",
+  Planning = "Planning",
+  Sevac = "Sevac",
+  Transparency = "Transparency",
 }
 
 // export enum MessageType {
