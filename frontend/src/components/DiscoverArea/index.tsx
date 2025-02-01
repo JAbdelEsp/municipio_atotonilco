@@ -1,29 +1,21 @@
-import Image from "../../common/Image";
 import OrnamentVertical from "../../common/OrnamentVertical";
 import { SvgIcon } from "../../common/SvgIcon";
 import {
   BgForAnimation,
-  ContactFormParagraph,
   CustomList,
   CustomListContent,
-  CustomListIconBg,
-  CustomListIconBlock,
   CustomListItem,
-  Form,
   FormBlock,
   FormImage,
-  FormInner,
   FormLayout,
-  Heading,
   ListLine,
-  ListParagraph,
   ListTitle,
   RevealImageTrigger,
   Section,
   WLayout,
 } from "./styles";
 
-const DiscoverArea = () => {
+const DiscoverArea = (data: any) => {
   return (
     <Section className="with-gradient-bg" id="noticias">
       <WLayout className="form-grid">
@@ -43,45 +35,31 @@ const DiscoverArea = () => {
         </FormBlock>
         <FormBlock className="is-2nd">
           <CustomList>
-            <CustomListItem>
-              <CustomListContent>
-                <ListTitle>
-                  Términos de Referencia para Evaluación a Programas
-                  <SvgIcon
-                    src="download-square-svgrepo-com.svg"
-                    width="40px"
-                    height=""
-                  />
-                </ListTitle>
-              </CustomListContent>
-              <ListLine />
-            </CustomListItem>
-            <CustomListItem>
-              <CustomListContent>
-                <ListTitle>
-                  Programa Anual de Evaluación Ejercicio 2024
-                </ListTitle>
-                <SvgIcon
-                  src="download-square-svgrepo-com.svg"
-                  width="40px"
-                  height=""
-                />
-              </CustomListContent>
-              <ListLine />
-            </CustomListItem>
-            <CustomListItem>
-              <CustomListContent>
-                <ListTitle>
-                  Programa de Evaluación Actualizado
-                  <SvgIcon
-                    src="download-square-svgrepo-com.svg"
-                    width="40px"
-                    height=""
-                  />
-                </ListTitle>
-              </CustomListContent>
-              <ListLine />
-            </CustomListItem>
+            {data.data.error ? (
+              <>No Hay Información Disponible</>
+            ) : (
+              data.data.map((item: any, key: number) => (
+                <CustomListItem>
+                  <CustomListContent>
+                    <ListTitle>
+                      {item.description}
+                      <a
+                        href={import.meta.env.VITE_API_URL + item.file}
+                        target="_blank"
+                        download
+                      >
+                        <SvgIcon
+                          src="download-square-svgrepo-com.svg"
+                          width="40px"
+                          height=""
+                        />
+                      </a>
+                    </ListTitle>
+                  </CustomListContent>
+                  <ListLine />
+                </CustomListItem>
+              ))
+            )}
           </CustomList>
           <OrnamentVertical />
         </FormBlock>

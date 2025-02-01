@@ -119,9 +119,7 @@ const Delete = async (req, res) => {
     const deleteRec = await deleteRecord("news", "id_news", req.query.id);
     await deleteRecord("pictures", "id_news", `${req.query.id}`);
     const route = "./public/uploads/" + req.query.title;
-    await fs.rmdir(route, { recursive: true }).then(() => {
-      console.log("folder removed");
-    });
+    await fs.rmdir(route, { recursive: true }).then(() => {});
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {

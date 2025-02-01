@@ -48,9 +48,8 @@ const Article = ({ id, values }: { id: string; values: any }) => {
     method: "PUT",
   };
   useFetch(
-    `https://k753lncj-9000.usw3.devtunnels.ms/news/views?id_news=${
-      values[0].id_news
-    }&views=${values[0].views + 1}`,
+    import.meta.env.BASE_URL +
+      `news/views?id_news=${values[0].id_news}&views=${values[0].views + 1}`,
     options
   );
 
@@ -65,7 +64,7 @@ const Article = ({ id, values }: { id: string; values: any }) => {
   };
 
   const { data, status, error } = useFetch<any>(
-    `https://k753lncj-9000.usw3.devtunnels.ms/news/pictures?id_news=${values[0].id_news}`
+    import.meta.env.BASE_URL + `news/pictures?id_news=${values[0].id_news}`
   );
   if (status === "loading") {
     content = <Preloader />;
@@ -78,8 +77,14 @@ const Article = ({ id, values }: { id: string; values: any }) => {
         <div className="photoswip">
           {data.map((item: any, key: number) => (
             <Item
-              original={`https://k753lncj-9000.usw3.devtunnels.ms/public/uploads/${values[0].title}/${item.pic}`}
-              thumbnail={`https://k753lncj-9000.usw3.devtunnels.ms/public/uploads/${values[0].title}/${item.pic}`}
+              original={
+                import.meta.env.BASE_URL +
+                `public/uploads/${values[0].title}/${item.pic}`
+              }
+              thumbnail={
+                import.meta.env.BASE_URL +
+                `public/uploads/${values[0].title}/${item.pic}`
+              }
               width="1340"
               height="768"
             >
@@ -88,7 +93,10 @@ const Article = ({ id, values }: { id: string; values: any }) => {
                   style={{ width: "100%", height: "220px", objectFit: "cover" }}
                   ref={ref}
                   onClick={open}
-                  src={`https://k753lncj-9000.usw3.devtunnels.ms/public/uploads/${values[0].title}/${item.pic}`}
+                  src={
+                    import.meta.env.BASE_URL +
+                    `public/uploads/${values[0].title}/${item.pic}`
+                  }
                 />
               )}
             </Item>

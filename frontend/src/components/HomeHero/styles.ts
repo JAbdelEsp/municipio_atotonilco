@@ -10,6 +10,7 @@ export const HomeHeroW = styled("div")`
   overflow: hidden;
   background-image: url("./public/images/main/IMG_0912.jpg");
   background-size: cover;
+  margin-top: 5em;
 `;
 export const HomeHeroContent = styled("div")`
   z-index: 10;
@@ -51,6 +52,9 @@ export const IconBlock = styled("div")`
   width: 25em;
   display: flex;
   position: relative;
+  border-radius: 10px;
+  img {
+  }
 `;
 export const Heading = styled("h1")`
   z-index: 10;

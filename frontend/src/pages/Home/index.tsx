@@ -8,7 +8,7 @@ import useFetch from "../../services";
 import { NewsData } from "../../common/types";
 import Preloader from "../../components/Preloader";
 const Home = () => {
-  const url = "https://k753lncj-9000.usw3.devtunnels.ms/news/records";
+  const url = import.meta.env.VITE_API_URL + "news/records";
   const { data, status, error } = useFetch<NewsData>(url);
   // Define the structure of your news data here
   let content;
@@ -45,6 +45,7 @@ const Home = () => {
           srcImgLoc={""}
         />
         <FeaturedPosts data={Array.isArray(data) ? data : []} />
+        <Discover id="areas" />
         <BlogHero
           content="Turismo: Conoce los Atractivos Turísticos que te Ofrece Atotonilco"
           title={"Las mejores"}

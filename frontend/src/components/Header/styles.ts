@@ -13,6 +13,10 @@ export const NavBar = styled("nav")`
   left: 0%;
   right: 0%;
   z-index: 9999;
+  a {
+    text-decoration: none;
+    color: #040404;
+  }
 `;
 
 export const NavBarInner = styled("div")`

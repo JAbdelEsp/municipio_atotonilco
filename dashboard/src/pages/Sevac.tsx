@@ -17,7 +17,7 @@ export default function Sevac() {
     trimester: string,
     id: string,
     year: string,
-    file_name: string
+    section: string
   ) => {
     dispatch(
       openModal({
@@ -26,7 +26,7 @@ export default function Sevac() {
           trimester,
           transId: id,
           year: year,
-          file_name: file_name,
+          section: section,
         },
       })
     );

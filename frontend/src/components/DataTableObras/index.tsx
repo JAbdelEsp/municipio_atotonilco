@@ -2,7 +2,13 @@ import { Table, TableColumnsType } from "antd";
 import { DataType } from "../../common/types";
 import { DataTableWrapper } from "./styles";
 import Preloader from "../Preloader";
+import { useEffect } from "react";
 const DataTableObras = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      <Preloader />;
+    }, 6000);
+  }, []);
   const columns: TableColumnsType<DataType> = [
     {
       title: "No Obra",
@@ -22,7 +28,7 @@ const DataTableObras = () => {
     },
   ];
   return (
-    <DataTableWrapper>
+    <DataTableWrapper id="data">
       <h1>Obras Públicas </h1>
       <Table columns={columns} dataSource={[]} />
     </DataTableWrapper>

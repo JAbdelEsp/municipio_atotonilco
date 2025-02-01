@@ -22,7 +22,7 @@ import { SvgIcon } from "../../common/SvgIcon";
 import useFetch from "../../services";
 const BlogContent = () => {
   const { data, status, error } = useFetch(
-    "https://k753lncj-9000.usw3.devtunnels.ms/tourism/records"
+    import.meta.env.VITE_API_URL + "tourism/records"
   );
   return (
     <Section>

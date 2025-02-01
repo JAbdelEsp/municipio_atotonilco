@@ -53,7 +53,7 @@ const Discover = ({ id }: { id: string }) => {
                   <OrnamentVerticalDot />
                   <OrnamentVerticalLine />
                 </OrnamentVertical>
-                <TextLink text="Visitar Área" />
+                <TextLink text="Visitar Área" href="/transparencia/obras" />
               </WNode>
             </ContainerGrid>
           </ServiceItem>

@@ -69,9 +69,12 @@ const TransInfoPopup = ({ title, onSubmit }: TransPopupProps) => {
               />
             </Grid>
             <Grid item xs={12} mt={2}>
+              <FormTextField label="Sección" name="section" isRequired={true} />
+            </Grid>
+            <Grid item xs={12} mt={2}>
               <FormTextField
-                label="Nombre del Archivo"
-                name="file_name"
+                label="Estados Financieros"
+                name="financial_states"
                 isRequired={true}
               />
             </Grid>

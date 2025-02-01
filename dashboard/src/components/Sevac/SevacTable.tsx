@@ -16,13 +16,15 @@ interface SevacTableProps {
     trimester: string,
     id: string,
     year: string,
-    file_name: string
+    section: string
   ) => void;
 }
 
 type SevacTableInfo = {
   id: string;
   year: string;
+  section: string;
+  financial_states: string;
   file_name: string;
   firstTrimester: string;
   secondTrimester: string;
@@ -46,8 +48,12 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 150 },
-    { field: "year", headerName: "Año", width: 150 },
-    { field: "file_name", headerName: "Nombre del Archivo", width: 400 },
+    { field: "section", headerName: "Sección", width: 150 },
+    {
+      field: "financial_states",
+      headerName: "Estados Financieros",
+      width: 150,
+    },
     {
       field: "firstTrimester",
       headerName: "Primer Trimestre",
@@ -70,7 +76,7 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
                 "firstTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.file_name
+                params.row.section
               )
             }
           >
@@ -101,7 +107,7 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
                 "secondTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.file_name
+                params.row.section
               )
             }
           >
@@ -132,7 +138,7 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
                 "thirdTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.file_name
+                params.row.section
               )
             }
           >
@@ -163,7 +169,7 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
                 "fourthTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.file_name
+                params.row.section
               )
             }
           >
@@ -219,6 +225,8 @@ export default function SevacTable({ onClickUpload }: SevacTableProps) {
           return {
             id: sevac.id,
             year: sevac.year,
+            section: sevac.section,
+            financial_states: sevac.financial_states,
             file_name: sevac.file_name,
             firstTrimester: sevac.firstTrimester,
             secondTrimester: sevac.secondTrimester,

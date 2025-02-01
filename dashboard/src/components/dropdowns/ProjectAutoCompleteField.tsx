@@ -19,7 +19,6 @@ export default function ProjectAutoCompleteField({
   onChange,
 }: ProjectAutoCompleteFieldProps) {
   // const options = useAppSelector((state) => state.projects.projects);
-  console.log("value: ", value);
   return (
     <>
       {/* <FormAutoCompleteField

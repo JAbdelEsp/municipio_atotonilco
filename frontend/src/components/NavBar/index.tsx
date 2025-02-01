@@ -49,11 +49,17 @@ const NavBarC = () => {
             </NavLinkImageWrapper>
             <TextBlock>Tesorería</TextBlock>
           </DropDownLink>
-          <DropDownLink href="/transparencia/planeacion">
+          <DropDownLink href="/direcciones/#PlaneacionInfoPub">
             <NavLinkImageWrapper>
               <SvgIcon src="" width="" height="" />
             </NavLinkImageWrapper>
             <TextBlock>Dirección de Planeación</TextBlock>
+          </DropDownLink>
+          <DropDownLink href="/transparencia/archivo">
+            <NavLinkImageWrapper>
+              <SvgIcon src="" width="" height="" />
+            </NavLinkImageWrapper>
+            <TextBlock>Archivo Municipal</TextBlock>
           </DropDownLink>
         </DropDownList>
       </NavDropDown>

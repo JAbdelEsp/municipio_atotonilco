@@ -17,7 +17,6 @@ const route = "./public/uploads/";
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const routeComplete = path.join(route, req.body.title);
-    console.log(routeComplete);
     fs.mkdirSync(routeComplete, { recursive: true });
     if (fs.existsSync(routeComplete) == true) {
       cb(null, routeComplete);

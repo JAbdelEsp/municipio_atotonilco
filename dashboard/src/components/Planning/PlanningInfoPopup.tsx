@@ -79,6 +79,7 @@ const TransInfoPopup = ({ title, onSubmit }: PlanningPopupProps) => {
                   "Informes_ASEH",
                   "Expedientes_tecnicos_obras",
                   "Proyectos_FISMDF",
+                  "Fondo_aportacion_FAISM",
                   "Programas_evaluacion_PAE",
                   "Inventarios",
                   "Planeacion",

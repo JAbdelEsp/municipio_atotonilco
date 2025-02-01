@@ -1,5 +1,4 @@
 import ButtonComponent from "../../common/Button";
-import Image from "../../common/Image";
 import {
   CmsHero,
   CmsHeroBg,
@@ -41,7 +40,7 @@ const HeroCms = ({ scrollDown, title, description }: any) => {
             src="/images/main/IMG_0372.jpg"
             alt=""
             className="cover-image fit-top"
-          />{" "}
+          />
         </RevealImageTrigger>
       </CmsHeroBg>
     </CmsHero>

@@ -7,6 +7,7 @@ import { useAppDispatch } from "../hooks/redux-hooks";
 import Grid from "@mui/material/Grid";
 import { getTasks } from "../slices/taskSlice";
 import PlanningTable from "../components/Planning/PlanningTable";
+import PublicInfoTable from "../components/Planning/PublicInfoTable";
 
 export default function Planning() {
   const dispatch = useAppDispatch();
@@ -32,6 +33,15 @@ export default function Planning() {
     );
   };
 
+  const openModalAddPublicInfo = () => {
+    dispatch(
+      openModal({
+        modalName: "addPublicInfo",
+        modalProps: {},
+      })
+    );
+  };
+
   return (
     <>
       <Grid container justifyContent="space-between">
@@ -45,9 +55,28 @@ export default function Planning() {
               openModalAddPlanning();
             }}
           />
+          <AddButton
+            text="Agregar Información Pública"
+            onClickAction={() => {
+              openModalAddPublicInfo();
+            }}
+          />
         </Grid>
       </Grid>
       <PlanningTable onClickUpload={handleOpenUpdatePlanningPopup} />
+      <Grid item>
+        <PageHeader title="Información Pública" />
+      </Grid>
+      <PublicInfoTable
+        onClickUpload={function (
+          trimester: string,
+          id: string,
+          year: string,
+          file_name: string
+        ): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
     </>
   );
 }

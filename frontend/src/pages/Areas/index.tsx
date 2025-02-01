@@ -1,7 +1,5 @@
-import Blog from "../../common/Blog";
 import DiscoverArea from "../../components/DiscoverArea";
 import HeroCms from "../../components/HeroCms";
-import Quote from "../../components/Quote";
 
 const Areas = () => {
   const ScrollDown = () => {

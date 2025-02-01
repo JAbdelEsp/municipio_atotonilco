@@ -8,14 +8,14 @@ interface AddSevacPopupProps {
   column: string;
   sevacId: string;
   year: string;
-  file_name: string;
+  section: string;
 }
 
 const AddSevacFilesPopup = ({
   column,
   sevacId,
   year,
-  file_name,
+  section,
 }: AddSevacPopupProps) => {
   const dispatch = useAppDispatch();
   const submitNewTask = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +31,7 @@ const AddSevacFilesPopup = ({
     <>
       <SevacPopup
         title="Agregar Archivo"
-        file_name={file_name}
+        section={section}
         column={column}
         sevacId={sevacId}
         year={year}

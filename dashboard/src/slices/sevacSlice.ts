@@ -31,6 +31,8 @@ export type Sevac = NewSevac & {
 export type NewSevacPayload = {
   id: string;
   year: string;
+  section: string;
+  financial_states: string;
   file_name: string;
   firstTrimester: string;
   secondTrimester: string;
@@ -116,7 +118,8 @@ export const createSevac = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     const data = {
       year: payload.get("year"),
-      file_name: payload.get("file_name"),
+      section: payload.get("section"),
+      financial_states: payload.get("financial_states"),
       user: localStorage.getItem("user"),
       date: date.toLocaleString("en-US"),
       id_sevac: payload.get("id_sevac"),
@@ -162,7 +165,7 @@ export const deleteSevac = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `/sevac/delete/?id=${params.id}&file_name=${params.file_name}&year=${params.year}`
+        `/sevac/delete/?id=${params.id}&section=${params.section}&year=${params.year}`
       );
       return response.data;
     } catch (error) {

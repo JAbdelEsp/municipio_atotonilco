@@ -38,8 +38,8 @@ const Update = async (req, res) => {
 };
 
 const Register = async (req, res) => {
-  const { year, file_name, id_sevac } = req.body;
-  if (!year || !file_name || !id_sevac) {
+  const { year, financial_states, id_sevac, section } = req.body;
+  if (!year || !financial_states || !id_sevac || !section) {
     res.status(400).json({ error: "Falta uno o más campos requeridos!" });
     return;
   }
@@ -90,7 +90,6 @@ const RecordsOrderBy = async (req, res) => {
     if (req.query.year !== undefined) {
       records = await getRecordsBy("sevac", "year", req.query.year);
     } else {
-      console.log("enter here");
       records = await getRecordsNoOrder("sevac");
     }
     if (records) {
@@ -120,10 +119,8 @@ const Delete = async (req, res) => {
   try {
     const deleteRec = await deleteRecord("sevac", "id", req.query.id);
     const route =
-      "./public/files/sevac/" + req.query.year + "/" + req.query.file_name;
-    await fs.rm(route, { recursive: true }).then(() => {
-      console.log("folder removed");
-    });
+      "./public/files/sevac/" + req.query.year + "/" + req.query.section;
+    await fs.rm(route, { recursive: true }).then(() => {});
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {

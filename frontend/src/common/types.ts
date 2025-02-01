@@ -17,6 +17,7 @@ export interface VideoProps {
   loop?: boolean;
   muted?: boolean;
   className?: string;
+  controls?: boolean;
 }
 
 export interface PropsVideoContainer {
@@ -25,6 +26,7 @@ export interface PropsVideoContainer {
 
 export interface LinkProps {
   text: string;
+  href: string;
 }
 
 export interface PropsButton {
@@ -77,6 +79,7 @@ export interface PropsTextArea {
 export interface DropDownProps {
   options: { value: string; label: string }[];
   onChange: any;
+  placeholder: string;
 }
 
 export interface PropsDataTable {

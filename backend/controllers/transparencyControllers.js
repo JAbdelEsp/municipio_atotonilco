@@ -67,14 +67,11 @@ const Records = async (req, res) => {
 };
 
 const Delete = async (req, res) => {
-  console.log(req.query);
   try {
     const deleteRec = await deleteRecord("transparency", "id", req.query.id);
     const route =
       "./public/files/" + req.query.article + "/" + req.query.year + "/";
-    await fs.rm(route, { recursive: true }).then(() => {
-      console.log("folder removed");
-    });
+    await fs.rm(route, { recursive: true }).then(() => {});
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {

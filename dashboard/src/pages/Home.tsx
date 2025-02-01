@@ -23,7 +23,6 @@ const Home = () => {
   const userProfileInfo = useAppSelector((state) => state.auth.userProfileData);
 
   useEffect(() => {
-    console.log("enter here");
     const userInfo = localStorage.getItem("userInfo");
     if (userInfo) basicUserInfo = JSON.parse(userInfo);
   }, [basicUserInfo]);

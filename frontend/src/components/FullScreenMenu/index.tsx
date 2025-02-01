@@ -23,30 +23,7 @@ const FullScreenMenu = ({
                     target="_blank"
                     className="menu-social-link w-inline-block"
                   >
-                    <SvgIcon src="twitter.svg" width="40px" height="" />
-                  </a>
-                </div>
-                <div role="listitem" className="menu-social-item w-dyn-item">
-                  <a
-                    href="#"
-                    target="_blank"
-                    className="menu-social-link w-inline-block"
-                  >
-                    <img
-                      src="https://cdn.prod.website-files.com/668bd563537f10fdc41abed6/6697c3b3dd27ebf12436fc85_linkedin-logo-black.svg"
-                      loading="lazy"
-                      alt=""
-                      className="icon is-social-menu-icon"
-                    />
-                  </a>
-                </div>
-                <div role="listitem" className="menu-social-item w-dyn-item">
-                  <a
-                    href="#"
-                    target="_blank"
-                    className="menu-social-link w-inline-block"
-                  >
-                    <SvgIcon src="medium.svg" width="40px" height="" />
+                    <SvgIcon src="facebook.svg" width="40px" height="" />
                   </a>
                 </div>
               </div>

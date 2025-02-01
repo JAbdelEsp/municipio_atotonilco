@@ -23,9 +23,9 @@ const DataTableTransparency = () => {
       setArticle70(art70);
     }
   };
-  const url = "https://k753lncj-9000.usw3.devtunnels.ms/transparency/records";
+  const url = import.meta.env.VITE_API_URL + "transparency/records";
   const { data, error, status } = useFetch<DataType[]>(url);
-  let urlLoc = "https://k753lncj-9000.usw3.devtunnels.ms/public/files/";
+  let urlLoc = import.meta.env.VITE_API_URL + "public/files/";
   const columns: TableColumnsType<DataType> = [
     {
       title: "Fraccion",
@@ -177,6 +177,7 @@ const DataTableTransparency = () => {
   return (
     <DataTableWrapper id="data">
       <DropDown
+        placeholder="Selecciona el Año"
         options={[
           { value: "2018", label: "2018" },
           { value: "2019", label: "2019" },

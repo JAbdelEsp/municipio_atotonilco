@@ -12,8 +12,7 @@ const Read = () => {
   const options = {
     method: "GET",
   };
-  const url =
-    "https://k753lncj-9000.usw3.devtunnels.ms/news/recordsBy?id=" + id_news;
+  const url = import.meta.env.VITE_API_URL + "news/recordsBy?id=" + id_news;
   const { data, status, error } = useFetch(url, options);
   if (status === "loading") {
     content = <Preloader />;

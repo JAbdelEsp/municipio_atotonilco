@@ -1,13 +1,54 @@
 import { Table, TableColumnsType } from "antd";
-import { DataTableWrapper, FormBlock, WLayout } from "./styles";
+import { DataTableWrapper } from "./styles";
 import { DataType } from "../../common/types";
-import OrnamentVertical from "../../common/OrnamentVertical";
 import { SvgIcon } from "../../common/SvgIcon";
-const DataTablePlanning = () => {
+import { useEffect, useState } from "react";
+const DataTablePlanning = (data: any) => {
+  const [pbr, setPbr] = useState([]);
+  const [aseh, setAseh] = useState([]);
+  const [eto, setEto] = useState([]);
+  const [fismdf, setFismdf] = useState([]);
+  const [pae, setPae] = useState([]);
+  const [inv, setInv] = useState([]);
+  const [faism, setFaism] = useState([]);
+  useEffect(() => {
+    letFilterData(data.data);
+  }, [data]);
+  const letFilterData = (data: any) => {
+    const pbr_data = data.filter((item: any) => item.table === "PBR");
+    setPbr(pbr_data);
+    const aseh_data = data.filter(
+      (item: any) => item.table === "Informes_ASEH"
+    );
+    setAseh(aseh_data);
+    const eto_data = data.filter(
+      (item: any) => item.table === "Expedientes_tecnicos_obras"
+    );
+    const faism_data = data.filter(
+      (item: any) => item.table === "Fondo_aportacion_FAISM"
+    );
+    setFaism(faism_data);
+    setEto(eto_data);
+    const fismdf_data = data.filter(
+      (item: any) => item.table === "Proyectos_FISMDF"
+    );
+    setFismdf(fismdf_data);
+    const pae_data = data.filter(
+      (item: any) => item.table === "Programas_evaluacion_PAE"
+    );
+    setPae(pae_data);
+    const inv_data = data.filter((item: any) => item.table === "Inventarios");
+    setInv(inv_data);
+  };
+
   const columns: TableColumnsType<DataType> = [
     {
       title: "Nombre",
-      dataIndex: "fraction",
+      dataIndex: "file_name",
+    },
+    {
+      title: "Año",
+      dataIndex: "year",
     },
     {
       title: "Primer Trimestre",
@@ -15,9 +56,23 @@ const DataTablePlanning = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a target="_blank" download>
-              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
-            </a>
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="30px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
           )
         );
       },
@@ -28,9 +83,23 @@ const DataTablePlanning = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a target="_blank" download>
-              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
-            </a>
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="30px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
           )
         );
       },
@@ -41,9 +110,23 @@ const DataTablePlanning = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a target="_blank" download>
-              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
-            </a>
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="30px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
           )
         );
       },
@@ -54,9 +137,23 @@ const DataTablePlanning = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a target="_blank" download>
-              <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
-            </a>
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="30px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
           )
         );
       },
@@ -65,37 +162,35 @@ const DataTablePlanning = () => {
   return (
     <DataTableWrapper>
       <h3>PBR</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={pbr} />
       <h3 className="pd-1">Informes ASEH Entregas Trimestrales</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={aseh} />
       <h3 className="pd-1">Expedientes Técnicos de Obras</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={eto} />
       <h3 className="pd-1">Proyectos FISMDF</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={fismdf} />
+      <h3 className="pd-1">
+        Fondo de Aportaciones para La Infrestructura Social (FAISM)
+      </h3>
+      <Table columns={columns} dataSource={faism} />
       <h3 className="pd-1">Programas de Evaluación PAE</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={pae} />
       <h3 className="pd-1">Inventarios</h3>
+      <Table columns={columns} dataSource={inv} />
+      <h3 className="pd-1">Planeación</h3>
       <Table columns={columns} dataSource={[]} />
-      <WLayout className="form-grid">
-        <FormBlock>
-          <h3 className="pd-1">Planeación</h3>
-          <Table columns={columns} dataSource={[]} />
-          <h3 className="pd-1">Programación</h3>
-          <Table columns={columns} dataSource={[]} />
-          <h3 className="pd-1">Presupuestación</h3>
-          <Table columns={columns} dataSource={[]} />
-        </FormBlock>
-        <FormBlock className="is-2nd">
-          <h3 className="pd-1">Ejercicio del Gasto</h3>
-          <Table columns={columns} dataSource={[]} />
-          <h3 className="pd-1">Evaluación</h3>
-          <Table columns={columns} dataSource={[]} />
-          <h3 className="pd-1">Rendición de Cuentas</h3>
-          <Table columns={columns} dataSource={[]} />
-          <h3 className="pd-1">Mejores Prácticas</h3>
-          <Table columns={columns} dataSource={[]} />
-        </FormBlock>
-      </WLayout>
+      <h3 className="pd-1">Programación</h3>
+      <Table columns={columns} dataSource={[]} />
+      <h3 className="pd-1">Presupuestación</h3>
+      <Table columns={columns} dataSource={[]} />
+      <h3 className="pd-1">Ejercicio del Gasto</h3>
+      <Table columns={columns} dataSource={[]} />
+      <h3 className="pd-1">Evaluación</h3>
+      <Table columns={columns} dataSource={[]} />
+      <h3 className="pd-1">Rendición de Cuentas</h3>
+      <Table columns={columns} dataSource={[]} />
+      <h3 className="pd-1">Mejores Prácticas</h3>
+      <Table columns={columns} dataSource={[]} />
     </DataTableWrapper>
   );
 };

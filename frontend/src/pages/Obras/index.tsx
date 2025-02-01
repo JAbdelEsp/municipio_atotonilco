@@ -1,18 +1,19 @@
-import BlogHero from "../../components/BlogHero";
 import DataTableObras from "../../components/DataTableObras";
+import HeroCms from "../../components/HeroCms";
 import NavBarC from "../../components/NavBar";
 
 const Obras = () => {
+  const ScrollDown = () => {
+    const element = document.getElementById("data") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
   return (
     <>
-      <BlogHero
-        content="Ley de Transparencia y Acceso a la Información."
-        title="Obras Públicas"
-        subtitle=""
-        iconSrc={""}
-        src="IMG_0316.jpg"
-        srcImgLoc="page"
-      />
+      <HeroCms scrollDown={ScrollDown} title="Obras Públicas" description="" />
       <NavBarC />
       <DataTableObras />
     </>

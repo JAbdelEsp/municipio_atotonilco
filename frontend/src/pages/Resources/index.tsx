@@ -1,5 +1,4 @@
-import DataTable from "../../common/DataTableTransparency";
-import BlogHero from "../../components/BlogHero";
+import DataTableResources from "../../components/DataTableResources";
 import HeroCms from "../../components/HeroCms";
 
 const Resources = () => {
@@ -18,8 +17,7 @@ const Resources = () => {
         title="Tramites y Servicios"
         description=""
       />
-
-      <DataTable />
+      <DataTableResources />
     </>
   );
 };

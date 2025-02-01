@@ -7,12 +7,9 @@ import { SvgIcon } from "../../common/SvgIcon";
 
 const DataTableSevac = () => {
   const [data, setData] = useState([]);
-  const path = "https://k753lncj-9000.usw3.devtunnels.ms/public/files/sevac/";
   const getData = async (param: string) => {
     try {
-      await fetch(
-        "https://k753lncj-9000.usw3.devtunnels.ms/sevac/records?year=" + param
-      )
+      await fetch(import.meta.env.VITE_API_URL + "sevac/records?year=" + param)
         .then((response) => response.json())
         .then((data) => {
           if (data.length > 0) {
@@ -27,12 +24,12 @@ const DataTableSevac = () => {
   };
   const columns: TableColumnsType<DataTypeSevac> = [
     {
-      title: "Año",
-      dataIndex: "year",
+      title: "Sección",
+      dataIndex: "section",
     },
     {
-      title: "Nombre del Archivo",
-      dataIndex: "file_name",
+      title: "Estados Financieros",
+      dataIndex: "financial_states",
     },
     {
       title: "Primer Trimestre",
@@ -41,9 +38,13 @@ const DataTableSevac = () => {
         return (
           dataIndex && (
             <ul style={{ listStyle: "none" }}>
-              {dataIndex.map((item: any, key: number) => (
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
                 <li key={key}>
-                  <a href={item}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
                     <SvgIcon
                       src="download-square-svgrepo-com.svg"
                       width="20px"
@@ -60,14 +61,83 @@ const DataTableSevac = () => {
     {
       title: "Segundo Trimestre",
       dataIndex: "secondTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="20px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        );
+      },
     },
     {
       title: "Tercer Trimestre",
       dataIndex: "thirdTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="20px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        );
+      },
     },
     {
       title: "Cuarto Trimestre",
       dataIndex: "fourthTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="20px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        );
+      },
     },
   ];
 
@@ -78,6 +148,7 @@ const DataTableSevac = () => {
   return (
     <DataTableWrapper id="data">
       <DropDown
+        placeholder="Selecciona el Año"
         onChange={_handleChange}
         options={[
           { value: "2018", label: "2018" },

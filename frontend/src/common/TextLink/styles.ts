@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const LinkWithArrows = styled("a")`
   z-index: 10;
+  text-decoration: none;
+  color: #040404;
   border-bottom: 2px solid rgba(255, 255, 255, 0);
   // color: #fff;
   background-image: url(https://cdn.prod.website-files.com/668bd563537f10fdc41abec9/668d5cc317612b6e859a4807_arrow_forward_24dp_17161F_FILL0_wght500_GRAD0_opsz24.svg),

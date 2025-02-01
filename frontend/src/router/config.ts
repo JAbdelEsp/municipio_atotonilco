@@ -1,3 +1,5 @@
+import { Component } from "react";
+
 const routes = [
   {
     path: "/",
@@ -36,12 +38,20 @@ const routes = [
     component: "Theasure",
   },
   {
+    path: "/transparencia/archivo",
+    component: "Archivo",
+  },
+  {
     path: "/direcciones",
     component: "Planning",
   },
   {
     path: "/tramites",
     component: "Resources",
+  },
+  {
+    path: "*",
+    component: "404",
   },
 ];
 

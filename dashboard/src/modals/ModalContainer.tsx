@@ -16,6 +16,8 @@ import AddPlanningFilesPopup from "../components/Planning/AddPlanningFilesPopup"
 import AddPlanningPopup from "../components/Planning/AddPlanningPopup";
 import DeletePlanningPopup from "../components/Planning/DeletePlanningPopup";
 import DeleteSevacPopup from "../components/Sevac/DeleteSevacPopup";
+import AddPublicInfo from "../components/Planning/AddPublicInfo";
+import DeletePublicPopup from "../components/Planning/DeletePublicInfoPopup";
 // Import other modal components
 
 const ModalContainer = () => {
@@ -56,7 +58,7 @@ const ModalContainer = () => {
       case "addMultipleFiles":
         return (
           <AddSevacFilesPopup
-            file_name={modalProps?.file_name}
+            section={modalProps?.section}
             column={modalProps?.trimester}
             sevacId={modalProps?.transId}
             year={modalProps?.year}
@@ -66,6 +68,17 @@ const ModalContainer = () => {
         return <DeleteSevacPopup params={modalProps?.params} />;
       case "addPlanning":
         return <AddPlanningPopup />;
+      case "addPublicInfo":
+        return (
+          <AddPublicInfo
+            title={""}
+            planningId={""}
+            file_name={""}
+            year={""}
+            column={""}
+            onSubmit={undefined}
+          />
+        );
       case "addPlanningMultipleFiles":
         return (
           <AddPlanningFilesPopup
@@ -77,6 +90,8 @@ const ModalContainer = () => {
         );
       case "deletePlanning":
         return <DeletePlanningPopup params={modalProps?.params} />;
+      case "deletePublicInfo":
+        return <DeletePublicPopup params={modalProps?.params} />;
       default:
         return null;
     }

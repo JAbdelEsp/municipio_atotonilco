@@ -112,7 +112,6 @@ const insertRecord = (tableName, record) => {
 };
 
 const updateRecord = (tableName, updateCol, updates, column, value) => {
-  console.log("column", column);
   return new Promise((resolve, reject) => {
     const query = `UPDATE ${tableName} SET ${updateCol} = '${updates}' WHERE ${column} = ?`;
     pool.query(query, value, (err, results) => {

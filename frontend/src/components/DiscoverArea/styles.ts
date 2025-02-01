@@ -41,9 +41,10 @@ export const Section = styled("section")`
     cursor: pointer;
   }
   .cover {
-    object-fit: cover;
     cursor: inherit;
     width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
   }
 `;
 export const WLayout = styled("div")`

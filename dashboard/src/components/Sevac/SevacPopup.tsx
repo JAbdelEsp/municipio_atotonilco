@@ -21,7 +21,7 @@ import CancelButton from "../form/CancelButton";
 interface SevacPopupProps {
   title: string;
   sevacId: string;
-  file_name: string;
+  section: string;
   year: string;
   column: string;
   onSubmit: any;
@@ -42,7 +42,7 @@ type SevacTableInfo = {
 const SevacPopup = ({
   title,
   sevacId,
-  file_name,
+  section,
   year,
   column,
   onSubmit,
@@ -62,7 +62,7 @@ const SevacPopup = ({
             <Grid item xs={12} mt={2}>
               <input type="text" value={year} hidden name="year" />
               <input type="text" value={column} hidden name="column" />
-              <input type="text" value={file_name} hidden name="file_name" />
+              <input type="text" value={section} hidden name="section" />
               <input
                 type="file"
                 name="file"

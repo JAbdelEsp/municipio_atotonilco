@@ -12,7 +12,7 @@ const {
 const newsSchema = require("../schemas/transparencySchema");
 const cloudinary = require("../utils/cloudinary");
 const fs = require("fs").promises;
-
+const date = new Date();
 const Update = async (req, res) => {
   try {
     const sevac = await checkRecordExists("planning", "id", req.body.id);
@@ -52,6 +52,23 @@ const Register = async (req, res) => {
   }
 };
 
+const RegisterPublic = async (req, res) => {
+  const { description, file } = req.body;
+  if (!description && !file) {
+    res.status(400).json({ error: "Falta uno o más campos requeridos!" });
+    return;
+  }
+  try {
+    req.body.file = req.file.path;
+    req.body.date = date.toLocaleDateString("en-US");
+    await insertRecord("public_info", req.body);
+    // await createTable(newsSchema);
+    res.status(201).json({ message: "Registro satisfactorio!" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const RegisterFiles = async (req, res) => {
   const { trimester } = req.body;
   if (!trimester) {
@@ -84,13 +101,25 @@ const Records = async (req, res) => {
   }
 };
 
+const RecordsPublic = async (req, res) => {
+  try {
+    const records = await getRecordsNoOrder("public_info");
+    if (records) {
+      res.status(200).json(records);
+    } else {
+      res.status(200).json({ error: "No records found", records: [] });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const RecordsOrderBy = async (req, res) => {
   try {
     let records = null;
     if (req.query.year !== undefined) {
       records = await getRecordsBy("planning", "year", req.query.year);
     } else {
-      console.log("enter here");
       records = await getRecordsNoOrder("planning");
     }
     if (records) {
@@ -121,13 +150,26 @@ const FilesOrderBy = async (req, res) => {
 };
 
 const Delete = async (req, res) => {
-  console.log(req.query);
   try {
     const deleteRec = await deleteRecord("planning", "id", req.query.id);
     const route = "./public/files/planning" + "/" + req.query.year + "/";
-    await fs.rm(route, { recursive: true }).then(() => {
-      console.log("folder removed");
-    });
+    await fs.rm(route, { recursive: true }).then(() => {});
+    if (deleteRec) {
+      res.status(200).json(deleteRec);
+    } else {
+      res.status(200).json({ error: "No records found", records: [] });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const DeletePublic = async (req, res) => {
+  try {
+    const deleteRec = await deleteRecord("public_info", "id", req.query.id);
+    const route =
+      "./public/files/planning/publicInfo" + "/" + req.query.description + "/";
+    await fs.rm(route, { recursive: true }).then(() => {});
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {
@@ -141,9 +183,12 @@ const Delete = async (req, res) => {
 module.exports = {
   Register,
   Records,
+  RecordsPublic,
   RecordsOrderBy,
   FilesOrderBy,
   Update,
   Delete,
+  DeletePublic,
   RegisterFiles,
+  RegisterPublic,
 };

@@ -21,7 +21,6 @@ interface DeleteTransPopupProps {
 }
 
 const DeleteTransPopup = ({ params }: DeleteTransPopupProps) => {
-  console.log(params);
   const dispatch = useAppDispatch();
   const deleteTransOnSubmit = async () => {
     await dispatch(deleteTrans(params));

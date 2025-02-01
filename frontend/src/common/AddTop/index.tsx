@@ -38,7 +38,6 @@ import Modal from "../Modal";
 import useFetch from "../../services";
 import { NewsData } from "../types";
 import { useNavigate } from "react-router-dom";
-import ReactDOM from "react-dom";
 import Preloader from "../../components/Preloader";
 const AddTop = () => {
   const startRef = useRef();
@@ -49,7 +48,7 @@ const AddTop = () => {
   const goTo = (route: string) => {
     navigate(route);
   };
-  const url = "https://k753lncj-9000.usw3.devtunnels.ms/news/records";
+  const url = import.meta.env.VITE_API_URL + "news/records";
   const { data, status, error } = useFetch<NewsData>(url);
   const [isShow, setIsShow] = useState(false);
   const [next, setNext] = useState(4);

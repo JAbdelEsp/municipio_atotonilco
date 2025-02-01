@@ -25,7 +25,7 @@ const Header = () => {
         <NavBarInner>
           <CustomNavLink>
             <BrandLogo>
-              <SvgIcon src="atotonilco_2.png" width="80px" height="" />
+              <SvgIcon src="logo_2.svg" width="80px" height="" />
             </BrandLogo>
           </CustomNavLink>
           <MenuWrapper>

@@ -40,12 +40,23 @@ export type NewPlanningPayload = {
   date: string; // TODO: Temp
 };
 
+export type NewPublicPayload = {
+  id: string;
+  file: string;
+  user: string;
+  date: string; // TODO: Temp
+};
+
 export type UpdatePlanningPayload = Omit<
   NewPlanningPayload,
   "projectId" | "dashboardId"
 >;
 
 export type PlanningBasicInfo = NewPlanningPayload & {
+  id: string;
+};
+
+export type PublicBasicInfo = NewPublicPayload & {
   id: string;
 };
 
@@ -63,6 +74,7 @@ export type NewPlanningFinal = NewPlanning & {
 
 type PlanningState = {
   planning: PlanningBasicInfo[];
+  publicInfo: PublicBasicInfo[];
   selectedPlanning: PlanningBasicInfo | undefined;
   status: "idle" | "loading" | "failed";
   error: string | null;
@@ -70,6 +82,7 @@ type PlanningState = {
 
 export const initialState: PlanningState = {
   planning: [],
+  publicInfo: [],
   selectedPlanning: undefined,
   status: "idle",
   error: null,
@@ -135,6 +148,43 @@ export const createPlanning = createAsyncThunk(
   }
 );
 
+export const createPublicInfo = createAsyncThunk(
+  "planning/createOne",
+  async (payload: any, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post(
+        "/planning/register/public",
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
+        return rejectWithValue(errorResponse);
+      }
+      throw error;
+    }
+  }
+);
+
+export const getPublicInfo = createAsyncThunk(
+  "publicInfo/getAll",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get("/planning/records/public");
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
+
+        return rejectWithValue(errorResponse);
+      }
+
+      throw error;
+    }
+  }
+);
+
 export const updatePlanning = createAsyncThunk(
   "sevac/updateOne",
   async (planning: Planning, { rejectWithValue }) => {
@@ -168,6 +218,26 @@ export const deletePlanning = createAsyncThunk(
     try {
       const response = await axiosInstance.delete(
         `/planning/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
+      );
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
+
+        return rejectWithValue(errorResponse);
+      }
+
+      throw error;
+    }
+  }
+);
+
+export const deletePublic = createAsyncThunk(
+  "planning/deleteOne",
+  async (params: any, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.delete(
+        `/public/delete/?id=${params.id}&description=${params.description}`
       );
       return response.data;
     } catch (error) {
@@ -257,12 +327,15 @@ export const planningSlice = createSlice({
           state.status = "idle";
           state.planning = action.payload;
         }
+      )
+      .addCase(
+        getPublicInfo.fulfilled,
+        (state, action: PayloadAction<PublicBasicInfo[]>) => {
+          state.status = "idle";
+          state.publicInfo = action.payload;
+        }
       );
-    //   .addCase(getTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.trans = [];
-    //     state.error = action.error.message || "Failed to fetch trans.";
-    //   });
+
     //   .addCase(getTrans.pending, (state) => {
     //     state.status = "loading";
     //     state.error = null;

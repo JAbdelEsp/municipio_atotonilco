@@ -21,7 +21,7 @@ const uploadFile = multer({
       const routeComplete = path.join(
         route,
         req.body.year,
-        req.body.file_name,
+        req.body.section,
         req.body.column
       );
       fs.mkdirSync(routeComplete, { recursive: true });
