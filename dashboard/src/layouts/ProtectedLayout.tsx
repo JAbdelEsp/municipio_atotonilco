@@ -10,7 +10,7 @@ import userEvent from "@testing-library/user-event";
 type ProtectedLayoutType = {
   allowedRoles: string[];
 };
-
+let roles: string[] = [];
 const ProtectedLayout = ({ allowedRoles }: ProtectedLayoutType) => {
   const basicUserInfo = useAppSelector((state) => state.auth.basicUserInfo);
   if (!basicUserInfo) {
@@ -18,7 +18,9 @@ const ProtectedLayout = ({ allowedRoles }: ProtectedLayoutType) => {
   }
   if (
     !basicUserInfo.roles ||
-    !basicUserInfo.roles.some((role: string) => allowedRoles.includes(role))
+    !JSON.parse(basicUserInfo.roles as unknown as string).some((role: string) =>
+      allowedRoles.includes(role)
+    )
   ) {
     return <AccessDenied />;
   }
@@ -31,5 +33,4 @@ const ProtectedLayout = ({ allowedRoles }: ProtectedLayoutType) => {
     </>
   );
 };
-
 export default ProtectedLayout;
