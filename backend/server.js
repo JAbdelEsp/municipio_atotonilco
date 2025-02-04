@@ -20,6 +20,11 @@ app.use("/public", express.static("public"));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// Carga los certificados
+const options = {
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem"),
+};
 
 app.use(
   "/",
@@ -35,6 +40,6 @@ app.use(
 
 connectDB();
 
-app.listen(port, () => {
+app.listen(options, port, () => {
   console.log(`Server running on port: ${port}`);
 });
