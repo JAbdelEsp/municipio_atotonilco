@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
+const https = require("https");
 const fs = require("fs");
 dotenv.config();
 const cors = require("cors");
@@ -41,6 +42,6 @@ app.use(
 
 connectDB();
 
-app.listen(options, port, () => {
-  console.log(`Server running on port: ${port}`);
+https.createServer(options, app).listen(9000, () => {
+  console.log("Servidor HTTPS ejecutándose en el puerto 9000");
 });
