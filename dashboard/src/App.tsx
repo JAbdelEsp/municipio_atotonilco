@@ -20,6 +20,7 @@ import News from "./pages/News";
 import Transparency from "./pages/Transparency";
 import Sevac from "./pages/Sevac";
 import Planning from "./pages/Planning";
+import Resources from "./pages/Resources";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -58,19 +59,40 @@ function App() {
           <Route path="/user-settings" element={<UserSettings />} />
         </Route>
         <Route
-          element={<ProtectedLayout allowedRoles={[Roles.Transparency]} />}
+          element={
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Transparency]} />
+          }
         >
           <Route path="/transparencia" element={<Transparency />} />
         </Route>
 
-        <Route element={<ProtectedLayout allowedRoles={[Roles.Sevac]} />}>
+        <Route
+          element={
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Sevac]} />
+          }
+        >
           <Route path="/sevac" element={<Sevac />} />
         </Route>
-        <Route element={<ProtectedLayout allowedRoles={[Roles.Editor]} />}>
+        <Route
+          element={
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Editor]} />
+          }
+        >
           <Route path="/noticias" element={<News />} />
         </Route>
-        <Route element={<ProtectedLayout allowedRoles={[Roles.Planning]} />}>
+        <Route
+          element={
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Planning]} />
+          }
+        >
           <Route path="/planeacion" element={<Planning />} />
+        </Route>
+        <Route
+          element={
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Planning]} />
+          }
+        >
+          <Route path="/tramites" element={<Resources />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

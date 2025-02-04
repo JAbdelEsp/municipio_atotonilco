@@ -18,6 +18,10 @@ import DeletePlanningPopup from "../components/Planning/DeletePlanningPopup";
 import DeleteSevacPopup from "../components/Sevac/DeleteSevacPopup";
 import AddPublicInfo from "../components/Planning/AddPublicInfo";
 import DeletePublicPopup from "../components/Planning/DeletePublicInfoPopup";
+import AddResourcesPopup from "../components/Resources/AddResourcesPopup";
+import AddResourcesContainer from "../components/Resources/AddResourcesContainer";
+import DeleteResourcesPopup from "../components/Resources/DeleteResourcesPopup";
+import EditResourcesContainer from "../components/Resources/EditResourcesContainer";
 // Import other modal components
 
 const ModalContainer = () => {
@@ -92,6 +96,29 @@ const ModalContainer = () => {
         return <DeletePlanningPopup params={modalProps?.params} />;
       case "deletePublicInfo":
         return <DeletePublicPopup params={modalProps?.params} />;
+      case "addRequeriment":
+        return <AddPlanningPopup />;
+      case "addResources":
+        return (
+          <AddResourcesContainer
+            params={modalProps?.params}
+            req={modalProps?.req}
+          />
+        );
+      case "editResources":
+        return (
+          <EditResourcesContainer
+            params={modalProps?.params}
+            req={modalProps?.req}
+          />
+        );
+      case "deleteResources":
+        return (
+          <DeleteResourcesPopup
+            id={modalProps?.id}
+            description={modalProps?.description}
+          />
+        );
       default:
         return null;
     }

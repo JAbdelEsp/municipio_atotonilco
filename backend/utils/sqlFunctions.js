@@ -85,6 +85,19 @@ const paramRecords = (tableName, id, limit) => {
   });
 };
 
+const paramReq = (tableName, id, limit) => {
+  return new Promise((resolve, reject) => {
+    const query = `Select * from ${tableName} WHERE id = ? order by date ASC`;
+    pool.query(query, id, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results.length ? results : null);
+      }
+    });
+  });
+};
+
 const getPictures = (tableName, id, limit) => {
   return new Promise((resolve, reject) => {
     const query = `Select * from ${tableName} WHERE id_news = ? `;
@@ -157,6 +170,7 @@ module.exports = {
   getRecordsNoOrder,
   getRecordsBy,
   paramRecords,
+  paramReq,
   insertRecord,
   updateRecord,
   updateRecordInfo,

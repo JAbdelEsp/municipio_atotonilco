@@ -24,6 +24,7 @@ const pages = [
   { name: "Transparencia", link: "/transparencia" },
   { name: "Sevac", link: "/sevac" },
   { name: "Planeación", link: "/planeacion" },
+  { name: "Tramites y Servicios", link: "/tramites" },
 ];
 
 // const settings = ['Profile', 'Settings', 'Logout']

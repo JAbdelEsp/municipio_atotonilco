@@ -50,6 +50,10 @@ const routes = [
     component: "Resources",
   },
   {
+    path: "/municipio",
+    component: "Municipio",
+  },
+  {
     path: "*",
     component: "404",
   },

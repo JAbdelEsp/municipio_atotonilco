@@ -50,7 +50,7 @@ const Header = () => {
               <CustomNavLink onClick={() => goTo("/noticias")}>
                 <Span>Noticias</Span>
               </CustomNavLink>
-              <CustomNavLink onClick={() => goTo("/tumunicipio")}>
+              <CustomNavLink onClick={() => goTo("/municipio")}>
                 <Span>Tu Municipio</Span>
               </CustomNavLink>
             </NavLinks>

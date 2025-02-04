@@ -41,11 +41,9 @@ export function NavBarItem({ menuHeading }: NavBarItemProps) {
         }}
       >
         <MenuItem component={Link} to={"/noticias"} onClick={handleClose}>
-          {" "}
           {menuHeading} 1
         </MenuItem>
         <MenuItem component={Link} to={"/transparencia"} onClick={handleClose}>
-          {" "}
           {menuHeading} 2
         </MenuItem>
       </Menu>
