@@ -23,11 +23,6 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Carga los certificados
-const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
-};
-
 app.use(
   "/",
   authRoutes,
@@ -42,6 +37,6 @@ app.use(
 
 connectDB();
 
-https.createServer(options, app).listen(9000, () => {
-  console.log("Servidor HTTPS ejecutándose en el puerto 9000");
+app.listen(9000, "127.0.0.1", () => {
+  console.log("Server running on port 9000");
 });
