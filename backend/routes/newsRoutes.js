@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({ storage });
+const upload = multer({ storage, limits: 1048576 });
 router.get("/news/records", Records);
 router.post("/news/pictures", upload.array("pic", 20), Register);
 router.get("/news/recordsBy", getRecordsBy);
