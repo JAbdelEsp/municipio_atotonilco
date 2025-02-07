@@ -33,8 +33,8 @@ const AddTaskPopup = ({}: AddTaskPopupProps) => {
   const submitNewTask = async () => {
     if (task.id_news) {
       await dispatch(createTask(task as NewTaskFinal));
-      await dispatch(getTasks());
-      dispatch(closeModal());
+      // await dispatch(getTasks());
+      // dispatch(closeModal());
     }
   };
 

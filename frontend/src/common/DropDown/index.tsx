@@ -5,9 +5,9 @@ const DropDownInput = ({ options, onChange, placeholder }: DropDownProps) => {
   const [selectedItem, setSelectedItem] = useState<string>("");
   return (
     <Select onChange={onChange} placeholder={placeholder} className="select">
-      {options.map((option) => (
-        <Select.Option key={option.value} value={option.value}>
-          {option.label}
+      {options.map((option: any) => (
+        <Select.Option key={option.id} value={option.name}>
+          {option.name}
         </Select.Option>
       ))}
     </Select>

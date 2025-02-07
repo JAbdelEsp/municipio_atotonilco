@@ -1,4 +1,5 @@
 import HeroCms from "../../components/HeroCms";
+import Municipio from "../../components/Municipio";
 
 const TuMunicipio = () => {
   const ScrollDown = () => {
@@ -16,6 +17,7 @@ const TuMunicipio = () => {
         title="Tú Municipio"
         description="Atotonilco el Grande"
       />
+      <Municipio />
     </>
   );
 };

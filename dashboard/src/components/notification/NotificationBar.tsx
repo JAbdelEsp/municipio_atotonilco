@@ -34,7 +34,7 @@ const NotificationBar = () => {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <Alert onClose={handleClose} severity={type} sx={{ width: "100%" }}>
           {message}

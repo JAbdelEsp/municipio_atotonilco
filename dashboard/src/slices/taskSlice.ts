@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../api/axiosInstance";
 import { AxiosError } from "axios";
 import { BACKEND_BASE_URL } from "../constants";
+import { closeModal } from "./modalSlice";
 
 export type Project = {
   id: string;
@@ -129,8 +130,8 @@ export const createTask = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      if (error instanceof AxiosError && error.response) {
-        const errorResponse = error.response.data;
+      if (error instanceof AxiosError && error.message) {
+        const errorResponse = error.message;
         return rejectWithValue(errorResponse);
       }
       throw error;
@@ -328,18 +329,17 @@ export const tasksSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      // .addCase(
-      //   createTask.fulfilled,
-      //   (state, action: PayloadAction<TaskBasicInfo>) => {
-      //     state.status = "idle";
-      //     state.tasks.push(action.payload);
-      //   }
-      // )
       .addCase(createTask.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Failed to add task.";
+        state.error = "Failed to add task.";
       })
-
+      .addCase(
+        createTask.fulfilled,
+        (state, action: PayloadAction<TaskBasicInfo>) => {
+          state.status = "idle";
+          // state.tasks.push(action.payload);
+        }
+      )
       .addCase(updateTask.pending, (state) => {
         state.status = "loading";
         state.error = null;

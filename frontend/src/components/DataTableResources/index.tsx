@@ -2,9 +2,19 @@ import { Table, TableColumnsType } from "antd";
 import { DataType } from "../../common/types";
 import { DataTableWrapper } from "./styles";
 import Preloader from "../Preloader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DropDown from "../../common/DropDown";
-const DataTableResources = () => {
+import useFetch from "../../services";
+import Button from "../../common/Button";
+type DataTableProps = {
+  dataSource: any[];
+};
+const DataTableResources = (dataSource: DataTableProps) => {
+  const [values, setValues] = useState<any[]>();
+  const { data, status, error } = useFetch(
+    import.meta.env.VITE_API_URL + "areas/records"
+  );
+
   useEffect(() => {
     setTimeout(() => {
       <Preloader />;
@@ -13,32 +23,48 @@ const DataTableResources = () => {
   const columns: TableColumnsType<DataType> = [
     {
       title: "Trámite o Servicio",
-      dataIndex: "no_obra",
+      dataIndex: "description",
     },
     {
       title: "Requisitos",
-      dataIndex: "requeriments",
+      dataIndex: "requeriment",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <ul>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>{item}</li>
+              ))}
+            </ul>
+          )
+        );
+      },
     },
     {
       title: "Trámite en Línea",
-      dataIndex: "on_line",
+      dataIndex: "online",
+      render: (dataIndex) => {
+        return dataIndex == true ? <></> : <>No Disponible en Línea</>;
+      },
     },
   ];
-  const _handleChange = (value: string) => {};
+  const _handleChange = (choice: string) => {
+    const filtering =
+      dataSource &&
+      dataSource.dataSource.filter((item) => item.area === choice);
+    setValues(filtering);
+  };
   return (
     <DataTableWrapper id="data">
-      <h1>Tramites y Servicios </h1>
+      <h1>
+        Portal de Trámites y Servicios del Municipio de Atotonilco el Grande
+      </h1>
       <DropDown
         placeholder="Selecciona el Área"
         onChange={_handleChange}
-        options={[]}
+        options={Array.isArray(data) ? data : []}
       />
-      <DropDown
-        placeholder="Selecciona el Trámite a Realizar"
-        onChange={_handleChange}
-        options={[]}
-      />
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={values} />
     </DataTableWrapper>
   );
 };

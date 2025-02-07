@@ -1,5 +1,5 @@
 import { Grid, SelectChangeEvent } from "@mui/material";
-import { createTask, getTasks, Task } from "../../slices/taskSlice";
+import { createTask, getTasks, Task, tasksSlice } from "../../slices/taskSlice";
 import { SyntheticEvent, useEffect, useState } from "react";
 import FormTextField from "../form/FormTextField";
 import FormModal from "../modal/FormModal";
@@ -17,6 +17,8 @@ import "react-quill/dist/quill.snow.css";
 import { closeModal } from "../../slices/modalSlice";
 import SubmitButton from "../form/SubmitButton";
 import CancelButton from "../form/CancelButton";
+import { create } from "node:domain";
+import { taskCompleted } from "@reduxjs/toolkit/dist/listenerMiddleware/exceptions";
 interface TaskPopupProps {
   title: string;
   task: Task | NewTask;
@@ -89,8 +91,8 @@ const TaskPopup = ({ title, task, setTask, onSubmit }: TaskPopupProps) => {
     formData.append("content", text);
     formData.append("image", file.name);
     await dispatch(createTask(formData));
-    await dispatch(getTasks());
-    dispatch(closeModal());
+    //await dispatch(getTasks());
+    //dispatch(closeModal());
   };
   const tasks = useAppSelector((state) => state.tasks.tasks);
   const handleClose = () => {

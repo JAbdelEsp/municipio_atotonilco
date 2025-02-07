@@ -15,30 +15,32 @@ const DataTablePlanning = (data: any) => {
     letFilterData(data.data);
   }, [data]);
   const letFilterData = (data: any) => {
-    const pbr_data = data.filter((item: any) => item.table === "PBR");
-    setPbr(pbr_data);
-    const aseh_data = data.filter(
-      (item: any) => item.table === "Informes_ASEH"
-    );
-    setAseh(aseh_data);
-    const eto_data = data.filter(
-      (item: any) => item.table === "Expedientes_tecnicos_obras"
-    );
-    const faism_data = data.filter(
-      (item: any) => item.table === "Fondo_aportacion_FAISM"
-    );
-    setFaism(faism_data);
-    setEto(eto_data);
-    const fismdf_data = data.filter(
-      (item: any) => item.table === "Proyectos_FISMDF"
-    );
-    setFismdf(fismdf_data);
-    const pae_data = data.filter(
-      (item: any) => item.table === "Programas_evaluacion_PAE"
-    );
-    setPae(pae_data);
-    const inv_data = data.filter((item: any) => item.table === "Inventarios");
-    setInv(inv_data);
+    if (!data.error) {
+      const pbr_data = data.filter((item: any) => item.table === "PBR");
+      pbr_data.length > 0 && setPbr(pbr_data);
+      const aseh_data = data.filter(
+        (item: any) => item.table === "Informes_ASEH"
+      );
+      aseh_data.length > 0 && setAseh(aseh_data);
+      const eto_data = data.filter(
+        (item: any) => item.table === "Expedientes_tecnicos_obras"
+      );
+      eto_data.length > 0 && setEto(eto_data);
+      const faism_data = data.filter(
+        (item: any) => item.table === "Fondo_aportacion_FAISM"
+      );
+      faism_data.length > 0 && setFaism(faism_data);
+      const fismdf_data = data.filter(
+        (item: any) => item.table === "Proyectos_FISMDF"
+      );
+      fismdf_data.length > 0 && setFismdf(fismdf_data);
+      const pae_data = data.filter(
+        (item: any) => item.table === "Programas_evaluacion_PAE"
+      );
+      pae_data.length > 0 && setPae(pae_data);
+      const inv_data = data.filter((item: any) => item.table === "Inventarios");
+      inv_data.length > 0 && setInv(inv_data);
+    }
   };
 
   const columns: TableColumnsType<DataType> = [
