@@ -69,6 +69,8 @@ const TaskPopup = ({ title, task, setTask, onSubmit }: TaskPopupProps) => {
   const [tasksTableInfo, setTasksTableInfo] = useState<TasksTableInfo[]>([]);
   const [id, setId] = useState(0);
   const [text, setText] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const [message, setMessage] = useState("");
   const date = new Date();
   const dispatch = useAppDispatch();
   const [file, setFile] = useState<any>(null);
@@ -91,9 +93,20 @@ const TaskPopup = ({ title, task, setTask, onSubmit }: TaskPopupProps) => {
     formData.append("content", text);
     formData.append("image", file.name);
     await dispatch(createTask(formData));
-    //await dispatch(getTasks());
-    //dispatch(closeModal());
+    await dispatch(getTasks());
   };
+
+  const validatingSize = (size: any) => {
+    if (size.size > 2504018) {
+      console.log("enter here");
+      setDisabled(true);
+      setMessage("Error: Selecciona un archivo menor a 2.5Mb");
+    } else {
+      setDisabled(false);
+      setMessage("");
+    }
+  };
+
   const tasks = useAppSelector((state) => state.tasks.tasks);
   const handleClose = () => {
     dispatch(closeModal());
@@ -134,14 +147,27 @@ const TaskPopup = ({ title, task, setTask, onSubmit }: TaskPopupProps) => {
             </Grid>
             <Grid item xs={12} mt={2}>
               <input
+                required
                 type="file"
                 name="image"
-                onChange={(e: any) => setFile(e.target.files[0])}
+                onChange={(e: any) => {
+                  setFile(e.target.files[0]);
+                  validatingSize(e.target.files[0]);
+                }}
               />
+            </Grid>
+            <Grid item xs={12} md={12} mt={2}>
+              <span style={{ color: "red", fontWeight: "bolder" }}>
+                {message}
+              </span>
             </Grid>
             <Grid container justifyContent="space-between" mt={2}>
               <Grid item xs={5}>
-                <SubmitButton type="submit" text="Guardar" />
+                <SubmitButton
+                  type="submit"
+                  text="Guardar"
+                  disabled={disabled}
+                />
               </Grid>
               <Grid item xs={5}>
                 <CancelButton onClick={handleClose} />

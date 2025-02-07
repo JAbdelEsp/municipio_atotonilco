@@ -7,9 +7,15 @@ type FormButtonProps = {
   color: ButtonColor;
   text: string;
   onClick?: any;
+  disabled?: boolean;
 };
 
-export default function FormButton({ color, text, onClick }: FormButtonProps) {
+export default function FormButton({
+  color,
+  text,
+  onClick,
+  disabled,
+}: FormButtonProps) {
   return (
     <Button
       variant="contained"
@@ -18,6 +24,7 @@ export default function FormButton({ color, text, onClick }: FormButtonProps) {
       size="medium"
       color={color}
       type="submit"
+      disabled={disabled}
     >
       {text}
     </Button>
