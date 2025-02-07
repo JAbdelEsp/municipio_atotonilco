@@ -16,6 +16,7 @@ const router = express.Router();
 const route = "./public/uploads/";
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    const fileSize = req.headers["content-length"];
     const routeComplete = path.join(route, req.body.title);
     fs.mkdirSync(routeComplete, { recursive: true });
     if (fs.existsSync(routeComplete) == true) {
@@ -29,7 +30,11 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({ storage, limits: 1048576 });
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 3145728 },
+});
+
 router.get("/news/records", Records);
 router.post("/news/pictures", upload.array("pic", 20), Register);
 router.get("/news/recordsBy", getRecordsBy);

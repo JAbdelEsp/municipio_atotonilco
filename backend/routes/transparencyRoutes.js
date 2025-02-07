@@ -35,6 +35,7 @@ const uploadFile = multer({
     }
     cb(null, file.originalname);
   },
+  limits: { fileSize: 3145728 },
 });
 
 // const storage = multer.diskStorage({

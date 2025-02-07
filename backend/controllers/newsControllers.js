@@ -16,13 +16,13 @@ const fs = require("fs").promises;
 const RegisterNews = async (req, res) => {
   const { id_news, title, author, content, date, id_area } = req.body;
   if (!id_news || !title || !author || !content || !date) {
-    res.status(400).json({ error: "All fields are required" });
+    res.status(400).json({ error: "Faltan elementos requeridos!" });
     return;
   }
   try {
     // await createTable(newsSchema);
     await insertRecord("news", req.body);
-    res.status(201).json({ message: "News created successfully!" });
+    res.status(201).json({ message: "Datos agregados con éxito!" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

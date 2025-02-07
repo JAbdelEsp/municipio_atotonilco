@@ -43,6 +43,7 @@ const uploadFile = multer({
     }
     cb(null, file.originalname);
   },
+  limits: { fileSize: 3145728 },
 });
 
 router.get("/sevac/records", RecordsOrderBy);
