@@ -81,7 +81,6 @@ const PicsPopup = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    formData.append("id_news", taskId);
     formData.append("title", titleNew);
     await dispatch(uploadPics(formData));
     dispatch(closeModal());
@@ -96,7 +95,7 @@ const PicsPopup = ({
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <Grid container>
             <Grid item xs={12} mt={2}>
-              <input type="text" name="title" value={titleNew} hidden />
+              <input type="text" name="id_news" value={taskId} hidden />
               <input
                 type="file"
                 name="pic"

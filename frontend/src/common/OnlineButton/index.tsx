@@ -1,8 +1,7 @@
 type ButtonProps = {
   onClick: any;
-  data: any;
 };
-const OnlineButton = ({ onClick, data }: ButtonProps) => {
+const OnlineButton = ({ onClick }: ButtonProps) => {
   return (
     <input
       className="subscribe-button"

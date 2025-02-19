@@ -61,7 +61,6 @@ const Register = async (req, res) => {
           data: response,
         });
       } catch (err) {
-        console.log(err);
         res.status(200).json({
           status: "error",
           message: "Email could not be sent",

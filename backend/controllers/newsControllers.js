@@ -14,7 +14,7 @@ const cloudinary = require("../utils/cloudinary");
 const fs = require("fs").promises;
 
 const RegisterNews = async (req, res) => {
-  const { id_news, title, author, content, date, id_area } = req.body;
+  const { id_news, title, author, content, date } = req.body;
   if (!id_news || !title || !author || !content || !date) {
     res.status(400).json({ error: "Faltan elementos requeridos!" });
     return;
@@ -38,7 +38,7 @@ const Register = async (req, res) => {
     // await createTable(picturesSchema);
     for (let i = 0; i < req.files.length; i++) {
       req.body.pic = req.files[i].originalname;
-      req.body.title = req.body.title[0];
+      // req.body.title = req.body.title[0];
       await insertRecord("pictures", req.body);
     }
     res.status(201).json({ message: "Imágenes agregas con éxito!" });
@@ -118,7 +118,7 @@ const Delete = async (req, res) => {
   try {
     const deleteRec = await deleteRecord("news", "id_news", req.query.id);
     await deleteRecord("pictures", "id_news", `${req.query.id}`);
-    const route = "./public/uploads/" + req.query.title;
+    const route = "./public/uploads/" + req.query.id;
     await fs.rmdir(route, { recursive: true }).then(() => {});
     if (deleteRec) {
       res.status(200).json(deleteRec);

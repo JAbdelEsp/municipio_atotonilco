@@ -39,7 +39,7 @@ const DiscoverArea = (data: any) => {
               <>No Hay Información Disponible</>
             ) : (
               data.data.map((item: any, key: number) => (
-                <CustomListItem>
+                <CustomListItem key={key}>
                   <CustomListContent>
                     <ListTitle>
                       {item.description}

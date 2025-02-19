@@ -63,7 +63,6 @@ export default function PlanningTable({
       width: 500,
       sortable: false,
       renderCell: (params) => {
-        console.log(params.row.id);
         return params.row.firstTrimester !== null &&
           JSON.parse(params.row.firstTrimester).length > 0 ? (
           <ul style={{ listStyle: "none" }}>

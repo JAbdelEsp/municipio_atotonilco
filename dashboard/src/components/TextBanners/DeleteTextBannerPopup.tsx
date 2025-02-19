@@ -22,7 +22,6 @@ interface DeleteTransPopupProps {
 
 const DeleteTextBannerPopup = ({ params }: DeleteTransPopupProps) => {
   const dispatch = useAppDispatch();
-  console.log(params);
   const deleteTextBannerOnSubmit = async () => {
     await dispatch(deleteTextBanner(params));
     dispatch(closeModal());

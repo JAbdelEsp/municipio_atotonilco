@@ -124,10 +124,7 @@ export const createTask = createAsyncThunk(
   "tasks/createOne",
   async (payload: any, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post(
-        BACKEND_BASE_URL + "/news/register",
-        payload
-      );
+      const response = await axiosInstance.post("/news/register", payload);
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.message) {

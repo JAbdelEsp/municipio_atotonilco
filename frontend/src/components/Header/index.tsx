@@ -45,16 +45,13 @@ const Header = () => {
                 <Span>Transparencia</Span>
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/tramites")}>
-                <Span>Tramites y Servicios</Span>
+                <Span>Trámites y Servicios</Span>
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/noticias")}>
                 <Span>Noticias</Span>
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/municipio")}>
                 <Span>Tu Municipio</Span>
-              </CustomNavLink>
-              <CustomNavLink onClick={() => goTo("/contacto")}>
-                <Span>Contacto</Span>
               </CustomNavLink>
             </NavLinks>
             <div className="button-for-open-menu" onClick={() => toggleMenu()}>

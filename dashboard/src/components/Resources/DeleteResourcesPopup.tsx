@@ -22,7 +22,6 @@ const DeleteResourcesPopup = ({
   const dispatch = useAppDispatch();
 
   const deleteResourcesOnSubmit = async () => {
-    console.log("onSubmit: ", id);
     await dispatch(deleteResource(id));
     dispatch(closeModal());
     dispatch(getResources());

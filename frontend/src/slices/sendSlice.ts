@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../api/axiosInstance";
 import { AxiosError } from "axios";
 
@@ -57,13 +56,9 @@ export const sendSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(Send.rejected, (state, action) => {
+      .addCase(Send.rejected, (state) => {
         state.status = "failed";
         state.error = "Hubo un error... intentalo nuevamente!";
-      })
-      .addCase(Send.fulfilled, (state, action: PayloadAction<NewProcedure>) => {
-        state.status = "idle";
-        // state.tasks.push(action.payload);
       });
   },
 });

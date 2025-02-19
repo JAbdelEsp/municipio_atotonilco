@@ -1,18 +1,12 @@
 import { Col, Row } from "antd";
-import Image from "../../common/Image";
 import {
   AlignCenter,
   BannerGrid,
   BannerSection,
   BlogMainWrapper,
-  ButtonIconMain,
-  ButtonIconSvg,
-  FlexSpaceBetween,
   Footer,
-  FooterGridSecond,
   ImageWrap,
   LinePageDividerDark,
-  Margin30,
   Margin40,
   ThirdTitle,
 } from "./styles";
@@ -34,9 +28,9 @@ const FooterComponent = () => {
           </AlignCenter>
           <Margin40>
             <BannerGrid>
-              {banner &&
+              {banner.length > 0 &&
                 banner.map((item, key) => (
-                  <BlogMainWrapper>
+                  <BlogMainWrapper key={key}>
                     <ImageWrap>
                       <img
                         src={
@@ -58,41 +52,39 @@ const FooterComponent = () => {
       </BannerSection>
       <LinePageDividerDark />
       <Row>
-        <Col span={8}>
+        <Col span={8} xs={24} sm={24}>
           <img
             style={{ width: "220px", display: "block", margin: "0 auto" }}
-            src="/public/images/brand/logo.svg"
+            src="/images/brand/logo.svg"
             alt="Municipio de Atotonilco el Grande"
           />
+        </Col>
+        <Col xs={8} sm={8}></Col>
+        <Col xs={4} sm={4}></Col>
+        <Col xs={4} sm={4} md={12} lg={12}>
           <Row>
-            <Col span={24} style={{ color: "white" }}>
-              &copy; Municipio de Atotonilco el Grande 2024 - 2027
+            <Col xs={24} sm={24} md={12} lg={12}>
+              <a href="tel:911">
+                <img
+                  style={{ width: "90px" }}
+                  src="/images/brand/911.png"
+                  alt=""
+                />
+              </a>
+            </Col>
+            <Col xs={24} sm={24} md={12} lg={12}>
+              <a href="tel:7747432002">
+                <img
+                  style={{ width: "70px" }}
+                  src="/images/brand/Proteccion-civil-logo-gen.png"
+                  alt=""
+                />
+              </a>
             </Col>
           </Row>
         </Col>
-        <Col span={8}></Col>
-        <Col span={4}></Col>
-        <Col span={4}>
-          <Row>
-            <Col span={12}>
-              <a href="tel:+52911">
-                <img
-                  style={{ width: "90px" }}
-                  src="/public/images/brand/911.png"
-                  alt=""
-                />
-              </a>
-            </Col>
-            <Col span={12}>
-              <a href="tel:911">
-                <img
-                  style={{ width: "70px" }}
-                  src="/public/images/brand/Proteccion-civil-logo-gen.png"
-                  alt=""
-                />
-              </a>
-            </Col>
-          </Row>
+        <Col xs={24} sm={24} lg={24} md={24} style={{ color: "white" }}>
+          &copy; Municipio de Atotonilco el Grande 2024 - 2027
         </Col>
       </Row>
     </Footer>

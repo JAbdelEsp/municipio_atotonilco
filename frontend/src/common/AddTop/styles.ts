@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const Section = styled("section")`
+  height: auto;
   z-index: 10;
-  background-color: var(--dark);
+  background-color: var(--white);
   padding: 0% 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   position: relative;
   p {
     font-size: min(14px, 2em);

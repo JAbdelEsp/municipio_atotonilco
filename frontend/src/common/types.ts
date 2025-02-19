@@ -26,7 +26,7 @@ export interface PropsVideoContainer {
 
 export interface LinkProps {
   text: string;
-  href: string;
+  href?: string;
 }
 
 export interface PropsButton {

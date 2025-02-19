@@ -52,7 +52,6 @@ export default function VideoTable({ onClickUpload }: VideoTableProps) {
       headerName: "Acciones",
       sortable: false,
       renderCell: (params) => {
-        console.log(params);
         return (
           <>
             <IconButton

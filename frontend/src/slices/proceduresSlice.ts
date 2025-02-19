@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "../api/axiosInstance";
 import { AxiosError } from "axios";
 
@@ -76,17 +75,10 @@ export const proceduresSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(Create.rejected, (state, action) => {
+      .addCase(Create.rejected, (state) => {
         state.status = "failed";
         state.error = "Hubo un error al realizar el registro!";
-      })
-      .addCase(
-        Create.fulfilled,
-        (state, action: PayloadAction<NewProcedure>) => {
-          state.status = "idle";
-          // state.tasks.push(action.payload);
-        }
-      );
+      });
   },
 });
 

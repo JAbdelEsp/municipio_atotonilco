@@ -16,8 +16,7 @@ const router = express.Router();
 const route = "./public/uploads/";
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const fileSize = req.headers["content-length"];
-    const routeComplete = path.join(route, req.body.title);
+    const routeComplete = path.join(route, req.body.id_news);
     fs.mkdirSync(routeComplete, { recursive: true });
     if (fs.existsSync(routeComplete) == true) {
       cb(null, routeComplete);

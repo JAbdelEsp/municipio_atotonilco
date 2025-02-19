@@ -2,7 +2,7 @@ import Image from "../../common/Image";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
-import { Create, Send } from "../../slices/subscriptionsSlice";
+import { Create } from "../../slices/subscriptionsSlice";
 import {
   BlogRichDetails,
   BlogSingleContentWrap,
@@ -37,7 +37,7 @@ import {
   WFormFail,
   WriterTitleBoxWrap,
 } from "./styles";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
+import { useAppDispatch } from "../../hooks/redux-hooks";
 
 const Municipio = () => {
   const date = new Date();
@@ -51,9 +51,6 @@ const Municipio = () => {
     padding: { top: 20, bottom: 40, left: 100, right: 100 },
   };
   const dispatch = useAppDispatch();
-  const subscriptionsStatus = useAppSelector(
-    (state) => state.subscriptions.status
-  );
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -219,7 +216,7 @@ const Municipio = () => {
             <Gallery options={optionsSlide}>
               <div className="photoswip">
                 <Item
-                  original="public/images/main/image16.jpeg"
+                  original="/images/main/image16.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -233,12 +230,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image16.jpeg"
+                      src="/images/main/image16.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image27.jpeg"
+                  original="/images/main/image27.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -252,12 +249,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image27.jpeg"
+                      src="/images/main/image27.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image2.jpeg"
+                  original="/images/main/image2.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -271,12 +268,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image2.jpeg"
+                      src="/images/main/image2.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image23.jpeg"
+                  original="/images/main/image23.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -290,12 +287,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image23.jpeg"
+                      src="/images/main/image23.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image30.jpeg"
+                  original="/images/main/image30.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -309,12 +306,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image30.jpeg"
+                      src="/images/main/image30.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image37.jpeg"
+                  original="/images/main/image37.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -328,12 +325,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image37.jpeg"
+                      src="/images/main/image37.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image43.jpeg"
+                  original="/images/main/image43.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -347,12 +344,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image43.jpeg"
+                      src="/images/main/image43.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image40.jpeg"
+                  original="/images/main/image40.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -366,12 +363,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image40.jpeg"
+                      src="/images/main/image40.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image41.jpeg"
+                  original="/images/main/image41.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -385,12 +382,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image41.jpeg"
+                      src="/images/main/image41.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image35.jpeg"
+                  original="/images/main/image35.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -404,12 +401,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image35.jpeg"
+                      src="/images/main/image35.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image7.jpeg"
+                  original="/images/main/image7.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -423,12 +420,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image7.jpeg"
+                      src="/images/main/image7.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image17.jpeg"
+                  original="/images/main/image17.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -442,12 +439,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image17.jpeg"
+                      src="/images/main/image17.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image24.jpeg"
+                  original="/images/main/image24.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -461,12 +458,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image24.jpeg"
+                      src="/images/main/image24.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image26.jpeg"
+                  original="/images/main/image26.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -480,12 +477,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image26.jpeg"
+                      src="/images/main/image26.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image36.jpeg"
+                  original="/images/main/image36.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -499,12 +496,12 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image36.jpeg"
+                      src="/images/main/image36.jpeg"
                     />
                   )}
                 </Item>
                 <Item
-                  original="public/images/main/image20.jpeg"
+                  original="/images/main/image20.jpeg"
                   thumbnail=""
                   width="1340"
                   height="768"
@@ -518,7 +515,7 @@ const Municipio = () => {
                       }}
                       ref={ref}
                       onClick={open}
-                      src="public/images/main/image20.jpeg"
+                      src="/images/main/image20.jpeg"
                     />
                   )}
                 </Item>

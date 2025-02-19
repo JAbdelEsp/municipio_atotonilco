@@ -60,6 +60,14 @@ export const NavBar = styled("nav")`
     position: absolute;
     z-index: 99;
   }
+  .link {
+    grid-column-gap: 18px;
+    grid-row-gap: 18px;
+    color: var(--white);
+    margin-bottom: 32px;
+    text-decoration: none;
+    display: flex;
+  }
 `;
 export const NavDropDown = styled("div")`
   margin-left: 0;
@@ -90,13 +98,6 @@ export const NavBarButtonIconLine = styled("div")`
 export const DropDownList = styled("nav")`
   background-color: var(--dark);
 `;
-export const DropDownLink = styled("a")`
-  grid-column-gap: 18px;
-  grid-row-gap: 18px;
-  color: var(--white);
-  margin-bottom: 32px;
-  text-decoration: none;
-  display: flex;
-`;
+export const DropDownLink = styled("a")``;
 export const NavLinkImageWrapper = styled("div")``;
 export const TextBlock = styled("div")``;

@@ -1,4 +1,3 @@
-import Image from "../Image";
 import { SvgIcon } from "../SvgIcon";
 import {
   ButtonIconMain,
@@ -24,7 +23,7 @@ const Modal = ({ show, set }: any) => {
         </ButtonIconMain>
         <img
           className="subrcribe-image"
-          src="public/images/main/PHOTO-2024-11-16-13-29-34.jpg"
+          src="/images/main/PHOTO-2024-11-16-13-29-34.jpg"
           alt="Lic. Leticia Chapa Guerrero"
         />
         <ModalContent>
@@ -107,7 +106,7 @@ const Modal = ({ show, set }: any) => {
                 pasado y a las expectativas del presente. Mi compromiso como
                 Presidenta Municipal es hacerle honor al nombre que lleva
                 nuestro bello municipio ATOTONILCO EL GRANDE juntos lo
-                lograremos por amor nuestro pueblo…
+                lograremos por amor a nuestro pueblo…
               </p>
             </div>
           </div>

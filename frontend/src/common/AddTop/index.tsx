@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { LightText } from "../FeaturedTitle/styles";
 import Image from "../Image";
 import { SvgIcon } from "../SvgIcon";
@@ -26,7 +26,6 @@ import {
   PaginationWrapper,
   ButtonPagination,
   ButtonIconMainForPagination,
-  ButtonIconMainForPaginationP,
   StickyBar,
   StickyContent,
   BannerSideBar,
@@ -39,9 +38,7 @@ import useFetch from "../../services";
 import { NewsData } from "../types";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../../components/Preloader";
-import NotFound from "../../pages/404";
 const AddTop = () => {
-  const startRef = useRef();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,7 +58,7 @@ const AddTop = () => {
     if (next === len) {
       setDisabledNext(true);
     }
-    if (next < len) {
+    if (typeof next === "number" && typeof len === "number" && next < len) {
       setDisabledNext(false);
     }
   }, [next]);
@@ -78,13 +75,13 @@ const AddTop = () => {
       setDisabledPrev(true);
       setDisabledNext(false);
     }
-    if (prev < len) {
+    if (typeof prev === "number" && typeof len === "number" && prev < len) {
       setDisabledNext(false);
     }
     if (next == len) {
       setDisabledNext(true);
     }
-    if (next > 8 && next == len - 4) {
+    if (typeof len === "number" && next > 8 && next == len - 4) {
       setDisabledPrev(true);
       setDisabledNext(true);
     }

@@ -1,5 +1,4 @@
-import Image from "../../common/Image";
-import TextLink from "../../common/TextLink";
+import { Link } from "react-router-dom";
 import {
   BgForAnimation,
   ContainerGrid,
@@ -30,7 +29,7 @@ const Discover = ({ id }: { id: string }) => {
               <WNode className="service-image">
                 <RevealImageTrigger>
                   <img
-                    src="public/images/services/462620438_939996391507390_3919165551938091982_n.jpg"
+                    src="/images/services/462620438_939996391507390_3919165551938091982_n.jpg"
                     alt="Obras Publicas Atotonilco"
                     className="cover-image fit-top paralax-image"
                   />
@@ -48,7 +47,9 @@ const Discover = ({ id }: { id: string }) => {
                   <OrnamentVerticalDot />
                   <OrnamentVerticalLine />
                 </OrnamentVertical>
-                <TextLink text="Visitar Área" href="/transparencia/obras" />
+                <Link className="link-with-arrows" to="/transparencia/obras">
+                  Visitar Area
+                </Link>
               </WNode>
             </ContainerGrid>
           </ServiceItem>

@@ -52,7 +52,6 @@ export default function BannerTable({ onClickUpload }: BannerTableProps) {
       headerName: "Acciones",
       sortable: false,
       renderCell: (params) => {
-        console.log(params);
         return (
           <>
             <IconButton

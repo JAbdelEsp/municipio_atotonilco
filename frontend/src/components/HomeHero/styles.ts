@@ -8,7 +8,7 @@ export const HomeHeroW = styled("div")`
   display: flex;
   position: relative;
   overflow: hidden;
-  background-image: url("./public/images/main/IMG_0912.jpg");
+  background-image: url("./images/main/IMG_0912.jpg");
   background-size: cover;
   margin-top: 5em;
 `;

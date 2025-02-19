@@ -1,5 +1,4 @@
 import { useState } from "react";
-import DropDown from "../../common/DropDown";
 import { FieldGrid, TextArea, TextField, Wform } from "./styles";
 import { Radio, RadioChangeEvent } from "antd";
 import { createBuzon } from "../../slices/comptrollerSlice";

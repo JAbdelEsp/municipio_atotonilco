@@ -7,7 +7,7 @@ import FeaturedPosts from "../../components/FeaturedPosts";
 import useFetch from "../../services";
 import { NewsData } from "../../common/types";
 import Preloader from "../../components/Preloader";
-import NotFound from "../404";
+import NotFound from "../Component404";
 import Ticker from "../../components/Ticker";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { useEffect } from "react";
@@ -21,7 +21,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTextBanner());
   }, [dispatch]);
-  // const publicInfo = useAppSelector((state) => state.comptroller.publicInfo);
   let content;
   const ScrollDown = () => {
     const element = document.getElementById("areas") as HTMLDivElement;

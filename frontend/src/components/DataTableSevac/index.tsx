@@ -18,9 +18,7 @@ const DataTableSevac = () => {
             setData([]);
           }
         });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const columns: TableColumnsType<DataTypeSevac> = [
     {

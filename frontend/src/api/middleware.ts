@@ -3,12 +3,11 @@ import {
   showNotification,
   NotificationType,
 } from "../slices/notificationSlice";
-import { closeModal, openModal } from "../slices/modalSlice";
 
 export const axiosMiddleware: Middleware =
   ({ dispatch }) =>
   (next) =>
-  async (action) => {
+  async (action: any) => {
     if (action.type.endsWith("/rejected")) {
       const errorMessage = action.payload || "Ocurrió un error!";
       dispatch(

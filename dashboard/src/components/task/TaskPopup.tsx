@@ -77,19 +77,18 @@ const TaskPopup = ({ title, task, setTask, onSubmit }: TaskPopupProps) => {
   useEffect(() => {
     setTask({
       ...task,
-      id_news: "N-" + (tasks.length - 1 + 2),
+      id_news: "N" + (tasks.length - 1 + 2),
     });
   }, []);
   const handleChange = (html: any) => {
     setText(html);
   };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     formData.append("path", "news");
     formData.append("views", "0");
     formData.append("date", date.toLocaleString("en-US"));
-    formData.append("id_news", "N" + (tasks.length - 1));
     formData.append("content", text);
     formData.append("image", file.name);
     await dispatch(createTask(formData));
@@ -116,17 +115,16 @@ const TaskPopup = ({ title, task, setTask, onSubmit }: TaskPopupProps) => {
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <Grid container>
             <Grid item xs={12} mt={2}>
+              <input
+                type="text"
+                name="id_news"
+                hidden
+                value={"N" + (tasks.length === 0 ? tasks.length : tasks.length)}
+              />
               <FormTextField label="Titulo" name="title" isRequired={true} />
             </Grid>
             <Grid item xs={12} mt={2}>
               <FormTextField label="Autor" name="author" isRequired={true} />
-            </Grid>
-            <Grid item xs={12} mt={2}>
-              <FormTextField
-                label="Tiempo de Lectura"
-                name="time"
-                isRequired={true}
-              />
             </Grid>
             <Grid item xs={12} mt={2}>
               <FormTextField

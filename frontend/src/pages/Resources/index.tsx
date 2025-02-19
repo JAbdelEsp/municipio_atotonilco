@@ -2,7 +2,7 @@ import DataTableResources from "../../components/DataTableResources";
 import HeroCms from "../../components/HeroCms";
 import Preloader from "../../components/Preloader";
 import useFetch from "../../services";
-import NotFound from "../404";
+import NotFound from "../Component404";
 
 const Resources = () => {
   const { data, status, error } = useFetch(

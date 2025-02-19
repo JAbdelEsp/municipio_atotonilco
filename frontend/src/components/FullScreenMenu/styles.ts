@@ -11,7 +11,17 @@ export const FullMenuContainer = styled("div")`
     right: 0%;
     overflow: hidden;
     animation: slideOut 0.6s ease-in-out;
-    
+  }
+  .menu-sesondary-link {
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    color: #040404;
+    text-align: left;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.1em;
+    transition: border-color 0.2s;
   }
   .fullscreen-menu {
     z-index: 99999;
@@ -124,18 +134,6 @@ export const FullMenuContainer = styled("div")`
               font-size: 0.8em;
               font-weight: 700;
               line-height: 1em;
-
-              .menu-sesondary-link {
-                border-bottom: 2px solid rgba(255, 255, 255, 0);
-                color: #eaeaf6;;
-                text-align: center;
-                padding-top: 1vh;
-                padding-bottom: 1vh;
-                font-size: 1.5em;
-                font-weight: 700;
-                line-height: 1.1em;
-                transition: border-color 0.2s;
-              }
             }
           }
         }

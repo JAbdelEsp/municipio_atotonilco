@@ -1,7 +1,6 @@
 import { TextPara, TickerContainer, TickerContent } from "./styles";
 
 const Ticker = ({ message }: any) => {
-  console.log(message);
   return (
     <TickerContainer>
       <TickerContent>

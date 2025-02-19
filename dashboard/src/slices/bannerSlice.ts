@@ -287,7 +287,6 @@ export const deleteTextBanner = createAsyncThunk(
 export const deleteBanner = createAsyncThunk(
   "banner/deleteOne",
   async (params: any, { rejectWithValue }) => {
-    console.log(params);
     try {
       const response = await axiosInstance.delete(
         `/banner/delete/?id=${params.id}&title=${params.title}`
@@ -308,7 +307,6 @@ export const deleteBanner = createAsyncThunk(
 export const deleteVideo = createAsyncThunk(
   "video/deleteOne",
   async (params: any, { rejectWithValue }) => {
-    console.log(params);
     try {
       const response = await axiosInstance.delete(
         `/video/delete/?id=${params.id}&title=${params.title}`

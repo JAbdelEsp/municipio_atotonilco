@@ -24,7 +24,7 @@ const DataTableTransparency = () => {
     }
   };
   const url = import.meta.env.VITE_API_URL + "transparency/records";
-  const { data, error, status } = useFetch<DataType[]>(url);
+  const { data } = useFetch<DataType[]>(url);
   let urlLoc = import.meta.env.VITE_API_URL + "public/files/";
   const columns: TableColumnsType<DataType> = [
     {

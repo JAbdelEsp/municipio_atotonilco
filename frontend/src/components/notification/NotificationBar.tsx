@@ -24,6 +24,7 @@ const NotificationBar = () => {
     if (reason === "clickaway") {
       return;
     }
+    console.log(event);
     dispatch(hideNotification());
   };
 

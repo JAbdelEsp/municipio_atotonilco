@@ -126,10 +126,8 @@ const Sending = async (name, email, folio) => {
       subject: `Gracias por utilizar el buzón de quejas y sugerencias del Municipio de Atotonilco el Grande`,
       html: htmlToSend,
     };
-    console.log(mailOptions);
     try {
       const response = await transporter.sendMail(mailOptions);
-      console.log(response);
     } catch (err) {}
   });
 };

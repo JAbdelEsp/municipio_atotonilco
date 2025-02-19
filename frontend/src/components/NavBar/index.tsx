@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { SvgIcon } from "../../common/SvgIcon";
 import {
-  DropDownLink,
   DropDownList,
   DropDownToggle,
   NavBar,
@@ -11,6 +10,7 @@ import {
   NavLinkImageWrapper,
   TextBlock,
 } from "./styles";
+import { Link } from "react-router-dom";
 
 const NavBarC = () => {
   const [open, setOpen] = useState(false);
@@ -31,36 +31,36 @@ const NavBarC = () => {
         <DropDownList
           className={open ? `w--open w-dropdown-list` : "w-dropdown-list"}
         >
-          <DropDownLink href="/transparencia/contraloria">
+          <Link className="link" to="/transparencia/contraloria">
             <NavLinkImageWrapper>
               <SvgIcon src="" width="" height="" />
             </NavLinkImageWrapper>
             <TextBlock>Contraloría</TextBlock>
-          </DropDownLink>
-          <DropDownLink href="/transparencia/obras">
+          </Link>
+          <Link className="link" to="/transparencia/obras">
             <NavLinkImageWrapper>
               <SvgIcon src="" width="" height="" />
             </NavLinkImageWrapper>
             <TextBlock>Obras Públicas</TextBlock>
-          </DropDownLink>
-          <DropDownLink href="/transparencia/tesoreria">
+          </Link>
+          <Link className="link" to="/transparencia/tesoreria">
             <NavLinkImageWrapper>
               <SvgIcon src="" width="" height="" />
             </NavLinkImageWrapper>
             <TextBlock>Tesorería</TextBlock>
-          </DropDownLink>
-          <DropDownLink href="/direcciones/#PlaneacionInfoPub">
+          </Link>
+          <Link className="link" to="/direcciones/#PlaneacionInfoPub">
             <NavLinkImageWrapper>
               <SvgIcon src="" width="" height="" />
             </NavLinkImageWrapper>
             <TextBlock>Dirección de Planeación</TextBlock>
-          </DropDownLink>
-          <DropDownLink href="/transparencia/archivo">
+          </Link>
+          <Link className="link" to="/transparencia/archivo">
             <NavLinkImageWrapper>
               <SvgIcon src="" width="" height="" />
             </NavLinkImageWrapper>
             <TextBlock>Archivo Municipal</TextBlock>
-          </DropDownLink>
+          </Link>
         </DropDownList>
       </NavDropDown>
     </NavBar>

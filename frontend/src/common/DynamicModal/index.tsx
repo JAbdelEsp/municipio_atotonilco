@@ -1,5 +1,4 @@
 import { Col, Row } from "antd";
-import Image from "../Image";
 import { SvgIcon } from "../SvgIcon";
 import {
   ButtonIconMain,
@@ -9,7 +8,6 @@ import {
   Label,
   ModalContent,
   ModalOverlay,
-  RecentMailFromWrap,
   StyledInput,
   SubscribeModal,
   SubscribeModalWrapper,
@@ -79,7 +77,7 @@ const DynamicModal = ({ show, set, query, onSubmit, onHandleChange }: any) => {
                 {query !== undefined &&
                   JSON.parse(query.requeriment).map(
                     (item: any, key: number) => (
-                      <Col span={24}>
+                      <Col span={24} key={key}>
                         <Container>
                           <Label>{item}</Label>
                           <StyledInput

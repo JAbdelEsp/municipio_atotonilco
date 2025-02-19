@@ -39,16 +39,14 @@ import {
 } from "./styles";
 import useFetch from "../../services";
 import Preloader from "../Preloader";
-import { useState } from "react";
 
-const Article = ({ id, values }: { id: string; values: any }) => {
+const Article = ({ values }: { id: string; values: any }) => {
   let content: any;
-  const [pictures, setPictures] = useState<any>();
   const options = {
     method: "PUT",
   };
   useFetch(
-    import.meta.env.BASE_URL +
+    import.meta.env.VITE_API_URL +
       `news/views?id_news=${values[0].id_news}&views=${values[0].views + 1}`,
     options
   );
@@ -64,7 +62,7 @@ const Article = ({ id, values }: { id: string; values: any }) => {
   };
 
   const { data, status, error } = useFetch<any>(
-    import.meta.env.BASE_URL + `news/pictures?id_news=${values[0].id_news}`
+    import.meta.env.VITE_API_URL + `news/pictures?id_news=${values[0].id_news}`
   );
   if (status === "loading") {
     content = <Preloader />;
@@ -77,12 +75,13 @@ const Article = ({ id, values }: { id: string; values: any }) => {
         <div className="photoswip">
           {data.map((item: any, key: number) => (
             <Item
+              key={key}
               original={
-                import.meta.env.BASE_URL +
+                import.meta.env.VITE_API_URL +
                 `public/uploads/${values[0].title}/${item.pic}`
               }
               thumbnail={
-                import.meta.env.BASE_URL +
+                import.meta.env.VITE_API_URL +
                 `public/uploads/${values[0].title}/${item.pic}`
               }
               width="1340"
@@ -94,7 +93,7 @@ const Article = ({ id, values }: { id: string; values: any }) => {
                   ref={ref}
                   onClick={open}
                   src={
-                    import.meta.env.BASE_URL +
+                    import.meta.env.VITE_API_URL +
                     `public/uploads/${values[0].title}/${item.pic}`
                   }
                 />

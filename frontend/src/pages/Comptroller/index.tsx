@@ -1,7 +1,6 @@
-import { Col, Row, Table, TableColumnsType } from "antd";
+import { Table, TableColumnsType } from "antd";
 import HeroCms from "../../components/HeroCms";
 import NavBarC from "../../components/NavBar";
-import { DataType } from "../../common/types";
 import {
   BgForAnimation,
   CustomList,
@@ -27,11 +26,9 @@ import { getComptroller, getPublicInfo } from "../../slices/comptrollerSlice";
 import ComplaintsMailBox from "../../components/ComplaintsMail";
 
 const Comptroller = () => {
-  // const { data, status, error } = useFetch("");
   const dispatch = useAppDispatch();
   const comptroller = useAppSelector((state) => state.comptroller.comptroller);
   const publicInfo = useAppSelector((state) => state.comptroller.publicInfo);
-  const comptrollerStatus = useAppSelector((state) => state.comptroller.status);
   const ScrollDown = () => {
     const element = document.getElementById("data") as HTMLDivElement;
     element.scrollIntoView({
@@ -123,13 +120,15 @@ const Comptroller = () => {
       },
     },
   ];
+
   useEffect(() => {
     dispatch(getComptroller());
     dispatch(getPublicInfo());
   }, [dispatch]);
+
   return (
     <>
-      <HeroCms scrollDown={ScrollDown} title="Contraloria" description="" />
+      <HeroCms scrollDown={ScrollDown} title="Contraloría" description="" />
       <NavBarC />
       <Section className="with-gradient-bg" id="noticias">
         <WLayout className="form-grid">
@@ -150,7 +149,7 @@ const Comptroller = () => {
           </FormBlock>
           <FormBlock className="is-2nd">
             <CustomList>
-              {publicInfo &&
+              {publicInfo.length > 0 &&
                 publicInfo.map((item: any) => (
                   <CustomListItem>
                     <CustomListContent>
@@ -182,7 +181,7 @@ const Comptroller = () => {
         <Gallery options={optionsSlide}>
           <div className="photoswip">
             <Item
-              original="/public/images/contraloria/CÓDIGO DE CONDUCTA GENERAL.jpg"
+              original="/images/contraloria/CÓDIGO DE CONDUCTA GENERAL.jpg"
               thumbnail=""
               width="1340"
               height="768"
@@ -196,12 +195,12 @@ const Comptroller = () => {
                   }}
                   ref={ref}
                   onClick={open}
-                  src="/public/images/contraloria/CÓDIGO DE CONDUCTA GENERAL.jpg"
+                  src="/images/contraloria/CÓDIGO DE CONDUCTA GENERAL.jpg"
                 />
               )}
             </Item>
             <Item
-              original="/public/images/contraloria/CÓDIGO DE ÉTICA GENERAL.jpg"
+              original="/images/contraloria/CÓDIGO DE ÉTICA GENERAL.jpg"
               thumbnail=""
               width="1340"
               height="768"
@@ -215,13 +214,18 @@ const Comptroller = () => {
                   }}
                   ref={ref}
                   onClick={open}
-                  src="/public/images/contraloria/CÓDIGO DE ÉTICA GENERAL.jpg"
+                  src="/images/contraloria/CÓDIGO DE ÉTICA GENERAL.jpg"
                 />
               )}
             </Item>
           </div>
         </Gallery>
-        <Table columns={columns} dataSource={comptroller ? comptroller : []} />
+        {comptroller.length > 0 && (
+          <Table
+            columns={columns}
+            dataSource={comptroller ? comptroller : []}
+          />
+        )}
       </DataTableWrapper>
     </>
   );

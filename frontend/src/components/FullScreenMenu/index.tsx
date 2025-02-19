@@ -1,5 +1,6 @@
 import { FullMenuContainer } from "./styles";
 import { SvgIcon } from "../../common/SvgIcon";
+import { Link } from "react-router-dom";
 const FullScreenMenu = ({
   toggleMenu,
   visible,
@@ -19,7 +20,7 @@ const FullScreenMenu = ({
               <div role="list" className="menu-social-list w-dyn-items">
                 <div role="listitem" className="menu-social-item w-dyn-item">
                   <a
-                    href="#"
+                    href="https://www.facebook.com/AyuntamientoAtotonilcoElGrande"
                     target="_blank"
                     className="menu-social-link w-inline-block"
                   >
@@ -43,28 +44,31 @@ const FullScreenMenu = ({
               }}
             >
               <div className="secondary-links-block">
-                <p className="menu-small-text">General</p>
-                <a href="/" className="menu-sesondary-link">
-                  Inicio
+                <p className="menu-small-text">Contacto</p>
+                <a href="tel:7747430040" className="menu-sesondary-link">
+                  774 7430440
                 </a>
-                <a href="/contacto" className="menu-sesondary-link">
-                  Contacto
+                <a
+                  href="mailto:secretaria.municipal@atotonilcoelgrande.gob.mx"
+                  className="menu-sesondary-link"
+                >
+                  Secretaria Municipal
                 </a>
               </div>
               <div className="secondary-links-block">
-                <p className="menu-small-text">Contacto</p>
-                <a href="#" className="menu-sesondary-link">
-                  Email
+                <p className="menu-small-text">Números de Emergencia</p>
+                <a href="tel:7747432002" className="menu-sesondary-link">
+                  Seguridad Pública Municipal y Protección Civil
                 </a>
-                <a href="#" className="menu-sesondary-link">
-                  Teléfono
+                <a href="tel:911" className="menu-sesondary-link">
+                  Emergencias
                 </a>
               </div>
             </div>
             <div className="menu-main-links">
-              <a
+              <Link
                 data-w-id="6dce1659-1f78-7d00-7eed-5d600171ac2e"
-                href="/"
+                to="/"
                 aria-current="page"
                 className="menu-link w-inline-block w--current"
               >
@@ -84,10 +88,10 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 data-w-id="9119eb55-b515-23ab-3ca6-d7a893b67ca0"
-                href="/transparencia"
+                to="/transparencia"
                 className="menu-link w-inline-block"
               >
                 <div
@@ -106,10 +110,10 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 data-w-id="9119eb55-b515-23ab-3ca6-d7a893b67ca0"
-                href="/direcciones/#PlaneacionInfoPub"
+                to="/direcciones/#PlaneacionInfoPub"
                 className="menu-link w-inline-block"
               >
                 <div
@@ -128,10 +132,10 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
-                href="/tramites"
+                to="/tramites"
                 className="menu-link w-inline-block"
               >
                 <div
@@ -142,7 +146,7 @@ const FullScreenMenu = ({
                     transformStyle: "preserve-3d",
                   }}
                 >
-                  Tramites y Servicios
+                  Trámites y Servicios
                 </div>
                 <img
                   src="https://cdn.prod.website-files.com/668bd563537f10fdc41abec9/668bd563537f10fdc41ac01e_arrow_forward_24dp_FILL0_wght600_GRAD0_opsz24.svg"
@@ -150,10 +154,10 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
-                href="/noticias"
+                to="/noticias"
                 className="menu-link w-inline-block"
               >
                 <div
@@ -172,10 +176,10 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
-                href="/municipio"
+                to="/municipio"
                 className="menu-link w-inline-block"
               >
                 <div
@@ -194,7 +198,7 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </a>
+              </Link>
             </div>
           </div>
           <div

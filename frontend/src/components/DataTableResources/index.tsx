@@ -8,7 +8,7 @@ import useFetch from "../../services";
 import OnlineButton from "../../common/OnlineButton";
 import DynamicModal from "../../common/DynamicModal";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
-import { Create, Send } from "../../slices/proceduresSlice";
+import { Create } from "../../slices/proceduresSlice";
 type DataTableProps = {
   dataSource: any[];
 };
@@ -16,20 +16,14 @@ const DataTableResources = (dataSource: DataTableProps) => {
   const dispatch = useAppDispatch();
   const [state, setState] = useState(new Map<string, any>());
   const [isShow, setIsShow] = useState(false);
-  const [failed, setFailed] = useState<null | boolean>(null);
   const [query, setQuery] = useState<any>();
   const [values, setValues] = useState<any[]>();
-  const { data, status, error } = useFetch(
-    import.meta.env.VITE_API_URL + "areas/records"
-  );
+  const { data } = useFetch(import.meta.env.VITE_API_URL + "areas/records");
   let content;
   const proceduresStatus = useAppSelector((state) => state.procedures.status);
-  const sendStatus = useAppSelector((state) => state.send.status);
 
   useEffect(() => {
-    console.log(proceduresStatus);
     if (proceduresStatus === "failed") {
-      setFailed(true);
     }
   }, [proceduresStatus]);
 
@@ -53,9 +47,7 @@ const DataTableResources = (dataSource: DataTableProps) => {
       const formData = new FormData(e.currentTarget);
       await dispatch(Create(formData));
       setIsShow(false);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const columns: TableColumnsType<DataType> = [
     {
@@ -94,7 +86,7 @@ const DataTableResources = (dataSource: DataTableProps) => {
               onClick();
               setQuery(row);
             }}
-            data={row}
+            // data={row}
           />
         ) : (
           <>No Disponible en Línea</>
