@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { HomeHeroVideoContainer } from "./styles";
 import { getVideo } from "../../slices/bannerSlices";
 
-const HomeHeroVideo = ({ cls }: PropsVideoContainer) => {
+const HomeHeroVideo = ({ cls, mute }: PropsVideoContainer) => {
   const dispatch = useAppDispatch();
   const video = useAppSelector((state) => state.banners.video);
   useEffect(() => {
@@ -25,9 +25,9 @@ const HomeHeroVideo = ({ cls }: PropsVideoContainer) => {
               item.video
             }
             autoPlay={true}
-            muted={false}
+            muted={mute}
             loop={true}
-            controls={false}
+            controls={mute}
           />
         ))}
     </HomeHeroVideoContainer>

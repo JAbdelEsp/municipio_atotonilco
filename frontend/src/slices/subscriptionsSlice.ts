@@ -18,7 +18,7 @@ export const initialState: SubscriptionsState = {
   error: null,
 };
 
-export const Create = createAsyncThunk(
+export const CreateSubscription = createAsyncThunk(
   "subscriptions/create",
   async (payload: any, { rejectWithValue }) => {
     const data = {
@@ -72,11 +72,11 @@ export const subscriptionsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(Create.pending, (state) => {
+      .addCase(CreateSubscription.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(Create.rejected, (state) => {
+      .addCase(CreateSubscription.rejected, (state) => {
         state.status = "failed";
         state.error = "Hubo un error al realizar el registro!";
       });

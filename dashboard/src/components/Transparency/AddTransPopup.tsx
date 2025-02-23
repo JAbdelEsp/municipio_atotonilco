@@ -25,7 +25,7 @@ const AddTransPopup = ({}: AddTransPopupProps) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     await dispatch(createTrans(formData));
-    await dispatch(getTrans());
+    // await dispatch(getTrans());
     dispatch(closeModal());
   };
 

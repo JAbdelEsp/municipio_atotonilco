@@ -9,13 +9,12 @@ export const TickerContainer = styled("div")`
   white-space: nowrap;
   overflow: hidden;
   background: #be1622;
-  opacity: 0.6;
   @keyframes Slide {
-    from {
-      transform: translateX(100%);
+    0% {
+      -webkit-transform: translateX(100%);
     }
-    to {
-      transform: translateX(-100%);
+    100% {
+      -webkit-transform: translateX(-280%);
     }
   }
 `;
@@ -23,7 +22,7 @@ export const TickerContainer = styled("div")`
 export const TickerContent = styled("div")`
   display: flex;
   padding-top: 16px;
-  animation: Slide 45s linear infinite;
+  animation: Slide 36s linear infinite;
 `;
 
 export const TextPara = styled("p")`

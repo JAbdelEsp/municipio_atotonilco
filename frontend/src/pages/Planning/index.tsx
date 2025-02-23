@@ -5,6 +5,9 @@ import HeroCms from "../../components/HeroCms";
 import useFetch from "../../services";
 import Preloader from "../../components/Preloader";
 const Planning = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [info, setInfo] = useState([]);
   let content;
   useEffect(() => {

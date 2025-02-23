@@ -33,6 +33,9 @@ const Header = () => {
               <CustomNavLink onClick={() => goTo("/")}>
                 <Span>Inicio</Span>
               </CustomNavLink>
+              <CustomNavLink onClick={() => goTo("/gobierno")}>
+                <Span>Gobierno 2024 - 2027</Span>
+              </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/sevac")}>
                 <Span>SEVAC</Span>
               </CustomNavLink>

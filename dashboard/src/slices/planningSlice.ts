@@ -129,7 +129,7 @@ export const createPlanning = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     const data = {
       year: payload.get("year"),
-      table: payload.get("table"),
+      table_name: payload.get("table"),
       file_name: payload.get("file_name"),
       user: localStorage.getItem("user"),
       date: date.toLocaleString("en-US"),

@@ -125,10 +125,7 @@ export const createTrans = createAsyncThunk(
       date: date.toLocaleString("en-US"),
     };
     try {
-      const response = await axiosInstance.post(
-        BACKEND_BASE_URL + "/transparency/register",
-        data
-      );
+      const response = await axiosInstance.post("/transparency/register", data);
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {

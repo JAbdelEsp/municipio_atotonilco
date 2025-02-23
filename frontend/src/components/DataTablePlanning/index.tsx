@@ -43,6 +43,44 @@ const DataTablePlanning = (data: any) => {
     }
   };
 
+  const columnsEOT: TableColumnsType<DataType> = [
+    {
+      title: "Nombre",
+      dataIndex: "file_name",
+    },
+    {
+      title: "Año",
+      dataIndex: "year",
+    },
+    {
+      title: "Archivos",
+      dataIndex: "firstTrimester",
+      render: (dataIndex) => {
+        return (
+          dataIndex && (
+            <ul style={{ listStyle: "none" }}>
+              {JSON.parse(dataIndex).map((item: any, key: number) => (
+                <li key={key}>
+                  <a
+                    href={import.meta.env.VITE_API_URL + item}
+                    target="_blank"
+                    download
+                  >
+                    <SvgIcon
+                      src="download-square-svgrepo-com.svg"
+                      width="30px"
+                      height=""
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        );
+      },
+    },
+  ];
+
   const columns: TableColumnsType<DataType> = [
     {
       title: "Nombre",
@@ -164,35 +202,51 @@ const DataTablePlanning = (data: any) => {
   return (
     <DataTableWrapper>
       <h3>PBR</h3>
-      <Table columns={columns} dataSource={pbr} />
+      <Table columns={columns} dataSource={pbr} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Informes ASEH Entregas Trimestrales</h3>
-      <Table columns={columns} dataSource={aseh} />
+      <Table
+        columns={columns}
+        dataSource={aseh}
+        pagination={{ pageSize: 10 }}
+      />
       <h3 className="pd-1">Expedientes Técnicos de Obras</h3>
-      <Table columns={columns} dataSource={eto} />
+      <Table
+        columns={columnsEOT}
+        dataSource={eto}
+        pagination={{ pageSize: 10 }}
+      />
       <h3 className="pd-1">Proyectos FISMDF</h3>
-      <Table columns={columns} dataSource={fismdf} />
+      <Table
+        columns={columns}
+        dataSource={fismdf}
+        pagination={{ pageSize: 10 }}
+      />
       <h3 className="pd-1">
         Fondo de Aportaciones para La Infrestructura Social (FAISM)
       </h3>
-      <Table columns={columns} dataSource={faism} />
+      <Table
+        columns={columns}
+        dataSource={faism}
+        pagination={{ pageSize: 10 }}
+      />
       <h3 className="pd-1">Programas de Evaluación PAE</h3>
-      <Table columns={columns} dataSource={pae} />
+      <Table columns={columns} dataSource={pae} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Inventarios</h3>
-      <Table columns={columns} dataSource={inv} />
+      <Table columns={columns} dataSource={inv} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Planeación</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Programación</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Presupuestación</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Ejercicio del Gasto</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Evaluación</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Rendición de Cuentas</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Mejores Prácticas</h3>
-      <Table columns={columns} dataSource={[]} />
+      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
     </DataTableWrapper>
   );
 };

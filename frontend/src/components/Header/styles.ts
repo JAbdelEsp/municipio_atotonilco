@@ -152,6 +152,7 @@ export const CustomNavLink = styled(NavLink)`
   position: relative;
   top: 1px;
   overflow: hidden;
+  cursor: ponter;
 `;
 
 export const Span = styled("span")`

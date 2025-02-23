@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import HeroCms from "../../components/HeroCms";
 import Municipio from "../../components/Municipio";
 
 const TuMunicipio = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const ScrollDown = () => {
     const element = document.getElementById("data") as HTMLDivElement;
     element.scrollIntoView({
@@ -14,7 +18,7 @@ const TuMunicipio = () => {
     <>
       <HeroCms
         scrollDown={ScrollDown}
-        title="Tú Municipio"
+        title="Tu Municipio"
         description="Atotonilco el Grande"
       />
       <Municipio />

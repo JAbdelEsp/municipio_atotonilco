@@ -19,6 +19,7 @@ const proceduresRoutes = require("./routes/proceduresRoutes");
 const subscribeRoutes = require("./routes/subscribeRoutes");
 const comptrallorRoutes = require("./routes/contraloriaRoutes");
 const bannerRoutes = require("./routes/bannerRoutes");
+const directionsRoutes = require("./routes/directionsRoutes");
 const app = express();
 // función middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
@@ -40,7 +41,8 @@ app.use(
   proceduresRoutes,
   subscribeRoutes,
   comptrallorRoutes,
-  bannerRoutes
+  bannerRoutes,
+  directionsRoutes
 );
 
 connectDB();

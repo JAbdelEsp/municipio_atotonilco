@@ -16,7 +16,6 @@ import {
   InnerDateBox,
   InnerTitle,
   MailBoxWrap,
-  MinDesPara,
   MinimumDescription,
   ReadBox,
   ReadyContent,
@@ -39,8 +38,14 @@ import {
 } from "./styles";
 import useFetch from "../../services";
 import Preloader from "../Preloader";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import { CreateSubscription } from "../../slices/subscriptionsSlice";
+import { useState } from "react";
 
 const Article = ({ values }: { id: string; values: any }) => {
+  const dispatch = useAppDispatch();
+  const [email, setEmail] = useState("");
+  const date = new Date();
   let content: any;
   const options = {
     method: "PUT",
@@ -50,7 +55,6 @@ const Article = ({ values }: { id: string; values: any }) => {
       `news/views?id_news=${values[0].id_news}&views=${values[0].views + 1}`,
     options
   );
-
   const optionsSlide = {
     arrowPrev: false,
     arrowNext: false,
@@ -59,6 +63,14 @@ const Article = ({ values }: { id: string; values: any }) => {
     counter: false,
     bgOpacity: 0.2,
     padding: { top: 20, bottom: 40, left: 100, right: 100 },
+  };
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    formData.append("date", date.toLocaleDateString("en-US"));
+    await dispatch(CreateSubscription(formData));
+    setEmail("");
   };
 
   const { data, status, error } = useFetch<any>(
@@ -78,11 +90,11 @@ const Article = ({ values }: { id: string; values: any }) => {
               key={key}
               original={
                 import.meta.env.VITE_API_URL +
-                `public/uploads/${values[0].title}/${item.pic}`
+                `public/uploads/${values[0].id_news}/${item.pic}`
               }
               thumbnail={
                 import.meta.env.VITE_API_URL +
-                `public/uploads/${values[0].title}/${item.pic}`
+                `public/uploads/${values[0].id_news}/${item.pic}`
               }
               width="1340"
               height="768"
@@ -94,7 +106,7 @@ const Article = ({ values }: { id: string; values: any }) => {
                   onClick={open}
                   src={
                     import.meta.env.VITE_API_URL +
-                    `public/uploads/${values[0].title}/${item.pic}`
+                    `public/uploads/${values[0].id_news}/${item.pic}`
                   }
                 />
               )}
@@ -118,9 +130,7 @@ const Article = ({ values }: { id: string; values: any }) => {
                   <InnerDateBox>
                     <RegularPara>{item.date}</RegularPara>
                   </InnerDateBox>
-                  <ReadBox>
-                    <MinDesPara>{item.time} Lectura</MinDesPara>
-                  </ReadBox>
+                  <ReadBox></ReadBox>
                 </InnerCardTopBox>
                 <WriterTitleBoxWrap>
                   <MinimumDescription>Escrita por:</MinimumDescription>
@@ -129,7 +139,7 @@ const Article = ({ values }: { id: string; values: any }) => {
               </DateBoxWrap>
               <BlogSingleDivider />
               <Image
-                src={item.title + "/" + item.image}
+                src={item.id_news + "/" + item.image}
                 location={item.path}
                 cls="blog-single-image"
                 alt={item.title}
@@ -158,18 +168,25 @@ const Article = ({ values }: { id: string; values: any }) => {
                 </RecentContentBox>
                 <MailBoxWrap>
                   <RecentFromBlock>
-                    <form action="">
+                    <form onSubmit={onSubmit} autoComplete="off">
                       <RecentMailFromWrap>
-                        <input className="input-field w-input" type="email" />
+                        <input
+                          className="input-field w-input"
+                          type="email"
+                          name="email"
+                          value={email}
+                          onChange={(e: any) => setEmail(e.target.value)}
+                          required
+                        />
                         <input
                           className="subscribe-button"
                           type="submit"
-                          value="Suscribete!"
+                          value="Suscríbete!"
                         />
                       </RecentMailFromWrap>
                     </form>
                     <WFormDone>
-                      <div>Gracias, hemos recibido tu suscripcion!</div>
+                      <div>Gracias, hemos recibido tu suscripción!</div>
                     </WFormDone>
                     <WFormFail>Ooopss! Algo inesperado ha ocurrido!</WFormFail>
                   </RecentFromBlock>

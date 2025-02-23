@@ -28,7 +28,7 @@ const DataTableTransparency = () => {
   let urlLoc = import.meta.env.VITE_API_URL + "public/files/";
   const columns: TableColumnsType<DataType> = [
     {
-      title: "Fraccion",
+      title: "Fracción",
       dataIndex: "fraction",
     },
     {

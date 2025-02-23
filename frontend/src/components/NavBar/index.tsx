@@ -35,7 +35,7 @@ const NavBarC = () => {
             <NavLinkImageWrapper>
               <SvgIcon src="" width="" height="" />
             </NavLinkImageWrapper>
-            <TextBlock>Contraloría</TextBlock>
+            <TextBlock>Órgano Interno de Control</TextBlock>
           </Link>
           <Link className="link" to="/transparencia/obras">
             <NavLinkImageWrapper>

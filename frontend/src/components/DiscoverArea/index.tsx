@@ -24,8 +24,8 @@ const DiscoverArea = (data: any) => {
             <FormImage>
               <RevealImageTrigger>
                 <img
-                  src="/images/planeacion/ORGANIGRAMA_PLANEACIÓN.jpg"
-                  alt=""
+                  src="/images/planeacion/ORGANIGRAMA_PLANEACION.jpg"
+                  alt="organigrama planeacion atotonilco el grande"
                   className="cover-image fit-top cover"
                 />
                 <BgForAnimation />

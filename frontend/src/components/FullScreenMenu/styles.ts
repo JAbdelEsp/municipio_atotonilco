@@ -81,6 +81,7 @@ export const FullMenuContainer = styled("div")`
               display: flex;
               position: relative;
               overflow: hidden;
+              cursor: pointer;
               .icon {
                 border-radius: 3px;
               }
@@ -163,6 +164,7 @@ export const FullMenuContainer = styled("div")`
               height 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
             display: flex;
             overflow: hidden;
+            cursor: pointer;
             &:hover {
                 opacity: 1;
                 border-bottom-width: 5px;

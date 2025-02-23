@@ -35,7 +35,7 @@ export const Section = styled("section")`
     border: 1px solid #ccc;
     width: 100%;
     height: 38px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     padding: 8px 12px;
     font-size: 14px;
     line-height: 1.42857;

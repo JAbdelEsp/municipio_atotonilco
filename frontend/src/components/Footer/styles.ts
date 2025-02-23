@@ -1,12 +1,11 @@
 import styled from "styled-components";
 export const Footer = styled("section")`
   background-color: var(--dark);
-  min-height: 100vh;
   padding-left: 2%;
   padding-right: 2%;
+  padding-bottom: 2%;
   position: relative;
   overflow: hidden;
-  // margin-top: 3em;
   .banner {
     padding-top: 130px;
     padding-bottom: 0;
@@ -24,6 +23,16 @@ export const Footer = styled("section")`
     position: relative;
     overflow: hidden;
   }
+  @media screen and (max-width: 479px) {
+    .image {
+      a {
+        img {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
   @media screen and (max-width: 991px) {
     min-height: auto;
     padding-bottom: 30px;
@@ -32,6 +41,15 @@ export const Footer = styled("section")`
 export const BannerSection = styled("div")`
   padding-top: 120px;
   padding-bottom: 120px;
+  position: relative;
+  @media screen and (max-width: 991px) {
+    padding-top: 50px;
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+`;
+
+export const BannerSectionSecond = styled("div")`
   position: relative;
   @media screen and (max-width: 991px) {
     padding-top: 50px;

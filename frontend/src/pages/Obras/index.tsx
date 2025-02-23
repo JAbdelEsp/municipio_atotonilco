@@ -1,8 +1,12 @@
+import { useEffect } from "react";
 import DataTableObras from "../../components/DataTableObras";
 import HeroCms from "../../components/HeroCms";
 import NavBarC from "../../components/NavBar";
 
 const Obras = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const ScrollDown = () => {
     const element = document.getElementById("data") as HTMLDivElement;
     element.scrollIntoView({

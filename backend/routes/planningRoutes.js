@@ -53,7 +53,6 @@ const uploadFile = multer({
     }
     cb(null, file.originalname);
   },
-  limits: { fileSize: 3145728 },
 });
 
 const upload = multer({
@@ -84,14 +83,13 @@ const upload = multer({
     }
     cb(null, file.originalname);
   },
-  limits: { fileSize: 3145728 },
 });
 router.get("/planning/records", RecordsOrderBy);
 router.get("/planning/records/public", RecordsPublic);
 router.get("/planning/files", FilesOrderBy);
 router.post("/planning/register", Register);
 router.post("/planning/register/public", upload.single("file"), RegisterPublic);
-router.put("/planning/update", uploadFile.array("file", 20), Update);
+router.put("/planning/update", uploadFile.array("file", 60), Update);
 router.delete("/planning/delete", Delete);
 router.delete("/public/delete", DeletePublic);
 module.exports = router;

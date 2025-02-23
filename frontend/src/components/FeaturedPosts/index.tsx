@@ -73,7 +73,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                           <BlogMainWrapper className="video-center">
                             <ImageWrap className="video-ratio">
                               <Image
-                                src={item.title + "/" + item.image}
+                                src={item.id_news + "/" + item.image}
                                 alt={item.title}
                                 cls="paralax-image"
                                 location={item.path}
@@ -118,7 +118,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                               <ImageClip>
                                 <ImageWrap className="landscape">
                                   <Image
-                                    src={item.title + "/" + item.image}
+                                    src={item.id_news + "/" + item.image}
                                     alt={item.image}
                                     cls="paralax-image"
                                     location={item.path}
@@ -200,6 +200,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                         <ColItem102>
                           {/* limit 3 */}
                           {data.data
+                            .slice(0, 4)
                             .filter((item) => item.views > 23)
                             .map((item: any, key: number) => {
                               return (
@@ -210,7 +211,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                                   <ImageClip>
                                     <ImageWrap className="category-ratio">
                                       <Image
-                                        src={item.title + "/" + item.image}
+                                        src={item.id_news + "/" + item.image}
                                         alt={item.image}
                                         cls="paralax-image"
                                         location={item.path}

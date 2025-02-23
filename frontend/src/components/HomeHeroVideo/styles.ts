@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HomeHeroVideoContainer = styled("div")`
   z-index: 10;
   width: 100%;
+  margin-top: 1%;
   min-height: 50em;
   position: relative;
   overflow: hidden;

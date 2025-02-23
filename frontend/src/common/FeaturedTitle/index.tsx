@@ -13,8 +13,8 @@ const FeaturedTitle = () => {
         <Container>
           <div>
             <MainTitle className="center">
-              Noticias
-              <LightText className="lighter"> Importantes</LightText>
+              lo más
+              <LightText className="lighter"> relevante</LightText>
             </MainTitle>
           </div>
         </Container>

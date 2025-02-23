@@ -22,6 +22,7 @@ export interface VideoProps {
 
 export interface PropsVideoContainer {
   cls?: boolean;
+  mute: boolean;
 }
 
 export interface LinkProps {

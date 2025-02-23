@@ -1,8 +1,7 @@
-import Image from "../../common/Image";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
-import { Create } from "../../slices/subscriptionsSlice";
+import { CreateSubscription } from "../../slices/subscriptionsSlice";
 import {
   BlogRichDetails,
   BlogSingleContentWrap,
@@ -38,9 +37,11 @@ import {
   WriterTitleBoxWrap,
 } from "./styles";
 import { useAppDispatch } from "../../hooks/redux-hooks";
+import { useState } from "react";
 
 const Municipio = () => {
   const date = new Date();
+  const [email, setEmail] = useState("");
   const optionsSlide = {
     arrowPrev: false,
     arrowNext: false,
@@ -55,7 +56,8 @@ const Municipio = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     formData.append("date", date.toLocaleDateString("en-US"));
-    await dispatch(Create(formData));
+    await dispatch(CreateSubscription(formData));
+    setEmail("");
   };
 
   return (
@@ -63,7 +65,7 @@ const Municipio = () => {
       <Container>
         <BlogSingleWrap>
           <SectionTitleBox>
-            <InnerTitle>Conoce tú Municipio</InnerTitle>
+            <InnerTitle>Conoce tu Municipio</InnerTitle>
           </SectionTitleBox>
           <DateBoxWrap>
             <InnerCardTopBox>
@@ -80,7 +82,11 @@ const Municipio = () => {
             </WriterTitleBoxWrap>
           </DateBoxWrap>
           <BlogSingleDivider />
-          <Image src="" location="" cls="blog-single-image" alt="" />
+          <img
+            src="/images/main/IMG_0350.jpg"
+            className="blog-single-image"
+            alt="Atotonilco el Grande"
+          />
         </BlogSingleWrap>
         <BlogSingleContentWrap>
           <SingleLeftBox>
@@ -105,18 +111,20 @@ const Municipio = () => {
             </RecentContentBox>
             <MailBoxWrap>
               <RecentFromBlock>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit} autoComplete="off">
                   <RecentMailFromWrap>
                     <input
                       className="input-field w-input"
                       type="email"
                       name="email"
+                      value={email}
+                      onChange={(e: any) => setEmail(e.target.value)}
                       required
                     />
                     <input
                       className="subscribe-button"
                       type="submit"
-                      value="Suscribete!"
+                      value="Suscríbete!"
                     />
                   </RecentMailFromWrap>
                 </form>

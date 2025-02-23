@@ -26,7 +26,8 @@ const notificationSlice = createSlice({
   initialState,
   reducers: {
     showNotification: (state, action: PayloadAction<ShowNotification>) => {
-      state.open = true;
+      console.log(action.payload.message);
+      state.open = action.payload.message === "Success!" ? false : true;
       state.message = action.payload.message;
       state.type = action.payload.type;
     },

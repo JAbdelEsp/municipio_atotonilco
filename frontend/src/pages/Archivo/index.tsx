@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import HeroCms from "../../components/HeroCms";
 
 const Archivo = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const ScrollDown = () => {
     const element = document.getElementById(
       "Archivo Municipal"

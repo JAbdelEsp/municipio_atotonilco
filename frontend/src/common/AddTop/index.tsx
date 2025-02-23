@@ -48,22 +48,17 @@ const AddTop = () => {
   };
   const url = import.meta.env.VITE_API_URL + "news/records";
   const { data, status, error } = useFetch<NewsData>(url);
+
+  const items = Array.isArray(data) ? data : [];
+
   const [isShow, setIsShow] = useState(false);
-  const [next, setNext] = useState(4);
-  const [prev, setPrev] = useState(0);
-  const [disabledNext, setDisabledNext] = useState(false);
-  const [disabledPrev, setDisabledPrev] = useState(true);
-  useEffect(() => {
-    const len = Array.isArray(data) && data.length;
-    if (next === len) {
-      setDisabledNext(true);
-    }
-    if (typeof next === "number" && typeof len === "number" && next < len) {
-      setDisabledNext(false);
-    }
-  }, [next]);
-  const _handleClick = (item: any) => {
-    const len = Array.isArray(data) && data.length;
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 8;
+
+  const startIndex = currentPage * itemsPerPage;
+  const visibleItems = items.slice(startIndex, startIndex + itemsPerPage);
+
+  const nextPage = () => {
     const element = document.getElementById("start");
     if (element) {
       window.scrollTo({
@@ -71,33 +66,21 @@ const AddTop = () => {
         behavior: "smooth",
       });
     }
-    if (prev == 4) {
-      setDisabledPrev(true);
-      setDisabledNext(false);
+    if (startIndex + itemsPerPage < items.length) {
+      setCurrentPage(currentPage + 1);
     }
-    if (typeof prev === "number" && typeof len === "number" && prev < len) {
-      setDisabledNext(false);
+  };
+
+  const prevPage = () => {
+    const element = document.getElementById("start");
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: "smooth",
+      });
     }
-    if (next == len) {
-      setDisabledNext(true);
-    }
-    if (typeof len === "number" && next > 8 && next == len - 4) {
-      setDisabledPrev(true);
-      setDisabledNext(true);
-    }
-    switch (item) {
-      case "next":
-        setDisabledPrev(false);
-        if (typeof len === "number" && len - 1 === next) {
-          setDisabledNext(true);
-        }
-        setPrev(prev + 4);
-        setNext(next + 4);
-        break;
-      case "prev":
-        setPrev(prev - 4);
-        setNext(next - 4);
-        break;
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
     }
   };
   let content;
@@ -117,86 +100,83 @@ const AddTop = () => {
                 <div>
                   <div className="w-dyn-list" id="start">
                     <HorizontalGrid>
-                      {Array.isArray(data) &&
-                        data.slice(prev, next).map((item: any, key: number) => (
-                          <ListItem key={key}>
-                            <BlogMainWrapper className="horizontal">
-                              <ImageClip>
-                                <ImageWrap className="">
-                                  <Image
-                                    src={item.title + "/" + item.image}
-                                    alt={item.image}
-                                    location={item.path}
-                                    cls="paralax-image"
-                                  />
-                                  <CategoryAbsolute>
-                                    {item.neighborhood}
-                                  </CategoryAbsolute>
-                                  <ButtonIconMain
-                                    onClick={() =>
-                                      goTo("/vermas?noticia=" + item.id_news)
-                                    }
-                                  >
-                                    <ButtonIconSvg>
+                      {visibleItems.map((item: any, key: number) => (
+                        <ListItem key={key}>
+                          <BlogMainWrapper className="horizontal">
+                            <ImageClip>
+                              <ImageWrap className="">
+                                <Image
+                                  src={item.id_news + "/" + item.image}
+                                  alt={item.image}
+                                  location={item.path}
+                                  cls="paralax-image"
+                                />
+                                <CategoryAbsolute>
+                                  {item.neighborhood}
+                                </CategoryAbsolute>
+                                <ButtonIconMain
+                                  onClick={() =>
+                                    goTo("/vermas?noticia=" + item.id_news)
+                                  }
+                                >
+                                  <ButtonIconSvg>
+                                    <SvgIcon
+                                      src="read-svgrepo-com.svg"
+                                      width="20px"
+                                      height=""
+                                    />
+                                  </ButtonIconSvg>
+                                </ButtonIconMain>
+                              </ImageWrap>
+                            </ImageClip>
+                            <HorizontalContent>
+                              <div>
+                                <DataFlex>
+                                  <DataInsidde>
+                                    <DataImage>
                                       <SvgIcon
-                                        src="read-svgrepo-com.svg"
-                                        width="20px"
+                                        src="calendar-data-light.svg"
+                                        width="15px"
                                         height=""
                                       />
-                                    </ButtonIconSvg>
-                                  </ButtonIconMain>
-                                </ImageWrap>
-                              </ImageClip>
-                              <HorizontalContent>
-                                <div>
-                                  <DataFlex>
-                                    <DataInsidde>
-                                      <DataImage>
-                                        <SvgIcon
-                                          src="calendar-data-light.svg"
-                                          width="15px"
-                                          height=""
-                                        />
-                                      </DataImage>
-                                      <DataText>{item.date}</DataText>
-                                    </DataInsidde>
-                                    <LineNavigation className="second" />
-                                    <DataInsidde>
-                                      <DataImage>
-                                        <SvgIcon
-                                          src="eaf_time-light.svg"
-                                          width="15px"
-                                          height=""
-                                        />
-                                      </DataImage>
-                                      <DataText>{item.time}</DataText>
-                                    </DataInsidde>
-                                  </DataFlex>
-                                </div>
-                                <div className="margin-20px">
-                                  <BlogTitle className="for-horizontal">
-                                    {item.title}
-                                  </BlogTitle>
-                                </div>
-                                <div className="margin-30px">
-                                  {parse(
-                                    item.content.length > 350
-                                      ? item.content.slice(0, 350 - 1) +
-                                          "&hellip;"
-                                      : item.content
-                                  )}
-                                </div>
-                              </HorizontalContent>
-                            </BlogMainWrapper>
-                          </ListItem>
-                        ))}
+                                    </DataImage>
+                                    <DataText>{item.date}</DataText>
+                                  </DataInsidde>
+                                  <LineNavigation className="second" />
+                                  <DataInsidde>
+                                    <DataImage>
+                                      <SvgIcon
+                                        src="eaf_time-light.svg"
+                                        width="15px"
+                                        height=""
+                                      />
+                                    </DataImage>
+                                    <DataText>{item.time}</DataText>
+                                  </DataInsidde>
+                                </DataFlex>
+                              </div>
+                              <div className="margin-20px">
+                                <BlogTitle className="for-horizontal">
+                                  {item.title}
+                                </BlogTitle>
+                              </div>
+                              <div className="margin-30px">
+                                {parse(
+                                  item.content.length > 350
+                                    ? item.content.slice(0, 350 - 1) +
+                                        "&hellip;"
+                                    : item.content
+                                )}
+                              </div>
+                            </HorizontalContent>
+                          </BlogMainWrapper>
+                        </ListItem>
+                      ))}
                     </HorizontalGrid>
                     <PaginationWrapper className="margin-30px">
                       <ButtonPagination
-                        disabled={disabledPrev}
-                        onClick={() => {
-                          _handleClick("prev");
-                        }}
+                        disabled={currentPage === 0}
+                        onClick={prevPage}
                         className="previous"
                       >
                         <ButtonIconMainForPagination className="for-pagination">
@@ -211,10 +191,8 @@ const AddTop = () => {
                         <div className="w-inline-block">Anterior</div>
                       </ButtonPagination>
                       <ButtonPaginationN
-                        disabled={disabledNext}
-                        onClick={() => {
-                          _handleClick("next");
-                        }}
+                        disabled={startIndex + itemsPerPage >= items.length}
+                        onClick={nextPage}
                       >
                         <div className="w-inline-block">Siguiente</div>
                         <ButtonIconMain className="for-pagination">

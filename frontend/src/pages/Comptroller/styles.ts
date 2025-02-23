@@ -15,9 +15,10 @@ export const DataTableWrapper = styled("div")`
     grid-template-columns: 380px 380px;
     grid-template-rows: minmax(50px, 220px);
     gap: 10px;
-    > img {
-      border-radius: 10px;
-    }
+  }
+
+  .imgPt {
+    display: none !important;
   }
 
   .ant-select {
@@ -32,6 +33,15 @@ export const DataTableWrapper = styled("div")`
 
   @media screen and (max-width: 479px) {
     padding: 1em 1em 5em;
+    .photoswip {
+      display: grid;
+      grid-template-columns: 360px;
+      grid-template-rows: minmax(50px, 220px);
+      gap: 10px;
+      > img {
+        border-radius: 10px;
+      }
+    }
     .ant-table-content {
       overflow-x: scroll;
       .ant-table-cell {
@@ -130,7 +140,7 @@ export const FormLayout = styled("div")`
 export const FormImage = styled("div")`
   z-index: 10;
   width: 100%;
-  height: 30em;
+  height: 50em;
   position: relative;
   @media screen and (max-width: 991px) {
     height: 25em;

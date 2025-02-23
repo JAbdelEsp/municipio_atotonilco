@@ -1,6 +1,6 @@
 import { FullMenuContainer } from "./styles";
 import { SvgIcon } from "../../common/SvgIcon";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const FullScreenMenu = ({
   toggleMenu,
   visible,
@@ -8,6 +8,12 @@ const FullScreenMenu = ({
   toggleMenu: () => void;
   visible: boolean;
 }) => {
+  const history = useNavigate();
+  const goTo = (path: string) => {
+    history(path);
+    visible = false;
+  };
+
   return (
     <FullMenuContainer>
       <div
@@ -66,9 +72,12 @@ const FullScreenMenu = ({
               </div>
             </div>
             <div className="menu-main-links">
-              <Link
+              <a
                 data-w-id="6dce1659-1f78-7d00-7eed-5d600171ac2e"
-                to="/"
+                onClick={() => {
+                  goTo("/");
+                  toggleMenu();
+                }}
                 aria-current="page"
                 className="menu-link w-inline-block w--current"
               >
@@ -88,10 +97,13 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </Link>
-              <Link
+              </a>
+              <a
                 data-w-id="9119eb55-b515-23ab-3ca6-d7a893b67ca0"
-                to="/transparencia"
+                onClick={() => {
+                  goTo("/transparencia");
+                  toggleMenu();
+                }}
                 className="menu-link w-inline-block"
               >
                 <div
@@ -110,10 +122,13 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </Link>
-              <Link
+              </a>
+              <a
                 data-w-id="9119eb55-b515-23ab-3ca6-d7a893b67ca0"
-                to="/direcciones/#PlaneacionInfoPub"
+                onClick={() => {
+                  goTo("/direcciones/#PlaneacionInfoPub");
+                  toggleMenu();
+                }}
                 className="menu-link w-inline-block"
               >
                 <div
@@ -132,10 +147,13 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </Link>
-              <Link
+              </a>
+              <a
                 data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
-                to="/tramites"
+                onClick={() => {
+                  goTo("/tramites");
+                  toggleMenu();
+                }}
                 className="menu-link w-inline-block"
               >
                 <div
@@ -154,10 +172,13 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </Link>
-              <Link
+              </a>
+              <a
                 data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
-                to="/noticias"
+                onClick={() => {
+                  goTo("/noticias");
+                  toggleMenu();
+                }}
                 className="menu-link w-inline-block"
               >
                 <div
@@ -176,10 +197,13 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </Link>
-              <Link
+              </a>
+              <a
                 data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
-                to="/municipio"
+                onClick={() => {
+                  goTo("/municipio");
+                  toggleMenu();
+                }}
                 className="menu-link w-inline-block"
               >
                 <div
@@ -198,7 +222,7 @@ const FullScreenMenu = ({
                   alt=""
                   className="icon is-menu-link-icon"
                 />
-              </Link>
+              </a>
             </div>
           </div>
           <div

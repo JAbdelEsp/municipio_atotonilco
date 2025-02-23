@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import BlogContent from "../../components/BlogContent";
 import BlogHero from "../../components/BlogHero";
 
 const Blog = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <BlogHero

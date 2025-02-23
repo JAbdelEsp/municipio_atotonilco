@@ -19,6 +19,7 @@ import Planning from "../pages/Planning";
 import Resources from "../pages/Resources";
 import Municipio from "../pages/Municipio";
 import NotFound from "../pages/Component404";
+import Gobierno from "../pages/Gobierno";
 
 const Router = () => {
   return (
@@ -40,24 +41,9 @@ const Router = () => {
         <Route path="/direcciones" element={<Planning />} />
         <Route path="/tramites" element={<Resources />} />
         <Route path="/municipio" element={<Municipio />} />
+        <Route path="/gobierno" element={<Gobierno />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* <Routes>
-        {routes.map((routeItem) => {
-          const Component = lazyComponents[routeItem.component];
-          return (
-            <Route
-              key={routeItem.component}
-              path={routeItem.path}
-              element={
-                <Suspense fallback={<p>Loading...</p>}>
-                  <Component />
-                </Suspense>
-              }
-            />
-          );
-        })}
-      </Routes> */}
       <FooterComponent />
     </Suspense>
   );

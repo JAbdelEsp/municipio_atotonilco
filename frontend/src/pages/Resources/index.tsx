@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import DataTableResources from "../../components/DataTableResources";
 import HeroCms from "../../components/HeroCms";
 import Preloader from "../../components/Preloader";
@@ -5,6 +6,9 @@ import useFetch from "../../services";
 import NotFound from "../Component404";
 
 const Resources = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { data, status, error } = useFetch(
     import.meta.env.VITE_API_URL + "resources/records"
   );
