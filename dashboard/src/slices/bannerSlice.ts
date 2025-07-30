@@ -72,6 +72,16 @@ export type NewVideoPayload = {
   date: string; // TODO: Temp
 };
 
+export type NewDirectionsPayload = {
+  id: string;
+  name: string;
+  lastname: string;
+  area: string; //
+  description: string;
+  picture: string;
+  // TODO: Temp
+};
+
 export type UpdateSevacPayload = Omit<
   NewTextBannerPayload,
   "projectId" | "dashboardId"
@@ -86,6 +96,10 @@ export type VideoBannerBasicInfo = NewVideoPayload & {
 };
 
 export type BannerBasicInfo = NewBannerPayload & {
+  id: string;
+};
+
+export type DirectionsBasicInfo = NewDirectionsPayload & {
   id: string;
 };
 
@@ -112,6 +126,7 @@ type TextBannerState = {
   banner: TextBannerBasicInfo[];
   imageBanner: BannerBasicInfo[];
   video: VideoBannerBasicInfo[];
+  directions: DirectionsBasicInfo[];
   selectedBanner: TextBannerBasicInfo | undefined;
   status: "idle" | "loading" | "failed";
   error: string | null;
@@ -121,6 +136,7 @@ export const initialState: TextBannerState = {
   banner: [],
   imageBanner: [],
   video: [],
+  directions: [],
   selectedBanner: undefined,
   status: "idle",
   error: null,
@@ -233,6 +249,7 @@ export const createVideo = createAsyncThunk(
   }
 );
 
+// text banner
 export const updateTextBanner = createAsyncThunk(
   "banners/updateOne",
   async (banner: any, { rejectWithValue }) => {
@@ -324,61 +341,63 @@ export const deleteVideo = createAsyncThunk(
   }
 );
 
-// export const fetchtrans = createAsyncThunk("trans/fetchtrans", async () => {
-//   const response = await axios.get(`${backendBaseUrl}/trans`);
-//   return response.data;
-// });
+// directions
+export const createDirection = createAsyncThunk(
+  "directions/createOne",
+  async (payload: any, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post(
+        "/directions/register",
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
+        return rejectWithValue(errorResponse);
+      }
+      throw error;
+    }
+  }
+);
 
-// export const gettrans = createAsyncThunk(
-//   "trans/gettrans",
-//   async (transId: number) => {
-//     const response = await axios.get(`${backendBaseUrl}/trans/${transId}`);
-//     return response.data;
-//   }
-// );
+export const getDirections = createAsyncThunk(
+  "directions/getAll",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get("/directions/records");
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
 
-// export const addtrans = createAsyncThunk(
-//   "trans/addtrans",
-//   async (trans: NewtransFinal) => {
-//     const transPayload: NewtransPayload = {
-//       projectId: trans.project.id as number,
-//       name: trans.name,
-//       description: trans.description,
-//       priority: trans.priority,
-//       status: trans.status,
-//       assigneeId: trans.assignee.id as number,
-//       dashboardId: 1,
-//     };
-//     const response = await axios.post(`${backendBaseUrl}/trans`, transPayload);
-//     return response.data;
-//   }
-// );
+        return rejectWithValue(errorResponse);
+      }
 
-// export const updatetrans = createAsyncThunk(
-//   "trans/updatetrans",
-//   async (trans: trans) => {
-//     const updatetransPayload: UpdatetransPayload = {
-//       name: trans.name,
-//       description: trans.description,
-//       priority: trans.priority,
-//       status: trans.status,
-//       assigneeId: trans.assignee.id as number,
-//     };
-//     const response = await axios.patch(
-//       `${backendBaseUrl}/trans/${trans.id}`,
-//       updatetransPayload
-//     );
-//     return response.data;
-//   }
-// );
+      throw error;
+    }
+  }
+);
 
-// export const deletetrans = createAsyncThunk(
-//   "trans/deletetrans",
-//   async (transId: number) => {
-//     await axios.delete(`${backendBaseUrl}/trans/${transId}`);
-//     return transId;
-//   }
-// );
+export const deleteDirections = createAsyncThunk(
+  "directions/deleteOne",
+  async (params: any, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.delete(
+        `/directions/delete/?id=${params.id}&area=${params.area}`
+      );
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
+
+        return rejectWithValue(errorResponse);
+      }
+
+      throw error;
+    }
+  }
+);
 
 export const textBannerSlice = createSlice({
   name: "textBanner",
@@ -413,75 +432,14 @@ export const textBannerSlice = createSlice({
           state.status = "idle";
           state.video = action.payload;
         }
+      )
+      .addCase(
+        getDirections.fulfilled,
+        (state, action: PayloadAction<DirectionsBasicInfo[]>) => {
+          state.status = "idle";
+          state.directions = action.payload;
+        }
       );
-    //   .addCase(getTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.trans = [];
-    //     state.error = action.error.message || "Failed to fetch trans.";
-    //   });
-    //   .addCase(getTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   });
-
-    //   .addCase(getTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.selectedtrans = undefined;
-    //     state.error = action.error.message || "Failed to fetch trans.";
-    //   })
-    //   .addCase(createTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   })
-    //   // .addCase(
-    //   //   createtrans.fulfilled,
-    //   //   (state, action: PayloadAction<transBasicInfo>) => {
-    //   //     state.status = "idle";
-    //   //     state.trans.push(action.payload);
-    //   //   }
-    //   // )
-    //   .addCase(createTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.error = action.error.message || "Failed to add trans.";
-    //   })
-
-    //   .addCase(updateTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   })
-    //   // .addCase(
-    //   //   updatetrans.fulfilled,
-    //   //   (state, action: PayloadAction<transBasicInfo>) => {
-    //   //     state.status = "idle";
-    //   //     const updatedtrans = action.payload;
-    //   //     const index = state.trans.findIndex(
-    //   //       (trans) => trans.id === updatedtrans.id
-    //   //     );
-    //   //     if (index !== -1) {
-    //   //       state.trans[index] = updatedtrans;
-    //   //     }
-    //   //   }
-    //   // )
-    //   .addCase(updateTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.error = action.error.message || "Failed to update trans.";
-    //   })
-    //   .addCase(deleteTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   })
-    //   .addCase(
-    //     deleteTrans.fulfilled,
-    //     (state, action: PayloadAction<string>) => {
-    //       state.status = "idle";
-    //       const entityId = action.payload;
-    //       state.trans = state.trans.filter((trans) => trans.id !== entityId);
-    //     }
-    //   )
-    //   .addCase(deleteTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.error = action.error.message || "Failed to delete trans.";
-    //   });
   },
 });
 

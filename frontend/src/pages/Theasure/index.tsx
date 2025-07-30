@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import HeroCms from "../../components/HeroCms";
 import NavBarC from "../../components/NavBar";
+import DataTablesTheasure from "../../components/DataTablesTheasure";
 
 const Theasure = () => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const Theasure = () => {
     <>
       <HeroCms scrollDown={ScrollDown} title="Tesorería" description="" />
       <NavBarC />
+      <DataTablesTheasure />
     </>
   );
 };

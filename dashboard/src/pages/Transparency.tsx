@@ -17,12 +17,19 @@ export default function Transparency() {
     trimester: string,
     id: string,
     year: string,
-    article: string
+    article: string,
+    fraction: string
   ) => {
     dispatch(
       openModal({
         modalName: "addFiles",
-        modalProps: { trimester, transId: id, year: year, article: article },
+        modalProps: {
+          trimester,
+          transId: id,
+          year: year,
+          article: article,
+          fraction: fraction,
+        },
       })
     );
   };

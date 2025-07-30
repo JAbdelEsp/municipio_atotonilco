@@ -200,8 +200,7 @@ const FeaturedPosts = (data: { data: NewsData[] }) => {
                         <ColItem102>
                           {/* limit 3 */}
                           {data.data
-                            .slice(0, 4)
-                            .filter((item) => item.views > 23)
+                            .filter((item) => item.views > 50)
                             .map((item: any, key: number) => {
                               return (
                                 <BlogMainSmall

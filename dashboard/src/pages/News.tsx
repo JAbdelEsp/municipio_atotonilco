@@ -1,4 +1,4 @@
-import TasksTable from "../components/task/TasksTable";
+import TasksTable from "../components/task/TaskTable";
 import PageHeader from "../components/headers/PageHeader";
 import AddButton from "../components/buttons/AddButton";
 // import ModalPopup from "../components/ModalPopup";

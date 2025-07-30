@@ -19,6 +19,7 @@ import TextBannerTable from "../components/TextBanners/TextBannerTable";
 import { openModal } from "../slices/modalSlice";
 import BannerTable from "../components/TextBanners/BannerTable";
 import VideoTable from "../components/TextBanners/VideoTable";
+import DirectionsTable from "../components/TextBanners/DirectionsTable";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -47,6 +48,10 @@ const Home = () => {
 
   const openModalAddVideo = () => {
     dispatch(openModal({ modalName: "addVideo", modalProps: {} }));
+  };
+
+  const openModalAddDirection = () => {
+    dispatch(openModal({ modalName: "addDirections", modalProps: {} }));
   };
 
   return (
@@ -84,6 +89,14 @@ const Home = () => {
           onClickAction={() => openModalAddVideo()}
         />
         <VideoTable onClickUpload={() => {}} />
+      </Grid>
+      <Grid item xl={6} mt={10}>
+        <PageHeader title="Direcciones" />
+        <AddButton
+          text="Agregar Nuevo"
+          onClickAction={() => openModalAddDirection()}
+        />
+        <DirectionsTable onClickUpload={() => {}} />
       </Grid>
     </Grid>
   );

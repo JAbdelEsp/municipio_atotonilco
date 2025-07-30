@@ -16,7 +16,8 @@ interface TransTableProps {
     trimester: string,
     id: string,
     year: string,
-    article: string
+    article: string,
+    fraction: string
   ) => void;
 }
 
@@ -68,7 +69,8 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
                 "firstTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.article
+                params.row.article,
+                params.row.fraction
               )
             }
           >
@@ -95,7 +97,8 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
                 "secondTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.article
+                params.row.article,
+                params.row.fraction
               )
             }
           >
@@ -122,7 +125,8 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
                 "thirdTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.article
+                params.row.article,
+                params.row.fraction
               )
             }
           >
@@ -149,7 +153,8 @@ export default function TransTable({ onClickUpload }: TransTableProps) {
                 "fourthTrimester",
                 params.row.id,
                 params.row.year,
-                params.row.article
+                params.row.article,
+                params.row.fraction
               )
             }
           >

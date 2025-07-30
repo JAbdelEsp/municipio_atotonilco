@@ -152,7 +152,7 @@ const FilesOrderBy = async (req, res) => {
 const Delete = async (req, res) => {
   try {
     const deleteRec = await deleteRecord("planning", "id", req.query.id);
-    const route = "./public/files/planning" + "/" + req.query.year + "/";
+    const route = "./public/files/planning" + "/" + req.query.year + "/" + req.query.file_name + "/";
     await fs.rm(route, { recursive: true }).then(() => {});
     if (deleteRec) {
       res.status(200).json(deleteRec);

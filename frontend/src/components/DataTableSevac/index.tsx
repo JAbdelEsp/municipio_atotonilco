@@ -38,11 +38,14 @@ const DataTableSevac = () => {
             <ul style={{ listStyle: "none" }}>
               {JSON.parse(dataIndex).map((item: any, key: number) => (
                 <li key={key}>
+                  {item.split("/").pop().split("?")[0].split("#")[0]}
                   <a
+                    style={{ float: "right" }}
                     href={import.meta.env.VITE_API_URL + item}
                     target="_blank"
                     download
                   >
+                    {item}
                     <SvgIcon
                       src="download-square-svgrepo-com.svg"
                       width="20px"
@@ -65,7 +68,9 @@ const DataTableSevac = () => {
             <ul style={{ listStyle: "none" }}>
               {JSON.parse(dataIndex).map((item: any, key: number) => (
                 <li key={key}>
+                  {item.split("/").pop().split("?")[0].split("#")[0]}
                   <a
+                    style={{ float: "right" }}
                     href={import.meta.env.VITE_API_URL + item}
                     target="_blank"
                     download
@@ -92,7 +97,9 @@ const DataTableSevac = () => {
             <ul style={{ listStyle: "none" }}>
               {JSON.parse(dataIndex).map((item: any, key: number) => (
                 <li key={key}>
+                  {item.split("/").pop().split("?")[0].split("#")[0]}
                   <a
+                    style={{ float: "right" }}
                     href={import.meta.env.VITE_API_URL + item}
                     target="_blank"
                     download
@@ -119,7 +126,9 @@ const DataTableSevac = () => {
             <ul style={{ listStyle: "none" }}>
               {JSON.parse(dataIndex).map((item: any, key: number) => (
                 <li key={key}>
+                  {item.split("/").pop().split("?")[0].split("#")[0]}
                   <a
+                    style={{ float: "right" }}
                     href={import.meta.env.VITE_API_URL + item}
                     target="_blank"
                     download

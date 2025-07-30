@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import {
   TeamImageWrapper,
   ImageWrap,
@@ -10,16 +12,33 @@ import {
   Container,
   PrincipalTeamWrapper,
 } from "./styles";
+import { DirectionsBasicInfo, getDirections } from "../../slices/bannerSlices";
+import ModalDirections from "../../common/ModalDirections";
 const OrgChart = () => {
+  const [isShow, setIsShow] = useState(false);
+  const [data, setData] = useState<DirectionsBasicInfo>();
+  const dispatch = useAppDispatch();
+  const directions = useAppSelector((state) => state.banners.directions);
+  useEffect(() => {
+    dispatch(getDirections());
+  }, [dispatch]);
+
   return (
     <Container id="data">
+      {data && (
+        <ModalDirections
+          show={isShow}
+          set={setIsShow}
+          data={data ? data : []}
+        />
+      )}
       <TeamGrid>
         <PrincipalTeamWrapper>
           <TeamImageWrapper>
             <ImageWrap>
               <img
-                src="/public/images/main/PHOTO-2024-11-16-13-29-34.jpg"
-                alt=""
+                src="/images/main/PHOTO-2024-11-16-13-29-34.jpg"
+                alt="Lic. Leticia Chapa Guerrero "
               />
             </ImageWrap>
             <TeamImageOverlay />
@@ -38,199 +57,39 @@ const OrgChart = () => {
       </TeamGrid>
       {/* secondary */}
       <TeamGrid>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/sin-perfil.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              Erika
-              <LightText> Pérez Gress</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Órgano Interno
-              <LightText> de Control</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/SrioGral.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              Lic. Juan Ignacio
-              <LightText> Hernández Calva</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Secretario
-              <LightText> Municipal</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/PresDIF.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              Lic. Oscar Vázquez
-              <LightText> Cervantes</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Sistema DIF
-              <LightText> Municipal</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/SegPub.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              Cmdte. Cesar
-              <LightText> Lara Hernández</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Seguridad Pública y<LightText> Tránsito Municipal</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/tesorero.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              C.P. Martín
-              <LightText> Jiménez Sánchez</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Tesorería<LightText> Municipal</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img
-                src="/public/images/direcciones/Obras-publicas-1.jpg"
-                alt=""
-              />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              Arq. Edgar
-              <LightText> Guzmán Montiel</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Obras<LightText> Públicas</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/sin-perfil.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              C. Azucena
-              <LightText> Serrano Cabrera</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Oficialía<LightText> Mayor</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/Agua-Potable.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              C. José Antonio
-              <LightText> Vergara Acuña</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Servicios<LightText> Públicos</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/Agua.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              Ing. Oscar
-              <LightText> López Cerón</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Agua Potable y<LightText> Alcantarillado</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/Planeacion.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              L.D. Salvador
-              <LightText> Licona Ramírez</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Dirección de<LightText> Planeación</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
-        <TeamWrapper>
-          <TeamImageWrapper>
-            <ImageWrap>
-              <img src="/public/images/direcciones/Planeacion.jpg" alt="" />
-            </ImageWrap>
-            <TeamImageOverlay />
-          </TeamImageWrapper>
-          <TeamNameWrapper>
-            <ThirdTitle>
-              M.V.Z. José de Jésus
-              <LightText> Hernández Melo</LightText>
-            </ThirdTitle>
-            <ThirdTitle>
-              Desarrollo<LightText> Rural</LightText>
-            </ThirdTitle>
-          </TeamNameWrapper>
-        </TeamWrapper>
+        {directions.length > 0 &&
+          directions.map((item) => (
+            <TeamWrapper
+              onClick={() => {
+                setIsShow(true);
+                setData(item);
+              }}
+            >
+              <TeamImageWrapper>
+                <ImageWrap>
+                  {item.picture !== "" ? (
+                    <img
+                      src={
+                        import.meta.env.VITE_API_URL +
+                        `/uploads/directions/${item.area}/${item.picture}`
+                      }
+                      alt={item.name}
+                    />
+                  ) : (
+                    <img src="/images/direcciones/sin-perfil.jpg" alt="" />
+                  )}
+                </ImageWrap>
+                <TeamImageOverlay />
+              </TeamImageWrapper>
+              <TeamNameWrapper>
+                <ThirdTitle>
+                  {item.name}
+                  <LightText> {item.lastname}</LightText>
+                </ThirdTitle>
+                <ThirdTitle>{item.area}</ThirdTitle>
+              </TeamNameWrapper>
+            </TeamWrapper>
+          ))}
       </TeamGrid>
     </Container>
   );

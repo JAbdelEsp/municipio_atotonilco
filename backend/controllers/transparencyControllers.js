@@ -9,10 +9,11 @@ const {
   deleteRecord,
   updateRecordInfo,
 } = require("../utils/sqlFunctions");
-const newsSchema = require("../schemas/transparencySchema");
-const cloudinary = require("../utils/cloudinary");
 const fs = require("fs").promises;
-
+const ftp = require("basic-ftp");
+const path = require("path");
+const client = new ftp.Client();
+const route = "./public/files/";
 const updateTransparency = async (req, res) => {
   try {
     const transparency = await checkRecordExists(
@@ -69,9 +70,31 @@ const Records = async (req, res) => {
 const Delete = async (req, res) => {
   try {
     const deleteRec = await deleteRecord("transparency", "id", req.query.id);
-    const route =
-      "./public/files/" + req.query.article + "/" + req.query.year + "/";
-    await fs.rm(route, { recursive: true }).then(() => {});
+    // const deleteRemote =
+    // "/public_html/public/files/" +
+    // req.query.article +
+    // "/" +
+    // req.query.year +
+    // "/" +
+    // req.query.fraction;
+
+  const deleteLocal =
+    "./public/files/" +
+    req.query.article +
+    "/" +
+    req.query.year +
+    "/" +
+    req.query.fraction;
+  // await client.access({
+  //   host: "ftp.atotonilcoelgrande.gob.mx",
+  //   user: "jabdel@atotonilcoelgrande.gob.mx",
+  //   port: 21,
+  //   password: "Mexico2025@",
+  //   secure: false,
+  //   secureOptions: { rejectUnauthorized: false },
+  // });
+  // await client.removeDir(deleteRemote);
+  await fs.rm(deleteLocal, { recursive: true }).then(() => {});
     if (deleteRec) {
       res.status(200).json(deleteRec);
     } else {

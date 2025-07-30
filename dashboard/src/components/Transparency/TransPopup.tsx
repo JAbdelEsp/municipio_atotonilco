@@ -24,6 +24,7 @@ interface TaskPopupProps {
   year: string;
   article: string;
   column: string;
+  fraction: string;
   onSubmit: any;
 }
 
@@ -45,6 +46,7 @@ const TransPopup = ({
   year,
   article,
   column,
+  fraction,
   onSubmit,
 }: TaskPopupProps) => {
   const date = new Date();
@@ -63,6 +65,7 @@ const TransPopup = ({
               <input type="text" value={year} hidden name="year" />
               <input type="text" value={article} hidden name="article" />
               <input type="text" value={column} hidden name="column" />
+              <input type="text" value={fraction} hidden name="fraction" />
               <input
                 type="file"
                 name="file"

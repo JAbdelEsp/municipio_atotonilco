@@ -309,9 +309,8 @@ const Comptroller = () => {
                       <ListTitle>
                         {item.description}
                         <a
-                          href={import.meta.env.VITE_API_URL + item.file}
+                          href={item.file}
                           target="_blank"
-                          download
                         >
                           <SvgIcon
                             src="download-square-svgrepo-com.svg"

@@ -11,6 +11,7 @@ const DataTablePlanning = (data: any) => {
   const [pae, setPae] = useState([]);
   const [inv, setInv] = useState([]);
   const [faism, setFaism] = useState([]);
+  const [ programacion, setProgramacion ] = useState([]);
   useEffect(() => {
     letFilterData(data.data);
   }, [data]);
@@ -38,6 +39,10 @@ const DataTablePlanning = (data: any) => {
         (item: any) => item.table === "Programas_evaluacion_PAE"
       );
       pae_data.length > 0 && setPae(pae_data);
+      const programacion_data = data.filter(
+        (item: any) => item.table === "Programacion"
+      );
+      programacion_data.length > 0 && setProgramacion(programacion_data);
       const inv_data = data.filter((item: any) => item.table === "Inventarios");
       inv_data.length > 0 && setInv(inv_data);
     }
@@ -236,7 +241,7 @@ const DataTablePlanning = (data: any) => {
       <h3 className="pd-1">Planeación</h3>
       <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Programación</h3>
-      <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
+      <Table columns={columns} dataSource={programacion} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Presupuestación</h3>
       <Table columns={columns} dataSource={[]} pagination={{ pageSize: 10 }} />
       <h3 className="pd-1">Ejercicio del Gasto</h3>

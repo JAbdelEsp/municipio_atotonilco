@@ -26,6 +26,8 @@ const pages = [
   { name: "Planeación", link: "/planeacion" },
   { name: "Tramites y Servicios", link: "/tramites" },
   { name: "Contraloria Interna", link: "/contraloria" },
+  { name: "Obras Públicas", link: "/obras" },
+  { name: "Tesorería", link: "/tesoreria" },
 ];
 
 // const settings = ['Profile', 'Settings', 'Logout']

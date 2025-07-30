@@ -22,6 +22,9 @@ export const PrincipalTeamWrapper = styled("div")`
 export const TeamWrapper = styled("div")`
   margin-top: 2em;
   grid-area: span 1 / span 1 / span 1 / span 1;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const TeamImageWrapper = styled("div")`
   border-radius: 10px;
@@ -37,6 +40,7 @@ export const ImageWrap = styled("div")`
   overflow: hidden;
   img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 `;

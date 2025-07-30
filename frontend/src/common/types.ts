@@ -93,6 +93,7 @@ export interface PropsDataTable {
 }
 
 export interface DataType {
+  id?: number;
   key: number;
   article: string;
   year: string;
@@ -104,6 +105,17 @@ export interface DataType {
   user: string;
   date: string;
 }
+
+export interface ObraDataType {
+  no_obra: string;
+  nombre: string;
+  convocatoria: string;
+  user: string;
+  date: string;
+}
+  
+  
+
 
 export interface DataTypeSevac {
   key: number;

@@ -95,4 +95,46 @@ export const Styles = createGlobalStyle`
     .large {
         grid-area: span 1 / span 2 / span 1 / span 2;
     }
+    // navigation menu 
+    .menu {
+      padding: 15px;
+    }
+
+    .menu-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .menu button {
+      background-color: white;
+      color: #9c202a;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      flex: 1 1 auto;
+      min-width: 120px;
+    }
+
+    .menu button:hover {
+      background-color: #7c1a22;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .menu-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .menu button {
+        width: 90%;
+        max-width: 300px;
+      }
+    }
+
 `;

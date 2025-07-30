@@ -20,6 +20,9 @@ const subscribeRoutes = require("./routes/subscribeRoutes");
 const comptrallorRoutes = require("./routes/contraloriaRoutes");
 const bannerRoutes = require("./routes/bannerRoutes");
 const directionsRoutes = require("./routes/directionsRoutes");
+const oPublicasRoutes = require("./routes/oPublicasRoutes");
+const visitRoutes = require("./routes/visitRoutes");
+const theasureRoutes = require("./routes/theasureRoutes");
 const app = express();
 // función middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
@@ -42,7 +45,9 @@ app.use(
   subscribeRoutes,
   comptrallorRoutes,
   bannerRoutes,
-  directionsRoutes
+  directionsRoutes,
+  oPublicasRoutes,
+  theasureRoutes
 );
 
 connectDB();

@@ -54,6 +54,15 @@ export type NewBannerPayload = {
   date: string; // TODO: Temp
 };
 
+export type NewDirectionsPayload = {
+  id: string;
+  name: string;
+  lastname: string;
+  area: string;
+  description: string;
+  picture: string; // TODO: Temp
+};
+
 export type NewPayload = {
   id: string;
   file: string;
@@ -86,6 +95,10 @@ export type VideoBasicInfo = NewVideoPayload & {
   id: string;
 };
 
+export type DirectionsBasicInfo = NewDirectionsPayload & {
+  id: string;
+};
+
 export type PublicBasicInfo = NewPayload & {
   id: string;
 };
@@ -109,6 +122,7 @@ type BannersState = {
   textBanner: TextBannerBasicInfo[];
   banner: BannerBasicInfo[];
   video: VideoBasicInfo[];
+  directions: DirectionsBasicInfo[];
   selectedComptroller: TextBannerBasicInfo | undefined;
   status: "idle" | "loading" | "failed";
   error: string | null;
@@ -118,6 +132,7 @@ export const initialState: BannersState = {
   textBanner: [],
   banner: [],
   video: [],
+  directions: [],
   selectedComptroller: undefined,
   status: "idle",
   error: null,
@@ -177,6 +192,24 @@ export const getVideo = createAsyncThunk(
   }
 );
 
+export const getDirections = createAsyncThunk(
+  "directions/getAll",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get("/directions/records");
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        const errorResponse = error.response.data;
+
+        return rejectWithValue(errorResponse);
+      }
+
+      throw error;
+    }
+  }
+);
+
 export const bannerSlice = createSlice({
   name: "banner",
   initialState,
@@ -209,6 +242,13 @@ export const bannerSlice = createSlice({
         (state, action: PayloadAction<VideoBasicInfo[]>) => {
           state.status = "idle";
           state.video = action.payload;
+        }
+      )
+      .addCase(
+        getDirections.fulfilled,
+        (state, action: PayloadAction<DirectionsBasicInfo[]>) => {
+          state.status = "idle";
+          state.directions = action.payload;
         }
       );
   },

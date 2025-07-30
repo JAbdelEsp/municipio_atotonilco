@@ -80,9 +80,7 @@ export const getTrans = createAsyncThunk(
   "trans/getAll",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get(
-        BACKEND_BASE_URL + "/transparency/records"
-      );
+      const response = await axiosInstance.get("/transparency/records");
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -141,10 +139,7 @@ export const uploadPics = createAsyncThunk(
   "trans/pics",
   async (payload: any, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post(
-        BACKEND_BASE_URL + "/news/pictures",
-        payload
-      );
+      const response = await axiosInstance.post("/news/pictures", payload);
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -168,7 +163,7 @@ export const updateTrans = createAsyncThunk(
         },
       };
       const response = await axiosInstance.put(
-        BACKEND_BASE_URL + `/transparency/update`,
+        `/transparency/update`,
         trans,
         options
       );
@@ -190,8 +185,7 @@ export const deleteTrans = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        BACKEND_BASE_URL +
-          `/transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
+        `/transparency/delete/?id=${params.id}&article=${params.article}&year=${params.year}&fraction=${params.fraction}`
       );
       return response.data;
     } catch (error) {
@@ -205,62 +199,6 @@ export const deleteTrans = createAsyncThunk(
     }
   }
 );
-
-// export const fetchtrans = createAsyncThunk("trans/fetchtrans", async () => {
-//   const response = await axios.get(`${backendBaseUrl}/trans`);
-//   return response.data;
-// });
-
-// export const gettrans = createAsyncThunk(
-//   "trans/gettrans",
-//   async (transId: number) => {
-//     const response = await axios.get(`${backendBaseUrl}/trans/${transId}`);
-//     return response.data;
-//   }
-// );
-
-// export const addtrans = createAsyncThunk(
-//   "trans/addtrans",
-//   async (trans: NewtransFinal) => {
-//     const transPayload: NewtransPayload = {
-//       projectId: trans.project.id as number,
-//       name: trans.name,
-//       description: trans.description,
-//       priority: trans.priority,
-//       status: trans.status,
-//       assigneeId: trans.assignee.id as number,
-//       dashboardId: 1,
-//     };
-//     const response = await axios.post(`${backendBaseUrl}/trans`, transPayload);
-//     return response.data;
-//   }
-// );
-
-// export const updatetrans = createAsyncThunk(
-//   "trans/updatetrans",
-//   async (trans: trans) => {
-//     const updatetransPayload: UpdatetransPayload = {
-//       name: trans.name,
-//       description: trans.description,
-//       priority: trans.priority,
-//       status: trans.status,
-//       assigneeId: trans.assignee.id as number,
-//     };
-//     const response = await axios.patch(
-//       `${backendBaseUrl}/trans/${trans.id}`,
-//       updatetransPayload
-//     );
-//     return response.data;
-//   }
-// );
-
-// export const deletetrans = createAsyncThunk(
-//   "trans/deletetrans",
-//   async (transId: number) => {
-//     await axios.delete(`${backendBaseUrl}/trans/${transId}`);
-//     return transId;
-//   }
-// );
 
 export const transSlice = createSlice({
   name: "trans",
@@ -282,74 +220,6 @@ export const transSlice = createSlice({
           state.trans = action.payload;
         }
       );
-    //   .addCase(getTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.trans = [];
-    //     state.error = action.error.message || "Failed to fetch trans.";
-    //   });
-    //   .addCase(getTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   });
-
-    //   .addCase(getTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.selectedtrans = undefined;
-    //     state.error = action.error.message || "Failed to fetch trans.";
-    //   })
-    //   .addCase(createTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   })
-    //   // .addCase(
-    //   //   createtrans.fulfilled,
-    //   //   (state, action: PayloadAction<transBasicInfo>) => {
-    //   //     state.status = "idle";
-    //   //     state.trans.push(action.payload);
-    //   //   }
-    //   // )
-    //   .addCase(createTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.error = action.error.message || "Failed to add trans.";
-    //   })
-
-    //   .addCase(updateTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   })
-    //   // .addCase(
-    //   //   updatetrans.fulfilled,
-    //   //   (state, action: PayloadAction<transBasicInfo>) => {
-    //   //     state.status = "idle";
-    //   //     const updatedtrans = action.payload;
-    //   //     const index = state.trans.findIndex(
-    //   //       (trans) => trans.id === updatedtrans.id
-    //   //     );
-    //   //     if (index !== -1) {
-    //   //       state.trans[index] = updatedtrans;
-    //   //     }
-    //   //   }
-    //   // )
-    //   .addCase(updateTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.error = action.error.message || "Failed to update trans.";
-    //   })
-    //   .addCase(deleteTrans.pending, (state) => {
-    //     state.status = "loading";
-    //     state.error = null;
-    //   })
-    //   .addCase(
-    //     deleteTrans.fulfilled,
-    //     (state, action: PayloadAction<string>) => {
-    //       state.status = "idle";
-    //       const entityId = action.payload;
-    //       state.trans = state.trans.filter((trans) => trans.id !== entityId);
-    //     }
-    //   )
-    //   .addCase(deleteTrans.rejected, (state, action) => {
-    //     state.status = "failed";
-    //     state.error = action.error.message || "Failed to delete trans.";
-    //   });
   },
 });
 

@@ -88,7 +88,7 @@ export const getTasks = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get(
-        BACKEND_BASE_URL + "/news/records"
+        BACKEND_BASE_URL + "news/records"
       );
       return response.data;
     } catch (error) {
@@ -107,7 +107,7 @@ export const getTask = createAsyncThunk(
   "tasks/getOne",
   async (taskId: number, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get(`/tasks/${taskId}`);
+      const response = await axiosInstance.get(`tasks/${taskId}`);
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -124,7 +124,7 @@ export const createTask = createAsyncThunk(
   "tasks/createOne",
   async (payload: any, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post("/news/register", payload);
+      const response = await axiosInstance.post("news/register", payload);
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.message) {
@@ -141,7 +141,7 @@ export const uploadPics = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(
-        BACKEND_BASE_URL + "/news/pictures",
+        BACKEND_BASE_URL + "news/pictures",
         payload
       );
       return response.data;
@@ -188,7 +188,7 @@ export const deleteTask = createAsyncThunk(
   async (id: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        BACKEND_BASE_URL + `/news/delete/?id=${id.id}&title=${id.title}`
+        BACKEND_BASE_URL + `news/delete/?id=${id.id}&title=${id.title}`
       );
       return response.data;
     } catch (error) {
@@ -208,7 +208,7 @@ export const deletePictures = createAsyncThunk(
   async (id_news: string, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        BACKEND_BASE_URL + `/news/delete/?id_news=${id_news}`
+        BACKEND_BASE_URL + `news/delete/?id_news=${id_news}`
       );
       return response.data;
     } catch (error) {

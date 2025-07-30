@@ -1,4 +1,4 @@
-export const BACKEND_BASE_URL = "https://api.creativadevelopmentsolutions.com";
+export const BACKEND_BASE_URL = "https://api.creativadevelopmentsolutions.com/";
 export type ErrorResponse = {
   message: string;
 };
@@ -9,6 +9,9 @@ export enum Roles {
   Planning = "Planning",
   Sevac = "Sevac",
   Transparency = "Transparency",
+  Comptroller = "Comptroller",
+  Obras = "Obras",
+  Theasure = "Theasure"
 }
 
 export enum ButtonColor {

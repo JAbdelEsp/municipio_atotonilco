@@ -37,13 +37,12 @@ const uploadFile = multer({
   }),
   fileFilter: (req, file, cb) => {
     let ext = path.extname(file.originalname);
-    if (ext !== ".xlsx" && ext !== ".xls" && ext !== ".pdf") {
+    if (ext !== ".xlsx" && ext !== ".xls" && ext !== ".pdf" && ext !== ".zip") {
       cb(new Error("Tipo de Archivo no soportado!"), false);
       return;
     }
     cb(null, file.originalname);
   },
-  limits: { fileSize: 3145728 },
 });
 
 router.get("/sevac/records", RecordsOrderBy);

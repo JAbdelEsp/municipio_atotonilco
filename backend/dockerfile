@@ -1,0 +1,20 @@
+# Usa una imagen base oficial de Node.js
+FROM node:14
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /usr/src/app
+
+# Copia el archivo package.json y package-lock.json para instalar dependencias
+COPY package*.json ./
+
+# Instala las dependencias de la app
+RUN npm install
+
+# Copia el resto de los archivos de la aplicación al contenedor
+COPY . .
+
+# Expone el puerto 9000 dentro del contenedor (puerto interno)
+EXPOSE 9000
+
+# Comando para ejecutar la aplicación (supuesto: el archivo principal es server.js)
+CMD ["node", "server.js"]

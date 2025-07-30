@@ -14,7 +14,7 @@ const route = "./public/files/";
 const uploadFile = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      const routeComplete = path.join(route, req.body.article, req.body.year);
+      const routeComplete = path.join(route, req.body.article, req.body.year, req.body.fraction);
       fs.mkdirSync(routeComplete, { recursive: true });
       if (fs.existsSync(routeComplete) == true) {
         cb(null, routeComplete);
@@ -35,18 +35,7 @@ const uploadFile = multer({
     }
     cb(null, file.originalname);
   },
-  limits: { fileSize: 3145728 },
 });
-
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "./public/files");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.originalname);
-//   },
-// });
-// uploadFile = multer({ storage });
 
 router.get("/transparency/records", Records);
 router.post("/transparency/register", Register);

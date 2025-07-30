@@ -83,6 +83,7 @@ const upload = multer({
     }
     cb(null, file.originalname);
   },
+  limits: { fileSize: 3145728 },
 });
 router.get("/planning/records", RecordsOrderBy);
 router.get("/planning/records/public", RecordsPublic);

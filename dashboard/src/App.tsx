@@ -22,6 +22,8 @@ import Sevac from "./pages/Sevac";
 import Planning from "./pages/Planning";
 import Resources from "./pages/Resources";
 import Comptroller from "./pages/Comptroller";
+import Obras from "./pages/Obras";
+import Theasure from "./pages/Theasures";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -50,6 +52,9 @@ function App() {
                 Roles.Planning,
                 Roles.Sevac,
                 Roles.Transparency,
+                Roles.Comptroller,
+                Roles.Obras,
+                Roles.Theasure
               ]}
             />
           }
@@ -90,7 +95,7 @@ function App() {
         </Route>
         <Route
           element={
-            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Planning]} />
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Comptroller]} />
           }
         >
           <Route path="/contraloria" element={<Comptroller />} />
@@ -101,6 +106,20 @@ function App() {
           }
         >
           <Route path="/tramites" element={<Resources />} />
+        </Route>
+        <Route
+          element={
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Theasure]} />
+          }
+        >
+          <Route path="/tesoreria" element={<Theasure />} />
+        </Route>
+        <Route
+          element={
+            <ProtectedLayout allowedRoles={[Roles.Admin, Roles.Obras]} />
+          }
+        >
+          <Route path="/obras" element={<Obras />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

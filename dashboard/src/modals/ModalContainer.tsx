@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import AddTaskPopup from "../components/task/AddTaskPopup";
 import { useAppSelector } from "../hooks/redux-hooks";
-import AddTaskPicsPopup from "../components/task/AddTaskPIcsPopup";
+import AddTaskPicsPopup from "../components/task/AddTaskPicsPopup";
 import AddTransFilesPopup from "../components/Transparency/AddTransFilesPopup";
 import AddTransPopup from "../components/Transparency/AddTransPopup";
 import DeleteTransPopup from "../components/Transparency/DeleteTransPopup";
@@ -34,6 +34,12 @@ import AddBannerPopup from "../components/TextBanners/AddBannerPopup";
 import DeleteBannerPopup from "../components/TextBanners/DeleteBannerPopup";
 import AddVideoPopup from "../components/TextBanners/AddVideoPopup";
 import DeleteVideoPopup from "../components/TextBanners/DeleteVideoPopup";
+import AddDirectionsPopup from "../components/TextBanners/AddDirectionsPopup";
+import DeleteDirectionsPopup from "../components/TextBanners/DeleteDirectionsPopup";
+import AddObrasPopup from "../components/obras/AddObrasPopup";
+import AddTheasureFiles from "../components/Theasure/AddTheasureFiles";
+import TheasurePopup from "../components/Theasure/TheasurePopup";
+import AddTheasurePopup from "../components/Theasure/AddTheasurePopup";
 // Import other modal components
 
 const ModalContainer = () => {
@@ -57,6 +63,7 @@ const ModalContainer = () => {
             transId={modalProps?.transId}
             year={modalProps?.year}
             article={modalProps?.article}
+            fraction={modalProps?.fraction}
           />
         );
       case "Delete":
@@ -165,6 +172,10 @@ const ModalContainer = () => {
         return <AddBannerPopup />;
       case "addVideo":
         return <AddVideoPopup />;
+      case "addDirections":
+        return <AddDirectionsPopup />;
+      case "deleteDirections":
+        return <DeleteDirectionsPopup params={modalProps?.params} />;
       case "editTextBanner":
         return <EditTextBannerPopup params={modalProps?.params} />;
       case "deleteTextBanner":
@@ -173,6 +184,12 @@ const ModalContainer = () => {
         return <DeleteBannerPopup params={modalProps?.params} />;
       case "deleteVideo":
         return <DeleteVideoPopup params={modalProps?.params} />;
+      case "addObras":
+        return <AddObrasPopup />;
+      case "addTheasureFiles":
+        return <AddTheasureFiles column={modalProps?.trimester} theasureId={modalProps?.theasureId} year={modalProps?.year} table_name={modalProps?.table_name} />;
+      case "addTheasure":
+        return <AddTheasurePopup />;
       default:
         return null;
     }

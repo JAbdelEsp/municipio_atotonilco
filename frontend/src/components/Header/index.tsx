@@ -34,7 +34,7 @@ const Header = () => {
                 <Span>Inicio</Span>
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/gobierno")}>
-                <Span>Gobierno 2024 - 2027</Span>
+                <Span>Gobierno 2024-2027</Span>
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/sevac")}>
                 <Span>SEVAC</Span>
@@ -49,6 +49,9 @@ const Header = () => {
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/tramites")}>
                 <Span>Trámites y Servicios</Span>
+              </CustomNavLink>
+              <CustomNavLink onClick={() => goTo("/transparencia/tesoreria")}>
+                <Span>Tesorería</Span>
               </CustomNavLink>
               <CustomNavLink onClick={() => goTo("/noticias")}>
                 <Span>Noticias</Span>

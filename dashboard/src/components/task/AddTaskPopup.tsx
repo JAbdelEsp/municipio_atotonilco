@@ -7,8 +7,9 @@ import {
   getTasks,
 } from "../../slices/taskSlice";
 import { useEffect, useState } from "react";
-import TaskPopup from "./TaskPopup";
+import ObrasPopup from "./TasksPopup";
 import { closeModal } from "../../slices/modalSlice";
+import TaskPopup from "./TasksPopup";
 interface AddTaskPopupProps {
   // taskId: string;
 }

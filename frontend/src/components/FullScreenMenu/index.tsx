@@ -33,6 +33,24 @@ const FullScreenMenu = ({
                     <SvgIcon src="facebook.svg" width="40px" height="" />
                   </a>
                 </div>
+                <div role="listitem" className="menu-social-item w-dyn-item">
+                  <a
+                    href="https://www.instagram.com/atotonilcoelgrandeayuntamiento?igsh=MW9jMWZoYmk4N2E2dw%3D%3D&utm_source=qr"
+                    target="_blank"
+                    className="menu-social-link w-inline-block"
+                  >
+                    <SvgIcon src="instagram.svg" width="26px" height="" />
+                  </a>
+                </div>
+                <div role="listitem" className="menu-social-item w-dyn-item">
+                  <a
+                    href="https://whatsapp.com/channel/0029Vb4KJO5Fsn0bZHR76T47"
+                    target="_blank"
+                    className="menu-social-link w-inline-block"
+                  >
+                    <SvgIcon src="whatsapp.svg" width="26px" height="" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -52,7 +70,7 @@ const FullScreenMenu = ({
               <div className="secondary-links-block">
                 <p className="menu-small-text">Contacto</p>
                 <a href="tel:7747430040" className="menu-sesondary-link">
-                  774 7430440
+                  774 7430040
                 </a>
                 <a
                   href="mailto:secretaria.municipal@atotonilcoelgrande.gob.mx"
@@ -68,6 +86,16 @@ const FullScreenMenu = ({
                 </a>
                 <a href="tel:911" className="menu-sesondary-link">
                   Emergencias
+                </a>
+              </div>
+              <div className="secondary-links-block">
+                <p className="menu-small-text">Plan Municipal de Desarrollo</p>
+                <a
+                  href="https://atotonilcoelgrande.gob.mx/public/files/PMD.pdf"
+                  target="_blank"
+                  className="menu-sesondary-link"
+                >
+                  <SvgIcon src="read-svgrepo-com.svg" width="30px" height="" />
                 </a>
               </div>
             </div>
@@ -90,6 +118,32 @@ const FullScreenMenu = ({
                   }}
                 >
                   Inicio
+                </div>
+                <img
+                  src="https://cdn.prod.website-files.com/668bd563537f10fdc41abec9/668bd563537f10fdc41ac01e_arrow_forward_24dp_FILL0_wght600_GRAD0_opsz24.svg"
+                  loading="lazy"
+                  alt=""
+                  className="icon is-menu-link-icon"
+                />
+              </a>
+              <a
+                data-w-id="6dce1659-1f78-7d00-7eed-5d600171ac2e"
+                onClick={() => {
+                  goTo("/gobierno");
+                  toggleMenu();
+                }}
+                aria-current="page"
+                className="menu-link w-inline-block"
+              >
+                <div
+                  className="menu-link-text"
+                  style={{
+                    transform:
+                      "translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  Gobierno 2024-2027
                 </div>
                 <img
                   src="https://cdn.prod.website-files.com/668bd563537f10fdc41abec9/668bd563537f10fdc41ac01e_arrow_forward_24dp_FILL0_wght600_GRAD0_opsz24.svg"
@@ -165,6 +219,31 @@ const FullScreenMenu = ({
                   }}
                 >
                   Trámites y Servicios
+                </div>
+                <img
+                  src="https://cdn.prod.website-files.com/668bd563537f10fdc41abec9/668bd563537f10fdc41ac01e_arrow_forward_24dp_FILL0_wght600_GRAD0_opsz24.svg"
+                  loading="lazy"
+                  alt=""
+                  className="icon is-menu-link-icon"
+                />
+              </a>
+              <a
+                data-w-id="bdd489b8-8031-113b-2ffa-b5e1c5758ce0"
+                onClick={() => {
+                  goTo("/transparencia/tesoreria");
+                  toggleMenu();
+                }}
+                className="menu-link w-inline-block"
+              >
+                <div
+                  className="menu-link-text"
+                  style={{
+                    transform:
+                      "translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  Tesorería
                 </div>
                 <img
                   src="https://cdn.prod.website-files.com/668bd563537f10fdc41abec9/668bd563537f10fdc41ac01e_arrow_forward_24dp_FILL0_wght600_GRAD0_opsz24.svg"

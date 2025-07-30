@@ -116,6 +116,10 @@ export const Section = styled("section")`
     .horizontal {
       flex-flow: column;
     }
+    .for-horizontal {
+      font-size: 22px;
+      line-height: 1;
+    }
     .sticky {
       position: relative !important;
       top: 0 !important;
@@ -252,7 +256,7 @@ export const ButtonIconSvg = styled("div")`
   }
 `;
 export const HorizontalContent = styled("div")`
-  min-width: 400px;
+  min-width: 360px;
 `;
 export const DataFlex = styled("div")`
   grid-column-gap: 14px;

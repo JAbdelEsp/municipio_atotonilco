@@ -15,6 +15,7 @@ interface AddTransPopupProps {
   transId: string;
   year: string;
   article: string;
+  fraction: string;
 }
 
 const AddTransFilesPopup = ({
@@ -22,6 +23,7 @@ const AddTransFilesPopup = ({
   transId,
   year,
   article,
+  fraction,
 }: AddTransPopupProps) => {
   const dispatch = useAppDispatch();
   const submitNewTask = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,6 +43,7 @@ const AddTransFilesPopup = ({
         column={column}
         article={article}
         transId={transId}
+        fraction={fraction}
         year={year}
         onSubmit={submitNewTask}
       />

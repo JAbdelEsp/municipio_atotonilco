@@ -10,6 +10,7 @@ const DataTableTransparency = () => {
   const [article70, setArticle70] = useState<DataType[]>();
   const [article69, setArticle69] = useState<DataType[]>();
   const [selectedYear, setSelectedYear] = useState("");
+  const baseUrl = "https://api.creativadevelopmentsolutions.com/";
   const _handleChange = (value: string) => {
     setSelectedYear(value);
     if (data) {
@@ -25,7 +26,7 @@ const DataTableTransparency = () => {
   };
   const url = import.meta.env.VITE_API_URL + "transparency/records";
   const { data } = useFetch<DataType[]>(url);
-  let urlLoc = import.meta.env.VITE_API_URL + "public/files/";
+  let urlLoc = baseUrl + "public/files/";
   const columns: TableColumnsType<DataType> = [
     {
       title: "Fracción",
@@ -34,13 +35,21 @@ const DataTableTransparency = () => {
     {
       title: "Primer Trimestre",
       dataIndex: "firstTrimester",
-      render: (dataIndex) => {
+      render: (dataIndex, row) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "69/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "69/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
@@ -51,13 +60,21 @@ const DataTableTransparency = () => {
     {
       title: "Segundo Trimestre",
       dataIndex: "secondTrimester",
-      render: (dataIndex) => {
+      render: (dataIndex, row) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "69/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "69/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
@@ -68,13 +85,21 @@ const DataTableTransparency = () => {
     {
       title: "Tercer Trimestre",
       dataIndex: "thirdTrimester",
-      render: (dataIndex) => {
+      render: (dataIndex, row) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "69/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "69/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
@@ -85,13 +110,21 @@ const DataTableTransparency = () => {
     {
       title: "Cuarto Trimestre",
       dataIndex: "fourthTrimester",
-      render: (dataIndex) => {
+      render: (dataIndex, row) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "69/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "69/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
@@ -108,13 +141,21 @@ const DataTableTransparency = () => {
     {
       title: "Primer Trimestre",
       dataIndex: "firstTrimester",
-      render: (dataIndex: any) => {
+      render: (dataIndex: any, row: any) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "70/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "70/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
@@ -125,13 +166,21 @@ const DataTableTransparency = () => {
     {
       title: "Segundo Trimestre",
       dataIndex: "secondTrimester",
-      render: (dataIndex: any) => {
+      render: (dataIndex: any, row: any) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "70/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "70/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
@@ -142,13 +191,21 @@ const DataTableTransparency = () => {
     {
       title: "Tercer Trimestre",
       dataIndex: "thirdTrimester",
-      render: (dataIndex: any) => {
+      render: (dataIndex: any, row: any) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "70/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "70/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>
@@ -159,13 +216,21 @@ const DataTableTransparency = () => {
     {
       title: "Cuarto Trimestre",
       dataIndex: "fourthTrimester",
-      render: (dataIndex: any) => {
+      render: (dataIndex: any, row: any) => {
         return (
           dataIndex && (
             <a
-              href={urlLoc + "70/" + selectedYear + "/" + dataIndex}
               target="_blank"
-              download
+              href={
+                urlLoc +
+                "70/" +
+                selectedYear +
+                "/" +
+                row.fraction +
+                "/" +
+                dataIndex
+              }
+              download={dataIndex}
             >
               <SvgIcon src="excel-svgrepo-com.svg" width="20px" height="" />
             </a>

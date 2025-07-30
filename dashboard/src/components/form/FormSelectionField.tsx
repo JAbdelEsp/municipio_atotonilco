@@ -10,11 +10,11 @@ import {
 type FormTextFieldProps = {
   label: string;
   name: string;
-  value: string | null | undefined;
+  value?: string | null | undefined;
   options: string[];
   isRequired: boolean | undefined;
   isDisabled?: boolean | undefined;
-  onChange: any;
+  onChange?: any;
 };
 
 export default function FormSelectionField({

@@ -129,7 +129,7 @@ export const createPlanning = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     const data = {
       year: payload.get("year"),
-      table_name: payload.get("table"),
+      table: payload.get("table"),
       file_name: payload.get("file_name"),
       user: localStorage.getItem("user"),
       date: date.toLocaleString("en-US"),
@@ -217,7 +217,7 @@ export const deletePlanning = createAsyncThunk(
   async (params: any, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.delete(
-        `/planning/delete/?id=${params.id}&article=${params.article}&year=${params.year}`
+        `/planning/delete/?id=${params.id}&article=${params.article}&year=${params.year}&file_name=${params.file_name}`
       );
       return response.data;
     } catch (error) {

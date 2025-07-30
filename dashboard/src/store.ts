@@ -13,6 +13,8 @@ import resourcesReducer from "./slices/resourcesSlices";
 import proceduresReducer from "./slices/proceduresSlice";
 import comptrollerReducer from "./slices/comptrollerSlice";
 import bannersReducers from "./slices/bannerSlice";
+import obrasReducers from "./slices/obrasSlice";
+import theasureReducers from './slices/theasureSlice'
 import { axiosMiddleware } from "./api/middleware";
 
 const store = configureStore({
@@ -31,6 +33,8 @@ const store = configureStore({
     modal: modalReducer,
     procedures: proceduresReducer,
     textBanner: bannersReducers,
+    obras: obrasReducers,
+    theasure: theasureReducers
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(axiosMiddleware),

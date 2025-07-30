@@ -1,4 +1,5 @@
 export const BACKEND_BASE_URL = "https://api.creativadevelopmentsolutions.com/";
+
 export type ErrorResponse = {
   message: string;
 };

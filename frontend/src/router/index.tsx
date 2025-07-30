@@ -20,7 +20,7 @@ import Resources from "../pages/Resources";
 import Municipio from "../pages/Municipio";
 import NotFound from "../pages/Component404";
 import Gobierno from "../pages/Gobierno";
-
+// track visit
 const Router = () => {
   return (
     <Suspense fallback={<p>Cargando...</p>}>
