@@ -41,7 +41,7 @@ const DataTablesTheasure = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a href={dataIndex} target="_blank">
+            <a href={dataIndex} target="_blank" download>
               <SvgIcon
                 src="download-square-svgrepo-com.svg"
                 width="30px"
@@ -82,7 +82,7 @@ const DataTablesTheasure = () => {
       render: (dataIndex) => {
         return (
           dataIndex && (
-            <a href={dataIndex} target="_blank" download>
+            <a href={dataIndex} target="_blank">
               <SvgIcon
                 src="download-square-svgrepo-com.svg"
                 width="30px"
